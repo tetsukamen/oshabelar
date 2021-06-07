@@ -1,0 +1,117 @@
+type Userinfo
+  @model(
+    mutations: {create: "createUserInfo", delete: null, update: "updateUserInfo"}
+    timestamps:null
+  )
+  @auth(rules:[
+    {allow: owner, ownerField: "userId", provider: userPools, operations:[read, create]}
+    {allow: private, provider: userPools, operations:[read]}
+  ])
+  @key(fields:["userId"])
+{
+  userId: String!
+  nickname: String
+  iconImageKey:String
+  coverImageKey:String
+  profile: String
+}
+
+type Oshaberi 
+  @model(
+    mutations:{create:"createOshaberi",delete:null,update:null}
+    timestamps:null
+    subscriptions:{level:public}
+  )
+  @auth(rules: [
+    {allow: owner, ownerField:"owner", provider: userPools, operations:[read, create]}
+    {allow: private, provider: iam ,operations:[update]},
+    {allow: private, provider: userPools, operations:[read]}
+  ])
+  @key(name:"bySpecificOwner",fields:["owner","timestamp"],queryField:"listOshaberisBySpecificOwner")
+  @key(name:"byParentOshaberi", fields:["parentOshaberiId","timestamp"], queryField:"listOshaberiByParentOshaberi")
+{
+  id:ID
+  owner:String!
+  author:String!
+  timestamp:Int!
+  userInfo:Userinfo @connection(fields:["author"])
+  imageKeys:[String]
+  content:String!
+  parentOshaberiId:ID
+  replyOshaberi:[Oshaberi] @connection(keyName:"byParentOshaberi", fields:["id"])
+  like:[Like] @connection(keyName:"byOshaberiId", fields:["id"])
+}
+
+type Timeline
+  @model(
+    mutations:{create:"createTimeline",delete:null,update:null}
+    timestamps:null
+  )
+  @auth(rules: [
+    {allow: owner, ownerField: "userId", provider: userPools, operations:[read, create]},
+    {allow: private, provider: iam ,operations:[create]},
+	])
+  @key(fields:["userId","timestamp"])
+{
+  userId: String!
+  timestamp:Int!
+  oshaberiId:ID!
+  oshaberi:Oshaberi @connection(fields:["oshaberiId"])
+}
+
+type FollowingRelationship
+  @model(
+    mutations: {create: "createFollowRelationship", delete: "deleteFollowRelationship", update: null}
+    timestamps:null
+  )
+  @auth(rules: [
+		{allow: owner, ownerField:"followerId", provider: userPools, operations:[read, create, delete]},
+		{allow: private, provider: userPools, operations:[read]}
+	])
+  @key(fields:["followeeId","followerId"])
+  @key(name:"BySpesificFollowee",fields:["followeeId","timestamp"],queryField:"listFollowingRelationshipByFollowee")
+  @key(name:"BySpesificFollower",fields:["followerId","timestamp"],queryField:"listFollowingRelationshipByFollower")
+{
+  followeeId:String!
+  followerId:String!
+  timestamp:Int!
+}
+
+type Notification
+  @model(
+    mutations:{create:"createNotification",delete:null,update:null}
+    timestamps:null
+  )
+  @auth(rules: [
+		{allow: owner, ownerField:"userId", provider: userPools, operations:[read]},
+    {allow: private, provider: iam ,operations:[create,update]},
+	])
+  @key(fields:["userId","timestamp"])
+{
+  userId:String!
+  timestamp:Int!
+  fromUserId:String!
+  fromUser:Userinfo @connection(fields:["fromUserId"])
+  oshaberiId:String
+  haveRead:Boolean!
+  action:String!
+}
+
+type Like
+  @model(
+    mutations:{create:"createLike",delete:"deleteLike",update:null}
+    timestamps:null
+  )
+  @auth(rules: [
+    {allow: owner, ownerField:"userId", provider:userPools, operations:[read]}
+    {allow: private, provider: iam, operations:[create, delete]},
+    {allow: private, provider: userPools ,operations:[read]},
+	])
+  @key(name:"byOshaberiId",fields:["oshaberiId","timestamp"],queryField:"listLikesByOshaberiId")
+{
+  userId:String!
+  timestamp:Int!
+  oshaberiId:ID!
+  oshaberi:Oshaberi @connection(fields:["oshaberiId"])
+  userInfo:Userinfo @connection(fields:["userId"])
+}

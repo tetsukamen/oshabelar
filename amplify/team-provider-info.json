@@ -1,0 +1,20 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-oshabelar-dev-165257-authRole",
+      "UnauthRoleArn": "arn:aws:iam::509452337285:role/amplify-oshabelar-dev-165257-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::509452337285:role/amplify-oshabelar-dev-165257-authRole",
+      "Region": "ap-northeast-1",
+      "DeploymentBucketName": "amplify-oshabelar-dev-165257-deployment",
+      "UnauthRoleName": "amplify-oshabelar-dev-165257-unauthRole",
+      "StackName": "amplify-oshabelar-dev-165257",
+      "StackId": "arn:aws:cloudformation:ap-northeast-1:509452337285:stack/amplify-oshabelar-dev-165257/62196d70-c765-11eb-87b9-064c2582fb33",
+      "AmplifyAppId": "d11gzo5mn1uptk"
+    },
+    "categories": {
+      "auth": {
+        "oshabelar73f1b91d": {}
+      }
+    }
+  }
+}

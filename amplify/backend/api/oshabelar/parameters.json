@@ -1,0 +1,11 @@
+{
+  "AppSyncApiName": "oshabelar",
+  "DynamoDBBillingMode": "PAY_PER_REQUEST",
+  "DynamoDBEnableServerSideEncryption": false,
+  "AuthCognitoUserPoolId": {
+    "Fn::GetAtt": [
+      "authoshabelar73f1b91d",
+      "Outputs.UserPoolId"
+    ]
+  }
+}

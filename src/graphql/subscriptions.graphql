@@ -1,0 +1,192 @@
+# this is an auto generated file. This will be overwritten
+subscription OnCreateUserinfo {
+  onCreateUserinfo {
+    userId
+    nickname
+    iconImageKey
+    coverImageKey
+    profile
+  }
+}
+subscription OnUpdateUserinfo {
+  onUpdateUserinfo {
+    userId
+    nickname
+    iconImageKey
+    coverImageKey
+    profile
+  }
+}
+subscription OnCreateOshaberi {
+  onCreateOshaberi {
+    id
+    owner
+    author
+    timestamp
+    userInfo {
+      userId
+      nickname
+      iconImageKey
+      coverImageKey
+      profile
+    }
+    imageKeys
+    content
+    parentOshaberiId
+    replyOshaberi {
+      items {
+        id
+        owner
+        author
+        timestamp
+        imageKeys
+        content
+        parentOshaberiId
+      }
+      nextToken
+    }
+    like {
+      items {
+        id
+        userId
+        timestamp
+        oshaberiId
+      }
+      nextToken
+    }
+  }
+}
+subscription OnCreateTimeline($userId: String!) {
+  onCreateTimeline(userId: $userId) {
+    userId
+    timestamp
+    oshaberiId
+    oshaberi {
+      id
+      owner
+      author
+      timestamp
+      userInfo {
+        userId
+        nickname
+        iconImageKey
+        coverImageKey
+        profile
+      }
+      imageKeys
+      content
+      parentOshaberiId
+      replyOshaberi {
+        nextToken
+      }
+      like {
+        nextToken
+      }
+    }
+  }
+}
+subscription OnCreateFollowingRelationship {
+  onCreateFollowingRelationship {
+    followeeId
+    followerId
+    timestamp
+  }
+}
+subscription OnDeleteFollowingRelationship {
+  onDeleteFollowingRelationship {
+    followeeId
+    followerId
+    timestamp
+  }
+}
+subscription OnCreateNotification($userId: String!) {
+  onCreateNotification(userId: $userId) {
+    userId
+    timestamp
+    fromUserId
+    fromUser {
+      userId
+      nickname
+      iconImageKey
+      coverImageKey
+      profile
+    }
+    oshaberiId
+    haveRead
+    action
+  }
+}
+subscription OnCreateLike {
+  onCreateLike {
+    id
+    userId
+    timestamp
+    oshaberiId
+    oshaberi {
+      id
+      owner
+      author
+      timestamp
+      userInfo {
+        userId
+        nickname
+        iconImageKey
+        coverImageKey
+        profile
+      }
+      imageKeys
+      content
+      parentOshaberiId
+      replyOshaberi {
+        nextToken
+      }
+      like {
+        nextToken
+      }
+    }
+    userInfo {
+      userId
+      nickname
+      iconImageKey
+      coverImageKey
+      profile
+    }
+  }
+}
+subscription OnDeleteLike {
+  onDeleteLike {
+    id
+    userId
+    timestamp
+    oshaberiId
+    oshaberi {
+      id
+      owner
+      author
+      timestamp
+      userInfo {
+        userId
+        nickname
+        iconImageKey
+        coverImageKey
+        profile
+      }
+      imageKeys
+      content
+      parentOshaberiId
+      replyOshaberi {
+        nextToken
+      }
+      like {
+        nextToken
+      }
+    }
+    userInfo {
+      userId
+      nickname
+      iconImageKey
+      coverImageKey
+      profile
+    }
+  }
+}

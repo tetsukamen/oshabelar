@@ -1,0 +1,487 @@
+# this is an auto generated file. This will be overwritten
+query GetUserinfo($userId: String!) {
+  getUserinfo(userId: $userId) {
+    userId
+    nickname
+    iconImageKey
+    coverImageKey
+    profile
+  }
+}
+query ListUserinfos(
+  $userId: String
+  $filter: ModelUserinfoFilterInput
+  $limit: Int
+  $nextToken: String
+  $sortDirection: ModelSortDirection
+) {
+  listUserinfos(
+    userId: $userId
+    filter: $filter
+    limit: $limit
+    nextToken: $nextToken
+    sortDirection: $sortDirection
+  ) {
+    items {
+      userId
+      nickname
+      iconImageKey
+      coverImageKey
+      profile
+    }
+    nextToken
+  }
+}
+query GetOshaberi($id: ID!) {
+  getOshaberi(id: $id) {
+    id
+    owner
+    author
+    timestamp
+    userInfo {
+      userId
+      nickname
+      iconImageKey
+      coverImageKey
+      profile
+    }
+    imageKeys
+    content
+    parentOshaberiId
+    replyOshaberi {
+      items {
+        id
+        owner
+        author
+        timestamp
+        imageKeys
+        content
+        parentOshaberiId
+      }
+      nextToken
+    }
+    like {
+      items {
+        id
+        userId
+        timestamp
+        oshaberiId
+      }
+      nextToken
+    }
+  }
+}
+query ListOshaberis(
+  $filter: ModelOshaberiFilterInput
+  $limit: Int
+  $nextToken: String
+) {
+  listOshaberis(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    items {
+      id
+      owner
+      author
+      timestamp
+      userInfo {
+        userId
+        nickname
+        iconImageKey
+        coverImageKey
+        profile
+      }
+      imageKeys
+      content
+      parentOshaberiId
+      replyOshaberi {
+        nextToken
+      }
+      like {
+        nextToken
+      }
+    }
+    nextToken
+  }
+}
+query GetTimeline($userId: String!, $timestamp: Int!) {
+  getTimeline(userId: $userId, timestamp: $timestamp) {
+    userId
+    timestamp
+    oshaberiId
+    oshaberi {
+      id
+      owner
+      author
+      timestamp
+      userInfo {
+        userId
+        nickname
+        iconImageKey
+        coverImageKey
+        profile
+      }
+      imageKeys
+      content
+      parentOshaberiId
+      replyOshaberi {
+        nextToken
+      }
+      like {
+        nextToken
+      }
+    }
+  }
+}
+query ListTimelines(
+  $userId: String
+  $timestamp: ModelIntKeyConditionInput
+  $filter: ModelTimelineFilterInput
+  $limit: Int
+  $nextToken: String
+  $sortDirection: ModelSortDirection
+) {
+  listTimelines(
+    userId: $userId
+    timestamp: $timestamp
+    filter: $filter
+    limit: $limit
+    nextToken: $nextToken
+    sortDirection: $sortDirection
+  ) {
+    items {
+      userId
+      timestamp
+      oshaberiId
+      oshaberi {
+        id
+        owner
+        author
+        timestamp
+        imageKeys
+        content
+        parentOshaberiId
+      }
+    }
+    nextToken
+  }
+}
+query GetFollowingRelationship($followeeId: String!, $followerId: String!) {
+  getFollowingRelationship(followeeId: $followeeId, followerId: $followerId) {
+    followeeId
+    followerId
+    timestamp
+  }
+}
+query ListFollowingRelationships(
+  $followeeId: String
+  $followerId: ModelStringKeyConditionInput
+  $filter: ModelFollowingRelationshipFilterInput
+  $limit: Int
+  $nextToken: String
+  $sortDirection: ModelSortDirection
+) {
+  listFollowingRelationships(
+    followeeId: $followeeId
+    followerId: $followerId
+    filter: $filter
+    limit: $limit
+    nextToken: $nextToken
+    sortDirection: $sortDirection
+  ) {
+    items {
+      followeeId
+      followerId
+      timestamp
+    }
+    nextToken
+  }
+}
+query GetNotification($userId: String!, $timestamp: Int!) {
+  getNotification(userId: $userId, timestamp: $timestamp) {
+    userId
+    timestamp
+    fromUserId
+    fromUser {
+      userId
+      nickname
+      iconImageKey
+      coverImageKey
+      profile
+    }
+    oshaberiId
+    haveRead
+    action
+  }
+}
+query ListNotifications(
+  $userId: String
+  $timestamp: ModelIntKeyConditionInput
+  $filter: ModelNotificationFilterInput
+  $limit: Int
+  $nextToken: String
+  $sortDirection: ModelSortDirection
+) {
+  listNotifications(
+    userId: $userId
+    timestamp: $timestamp
+    filter: $filter
+    limit: $limit
+    nextToken: $nextToken
+    sortDirection: $sortDirection
+  ) {
+    items {
+      userId
+      timestamp
+      fromUserId
+      fromUser {
+        userId
+        nickname
+        iconImageKey
+        coverImageKey
+        profile
+      }
+      oshaberiId
+      haveRead
+      action
+    }
+    nextToken
+  }
+}
+query GetLike($id: ID!) {
+  getLike(id: $id) {
+    id
+    userId
+    timestamp
+    oshaberiId
+    oshaberi {
+      id
+      owner
+      author
+      timestamp
+      userInfo {
+        userId
+        nickname
+        iconImageKey
+        coverImageKey
+        profile
+      }
+      imageKeys
+      content
+      parentOshaberiId
+      replyOshaberi {
+        nextToken
+      }
+      like {
+        nextToken
+      }
+    }
+    userInfo {
+      userId
+      nickname
+      iconImageKey
+      coverImageKey
+      profile
+    }
+  }
+}
+query ListLikes(
+  $filter: ModelLikeFilterInput
+  $limit: Int
+  $nextToken: String
+) {
+  listLikes(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    items {
+      id
+      userId
+      timestamp
+      oshaberiId
+      oshaberi {
+        id
+        owner
+        author
+        timestamp
+        imageKeys
+        content
+        parentOshaberiId
+      }
+      userInfo {
+        userId
+        nickname
+        iconImageKey
+        coverImageKey
+        profile
+      }
+    }
+    nextToken
+  }
+}
+query ListOshaberisBySpecificOwner(
+  $owner: String
+  $timestamp: ModelIntKeyConditionInput
+  $sortDirection: ModelSortDirection
+  $filter: ModelOshaberiFilterInput
+  $limit: Int
+  $nextToken: String
+) {
+  listOshaberisBySpecificOwner(
+    owner: $owner
+    timestamp: $timestamp
+    sortDirection: $sortDirection
+    filter: $filter
+    limit: $limit
+    nextToken: $nextToken
+  ) {
+    items {
+      id
+      owner
+      author
+      timestamp
+      userInfo {
+        userId
+        nickname
+        iconImageKey
+        coverImageKey
+        profile
+      }
+      imageKeys
+      content
+      parentOshaberiId
+      replyOshaberi {
+        nextToken
+      }
+      like {
+        nextToken
+      }
+    }
+    nextToken
+  }
+}
+query ListOshaberiByParentOshaberi(
+  $parentOshaberiId: ID
+  $timestamp: ModelIntKeyConditionInput
+  $sortDirection: ModelSortDirection
+  $filter: ModelOshaberiFilterInput
+  $limit: Int
+  $nextToken: String
+) {
+  listOshaberiByParentOshaberi(
+    parentOshaberiId: $parentOshaberiId
+    timestamp: $timestamp
+    sortDirection: $sortDirection
+    filter: $filter
+    limit: $limit
+    nextToken: $nextToken
+  ) {
+    items {
+      id
+      owner
+      author
+      timestamp
+      userInfo {
+        userId
+        nickname
+        iconImageKey
+        coverImageKey
+        profile
+      }
+      imageKeys
+      content
+      parentOshaberiId
+      replyOshaberi {
+        nextToken
+      }
+      like {
+        nextToken
+      }
+    }
+    nextToken
+  }
+}
+query ListFollowingRelationshipByFollowee(
+  $followeeId: String
+  $timestamp: ModelIntKeyConditionInput
+  $sortDirection: ModelSortDirection
+  $filter: ModelFollowingRelationshipFilterInput
+  $limit: Int
+  $nextToken: String
+) {
+  listFollowingRelationshipByFollowee(
+    followeeId: $followeeId
+    timestamp: $timestamp
+    sortDirection: $sortDirection
+    filter: $filter
+    limit: $limit
+    nextToken: $nextToken
+  ) {
+    items {
+      followeeId
+      followerId
+      timestamp
+    }
+    nextToken
+  }
+}
+query ListFollowingRelationshipByFollower(
+  $followerId: String
+  $timestamp: ModelIntKeyConditionInput
+  $sortDirection: ModelSortDirection
+  $filter: ModelFollowingRelationshipFilterInput
+  $limit: Int
+  $nextToken: String
+) {
+  listFollowingRelationshipByFollower(
+    followerId: $followerId
+    timestamp: $timestamp
+    sortDirection: $sortDirection
+    filter: $filter
+    limit: $limit
+    nextToken: $nextToken
+  ) {
+    items {
+      followeeId
+      followerId
+      timestamp
+    }
+    nextToken
+  }
+}
+query ListLikesByOshaberiId(
+  $oshaberiId: ID
+  $timestamp: ModelIntKeyConditionInput
+  $sortDirection: ModelSortDirection
+  $filter: ModelLikeFilterInput
+  $limit: Int
+  $nextToken: String
+) {
+  listLikesByOshaberiId(
+    oshaberiId: $oshaberiId
+    timestamp: $timestamp
+    sortDirection: $sortDirection
+    filter: $filter
+    limit: $limit
+    nextToken: $nextToken
+  ) {
+    items {
+      id
+      userId
+      timestamp
+      oshaberiId
+      oshaberi {
+        id
+        owner
+        author
+        timestamp
+        imageKeys
+        content
+        parentOshaberiId
+      }
+      userInfo {
+        userId
+        nickname
+        iconImageKey
+        coverImageKey
+        profile
+      }
+    }
+    nextToken
+  }
+}

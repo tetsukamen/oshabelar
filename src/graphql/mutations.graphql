@@ -1,0 +1,219 @@
+# this is an auto generated file. This will be overwritten
+mutation CreateUserInfo(
+  $input: CreateUserinfoInput!
+  $condition: ModelUserinfoConditionInput
+) {
+  createUserInfo(input: $input, condition: $condition) {
+    userId
+    nickname
+    iconImageKey
+    coverImageKey
+    profile
+  }
+}
+mutation UpdateUserInfo(
+  $input: UpdateUserinfoInput!
+  $condition: ModelUserinfoConditionInput
+) {
+  updateUserInfo(input: $input, condition: $condition) {
+    userId
+    nickname
+    iconImageKey
+    coverImageKey
+    profile
+  }
+}
+mutation CreateOshaberi(
+  $input: CreateOshaberiInput!
+  $condition: ModelOshaberiConditionInput
+) {
+  createOshaberi(input: $input, condition: $condition) {
+    id
+    owner
+    author
+    timestamp
+    userInfo {
+      userId
+      nickname
+      iconImageKey
+      coverImageKey
+      profile
+    }
+    imageKeys
+    content
+    parentOshaberiId
+    replyOshaberi {
+      items {
+        id
+        owner
+        author
+        timestamp
+        imageKeys
+        content
+        parentOshaberiId
+      }
+      nextToken
+    }
+    like {
+      items {
+        id
+        userId
+        timestamp
+        oshaberiId
+      }
+      nextToken
+    }
+  }
+}
+mutation CreateFollowRelationship(
+  $input: CreateFollowingRelationshipInput!
+  $condition: ModelFollowingRelationshipConditionInput
+) {
+  createFollowRelationship(input: $input, condition: $condition) {
+    followeeId
+    followerId
+    timestamp
+  }
+}
+mutation DeleteFollowRelationship(
+  $input: DeleteFollowingRelationshipInput!
+  $condition: ModelFollowingRelationshipConditionInput
+) {
+  deleteFollowRelationship(input: $input, condition: $condition) {
+    followeeId
+    followerId
+    timestamp
+  }
+}
+mutation CreateTimeline(
+  $input: CreateTimelineInput!
+  $condition: ModelTimelineConditionInput
+) {
+  createTimeline(input: $input, condition: $condition) {
+    userId
+    timestamp
+    oshaberiId
+    oshaberi {
+      id
+      owner
+      author
+      timestamp
+      userInfo {
+        userId
+        nickname
+        iconImageKey
+        coverImageKey
+        profile
+      }
+      imageKeys
+      content
+      parentOshaberiId
+      replyOshaberi {
+        nextToken
+      }
+      like {
+        nextToken
+      }
+    }
+  }
+}
+mutation CreateNotification(
+  $input: CreateNotificationInput!
+  $condition: ModelNotificationConditionInput
+) {
+  createNotification(input: $input, condition: $condition) {
+    userId
+    timestamp
+    fromUserId
+    fromUser {
+      userId
+      nickname
+      iconImageKey
+      coverImageKey
+      profile
+    }
+    oshaberiId
+    haveRead
+    action
+  }
+}
+mutation CreateLike(
+  $input: CreateLikeInput!
+  $condition: ModelLikeConditionInput
+) {
+  createLike(input: $input, condition: $condition) {
+    id
+    userId
+    timestamp
+    oshaberiId
+    oshaberi {
+      id
+      owner
+      author
+      timestamp
+      userInfo {
+        userId
+        nickname
+        iconImageKey
+        coverImageKey
+        profile
+      }
+      imageKeys
+      content
+      parentOshaberiId
+      replyOshaberi {
+        nextToken
+      }
+      like {
+        nextToken
+      }
+    }
+    userInfo {
+      userId
+      nickname
+      iconImageKey
+      coverImageKey
+      profile
+    }
+  }
+}
+mutation DeleteLike(
+  $input: DeleteLikeInput!
+  $condition: ModelLikeConditionInput
+) {
+  deleteLike(input: $input, condition: $condition) {
+    id
+    userId
+    timestamp
+    oshaberiId
+    oshaberi {
+      id
+      owner
+      author
+      timestamp
+      userInfo {
+        userId
+        nickname
+        iconImageKey
+        coverImageKey
+        profile
+      }
+      imageKeys
+      content
+      parentOshaberiId
+      replyOshaberi {
+        nextToken
+      }
+      like {
+        nextToken
+      }
+    }
+    userInfo {
+      userId
+      nickname
+      iconImageKey
+      coverImageKey
+      profile
+    }
+  }
+}
