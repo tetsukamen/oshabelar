@@ -1,0 +1,7 @@
+{
+  "name": "oshabelar",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
