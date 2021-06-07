@@ -11,6 +11,38 @@ const routes: Routes = [
     redirectTo: 'home',
     pathMatch: 'full'
   },
+  {
+    path: 'create-oshaberi',
+    loadChildren: () => import('./create-oshaberi/create-oshaberi.module').then( m => m.CreateOshaberiPageModule)
+  },
+  {
+    path: 'profile',
+    loadChildren: () => import('./profile/profile.module').then( m => m.ProfilePageModule)
+  },
+  {
+    path: 'oshaberi-detail',
+    loadChildren: () => import('./oshaberi-detail/oshaberi-detail.module').then( m => m.OshaberiDetailPageModule)
+  },
+  {
+    path: 'like-user-list',
+    loadChildren: () => import('./like-user-list/like-user-list.module').then( m => m.LikeUserListPageModule)
+  },
+  {
+    path: 'search',
+    loadChildren: () => import('./search/search.module').then( m => m.SearchPageModule)
+  },
+  {
+    path: 'following-userlist',
+    loadChildren: () => import('./following-userlist/following-userlist.module').then( m => m.FollowingUserlistPageModule)
+  },
+  {
+    path: 'edit-profile',
+    loadChildren: () => import('./edit-profile/edit-profile.module').then( m => m.EditProfilePageModule)
+  },
+  {
+    path: 'notification',
+    loadChildren: () => import('./notification/notification.module').then( m => m.NotificationPageModule)
+  },
 ];
 
 @NgModule({
