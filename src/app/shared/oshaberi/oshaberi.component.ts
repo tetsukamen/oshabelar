@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { Oshaberi } from 'src/app/API.service';
 
 @Component({
   selector: 'app-oshaberi',
@@ -6,9 +7,10 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./oshaberi.component.scss'],
 })
 export class OshaberiComponent implements OnInit {
+  @Input() oshaberi: Oshaberi;
 
   constructor() { }
 
-  ngOnInit() {}
+  ngOnInit() { }
 
 }

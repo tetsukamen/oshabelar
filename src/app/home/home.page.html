@@ -1,23 +1,14 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      Blank
-    </ion-title>
-  </ion-toolbar>
-</ion-header>
+<app-header title="ホーム"></app-header>
 
 <ion-content [fullscreen]="true">
-
-  <amplify-sign-out></amplify-sign-out>
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
-    </ion-toolbar>
-  </ion-header>
-
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer"
-        href="https://ionicframework.com/docs/components">UI Components</a></p>
-  </div>
+  <ion-refresher id=refresher slot="fixed" (ionRefresh)="refreshOshaberis($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+  <ng-container *ngFor="let oshaberi of oshaberis">
+    <app-oshaberi [oshaberi]="oshaberi"></app-oshaberi>
+  </ng-container>
+  <ion-infinite-scroll #infinitScroll threshold="50px" (ionInfinite)="loadNextOshaberis($event)">
+    <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Loading more data...">
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
 </ion-content>
