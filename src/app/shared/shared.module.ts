@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { OshaberiComponent } from './oshaberi/oshaberi.component';
 import { UserDigestComponent } from './user-digest/user-digest.component';
 import { HeaderComponent } from './header/header.component';
+import { OshaberiButtonComponent } from './oshaberi-button/oshaberi-button.component';
 
 
 
@@ -10,6 +11,7 @@ import { HeaderComponent } from './header/header.component';
   declarations: [
     HeaderComponent,
     OshaberiComponent,
+    OshaberiButtonComponent,
     UserDigestComponent,
   ],
   imports: [
@@ -18,6 +20,7 @@ import { HeaderComponent } from './header/header.component';
   exports: [
     HeaderComponent,
     OshaberiComponent,
+    OshaberiButtonComponent,
     UserDigestComponent,
   ]
 })

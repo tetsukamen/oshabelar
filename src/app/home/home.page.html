@@ -1,6 +1,7 @@
 <app-header title="ホーム"></app-header>
 
 <ion-content [fullscreen]="true">
+  <app-oshaberi-button></app-oshaberi-button>
   <ion-refresher id=refresher slot="fixed" (ionRefresh)="refreshOshaberis($event)">
     <ion-refresher-content></ion-refresher-content>
   </ion-refresher>

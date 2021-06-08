@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-oshaberi-button',
@@ -7,8 +8,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class OshaberiButtonComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private router: Router,
+  ) { }
 
-  ngOnInit() {}
+  ngOnInit() { }
+
+  goToCreateOshaberiPage(): void {
+    this.router.navigate(['/create-oshaberi'])
+  }
 
 }
