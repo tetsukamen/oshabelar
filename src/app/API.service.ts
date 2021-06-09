@@ -9,6 +9,51 @@ export interface SubscriptionResponse<T> {
   value: GraphQLResult<T>;
 }
 
+export type Oshaberi = {
+  __typename: "Oshaberi";
+  id?: string | null;
+  owner: string;
+  author: string;
+  timestamp: number;
+  userInfo?: Userinfo | null;
+  imageKeys?: Array<string | null> | null;
+  content: string;
+  parentOshaberiId?: string | null;
+  replyOshaberi?: ModelOshaberiConnection | null;
+  like?: ModelLikeConnection | null;
+};
+
+export type Userinfo = {
+  __typename: "Userinfo";
+  userId: string;
+  nickname?: string | null;
+  iconImageKey?: string | null;
+  coverImageKey?: string | null;
+  profile?: string | null;
+};
+
+export type ModelOshaberiConnection = {
+  __typename: "ModelOshaberiConnection";
+  items?: Array<Oshaberi | null> | null;
+  nextToken?: string | null;
+};
+
+export type ModelLikeConnection = {
+  __typename: "ModelLikeConnection";
+  items?: Array<Like | null> | null;
+  nextToken?: string | null;
+};
+
+export type Like = {
+  __typename: "Like";
+  id: string;
+  userId: string;
+  timestamp: number;
+  oshaberiId: string;
+  oshaberi?: Oshaberi | null;
+  userInfo?: Userinfo | null;
+};
+
 export type CreateUserinfoInput = {
   userId: string;
   nickname?: string | null;
@@ -66,8 +111,7 @@ export type ModelSizeInput = {
   between?: Array<number | null> | null;
 };
 
-export type Userinfo = {
-  __typename: "Userinfo";
+export type UpdateUserinfoInput = {
   userId: string;
   nickname?: string | null;
   iconImageKey?: string | null;
@@ -75,12 +119,41 @@ export type Userinfo = {
   profile?: string | null;
 };
 
-export type UpdateUserinfoInput = {
-  userId: string;
-  nickname?: string | null;
-  iconImageKey?: string | null;
-  coverImageKey?: string | null;
-  profile?: string | null;
+export type CreateFollowingRelationshipInput = {
+  followeeId: string;
+  followerId: string;
+  timestamp: number;
+};
+
+export type ModelFollowingRelationshipConditionInput = {
+  timestamp?: ModelIntInput | null;
+  and?: Array<ModelFollowingRelationshipConditionInput | null> | null;
+  or?: Array<ModelFollowingRelationshipConditionInput | null> | null;
+  not?: ModelFollowingRelationshipConditionInput | null;
+};
+
+export type ModelIntInput = {
+  ne?: number | null;
+  eq?: number | null;
+  le?: number | null;
+  lt?: number | null;
+  ge?: number | null;
+  gt?: number | null;
+  between?: Array<number | null> | null;
+  attributeExists?: boolean | null;
+  attributeType?: ModelAttributeTypes | null;
+};
+
+export type FollowingRelationship = {
+  __typename: "FollowingRelationship";
+  followeeId: string;
+  followerId: string;
+  timestamp: number;
+};
+
+export type DeleteFollowingRelationshipInput = {
+  followeeId: string;
+  followerId: string;
 };
 
 export type CreateOshaberiInput = {
@@ -104,18 +177,6 @@ export type ModelOshaberiConditionInput = {
   not?: ModelOshaberiConditionInput | null;
 };
 
-export type ModelIntInput = {
-  ne?: number | null;
-  eq?: number | null;
-  le?: number | null;
-  lt?: number | null;
-  ge?: number | null;
-  gt?: number | null;
-  between?: Array<number | null> | null;
-  attributeExists?: boolean | null;
-  attributeType?: ModelAttributeTypes | null;
-};
-
 export type ModelIDInput = {
   ne?: string | null;
   eq?: string | null;
@@ -130,67 +191,6 @@ export type ModelIDInput = {
   attributeExists?: boolean | null;
   attributeType?: ModelAttributeTypes | null;
   size?: ModelSizeInput | null;
-};
-
-export type Oshaberi = {
-  __typename: "Oshaberi";
-  id?: string | null;
-  owner: string;
-  author: string;
-  timestamp: number;
-  userInfo?: Userinfo | null;
-  imageKeys?: Array<string | null> | null;
-  content: string;
-  parentOshaberiId?: string | null;
-  replyOshaberi?: ModelOshaberiConnection | null;
-  like?: ModelLikeConnection | null;
-};
-
-export type ModelOshaberiConnection = {
-  __typename: "ModelOshaberiConnection";
-  items?: Array<Oshaberi | null> | null;
-  nextToken?: string | null;
-};
-
-export type ModelLikeConnection = {
-  __typename: "ModelLikeConnection";
-  items?: Array<Like | null> | null;
-  nextToken?: string | null;
-};
-
-export type Like = {
-  __typename: "Like";
-  id: string;
-  userId: string;
-  timestamp: number;
-  oshaberiId: string;
-  oshaberi?: Oshaberi | null;
-  userInfo?: Userinfo | null;
-};
-
-export type CreateFollowingRelationshipInput = {
-  followeeId: string;
-  followerId: string;
-  timestamp: number;
-};
-
-export type ModelFollowingRelationshipConditionInput = {
-  timestamp?: ModelIntInput | null;
-  and?: Array<ModelFollowingRelationshipConditionInput | null> | null;
-  or?: Array<ModelFollowingRelationshipConditionInput | null> | null;
-  not?: ModelFollowingRelationshipConditionInput | null;
-};
-
-export type FollowingRelationship = {
-  __typename: "FollowingRelationship";
-  followeeId: string;
-  followerId: string;
-  timestamp: number;
-};
-
-export type DeleteFollowingRelationshipInput = {
-  followeeId: string;
-  followerId: string;
 };
 
 export type CreateTimelineInput = {
@@ -381,6 +381,50 @@ export type ModelLikeFilterInput = {
   not?: ModelLikeFilterInput | null;
 };
 
+export type CreateOshaberiAndTimelineMutation = {
+  __typename: "Oshaberi";
+  id?: string | null;
+  owner: string;
+  author: string;
+  timestamp: number;
+  userInfo?: {
+    __typename: "Userinfo";
+    userId: string;
+    nickname?: string | null;
+    iconImageKey?: string | null;
+    coverImageKey?: string | null;
+    profile?: string | null;
+  } | null;
+  imageKeys?: Array<string | null> | null;
+  content: string;
+  parentOshaberiId?: string | null;
+  replyOshaberi?: {
+    __typename: "ModelOshaberiConnection";
+    items?: Array<{
+      __typename: "Oshaberi";
+      id?: string | null;
+      owner: string;
+      author: string;
+      timestamp: number;
+      imageKeys?: Array<string | null> | null;
+      content: string;
+      parentOshaberiId?: string | null;
+    } | null> | null;
+    nextToken?: string | null;
+  } | null;
+  like?: {
+    __typename: "ModelLikeConnection";
+    items?: Array<{
+      __typename: "Like";
+      id: string;
+      userId: string;
+      timestamp: number;
+      oshaberiId: string;
+    } | null> | null;
+    nextToken?: string | null;
+  } | null;
+};
+
 export type CreateUserInfoMutation = {
   __typename: "Userinfo";
   userId: string;
@@ -397,6 +441,20 @@ export type UpdateUserInfoMutation = {
   iconImageKey?: string | null;
   coverImageKey?: string | null;
   profile?: string | null;
+};
+
+export type CreateFollowRelationshipMutation = {
+  __typename: "FollowingRelationship";
+  followeeId: string;
+  followerId: string;
+  timestamp: number;
+};
+
+export type DeleteFollowRelationshipMutation = {
+  __typename: "FollowingRelationship";
+  followeeId: string;
+  followerId: string;
+  timestamp: number;
 };
 
 export type CreateOshaberiMutation = {
@@ -441,20 +499,6 @@ export type CreateOshaberiMutation = {
     } | null> | null;
     nextToken?: string | null;
   } | null;
-};
-
-export type CreateFollowRelationshipMutation = {
-  __typename: "FollowingRelationship";
-  followeeId: string;
-  followerId: string;
-  timestamp: number;
-};
-
-export type DeleteFollowRelationshipMutation = {
-  __typename: "FollowingRelationship";
-  followeeId: string;
-  followerId: string;
-  timestamp: number;
 };
 
 export type CreateTimelineMutation = {
@@ -1202,6 +1246,68 @@ export type OnDeleteLikeSubscription = {
   providedIn: "root"
 })
 export class APIService {
+  async CreateOshaberiAndTimeline(
+    content: string,
+    imageKeys?: Array<string | null>
+  ): Promise<CreateOshaberiAndTimelineMutation> {
+    const statement = `mutation CreateOshaberiAndTimeline($content: String!, $imageKeys: [String]) {
+        createOshaberiAndTimeline(content: $content, imageKeys: $imageKeys) {
+          __typename
+          id
+          owner
+          author
+          timestamp
+          userInfo {
+            __typename
+            userId
+            nickname
+            iconImageKey
+            coverImageKey
+            profile
+          }
+          imageKeys
+          content
+          parentOshaberiId
+          replyOshaberi {
+            __typename
+            items {
+              __typename
+              id
+              owner
+              author
+              timestamp
+              imageKeys
+              content
+              parentOshaberiId
+            }
+            nextToken
+          }
+          like {
+            __typename
+            items {
+              __typename
+              id
+              userId
+              timestamp
+              oshaberiId
+            }
+            nextToken
+          }
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {
+      content
+    };
+    if (imageKeys) {
+      gqlAPIServiceArguments.imageKeys = imageKeys;
+    }
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <CreateOshaberiAndTimelineMutation>(
+      response.data.createOshaberiAndTimeline
+    );
+  }
   async CreateUserInfo(
     input: CreateUserinfoInput,
     condition?: ModelUserinfoConditionInput
@@ -1251,6 +1357,56 @@ export class APIService {
       graphqlOperation(statement, gqlAPIServiceArguments)
     )) as any;
     return <UpdateUserInfoMutation>response.data.updateUserInfo;
+  }
+  async CreateFollowRelationship(
+    input: CreateFollowingRelationshipInput,
+    condition?: ModelFollowingRelationshipConditionInput
+  ): Promise<CreateFollowRelationshipMutation> {
+    const statement = `mutation CreateFollowRelationship($input: CreateFollowingRelationshipInput!, $condition: ModelFollowingRelationshipConditionInput) {
+        createFollowRelationship(input: $input, condition: $condition) {
+          __typename
+          followeeId
+          followerId
+          timestamp
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {
+      input
+    };
+    if (condition) {
+      gqlAPIServiceArguments.condition = condition;
+    }
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <CreateFollowRelationshipMutation>(
+      response.data.createFollowRelationship
+    );
+  }
+  async DeleteFollowRelationship(
+    input: DeleteFollowingRelationshipInput,
+    condition?: ModelFollowingRelationshipConditionInput
+  ): Promise<DeleteFollowRelationshipMutation> {
+    const statement = `mutation DeleteFollowRelationship($input: DeleteFollowingRelationshipInput!, $condition: ModelFollowingRelationshipConditionInput) {
+        deleteFollowRelationship(input: $input, condition: $condition) {
+          __typename
+          followeeId
+          followerId
+          timestamp
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {
+      input
+    };
+    if (condition) {
+      gqlAPIServiceArguments.condition = condition;
+    }
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <DeleteFollowRelationshipMutation>(
+      response.data.deleteFollowRelationship
+    );
   }
   async CreateOshaberi(
     input: CreateOshaberiInput,
@@ -1311,56 +1467,6 @@ export class APIService {
       graphqlOperation(statement, gqlAPIServiceArguments)
     )) as any;
     return <CreateOshaberiMutation>response.data.createOshaberi;
-  }
-  async CreateFollowRelationship(
-    input: CreateFollowingRelationshipInput,
-    condition?: ModelFollowingRelationshipConditionInput
-  ): Promise<CreateFollowRelationshipMutation> {
-    const statement = `mutation CreateFollowRelationship($input: CreateFollowingRelationshipInput!, $condition: ModelFollowingRelationshipConditionInput) {
-        createFollowRelationship(input: $input, condition: $condition) {
-          __typename
-          followeeId
-          followerId
-          timestamp
-        }
-      }`;
-    const gqlAPIServiceArguments: any = {
-      input
-    };
-    if (condition) {
-      gqlAPIServiceArguments.condition = condition;
-    }
-    const response = (await API.graphql(
-      graphqlOperation(statement, gqlAPIServiceArguments)
-    )) as any;
-    return <CreateFollowRelationshipMutation>(
-      response.data.createFollowRelationship
-    );
-  }
-  async DeleteFollowRelationship(
-    input: DeleteFollowingRelationshipInput,
-    condition?: ModelFollowingRelationshipConditionInput
-  ): Promise<DeleteFollowRelationshipMutation> {
-    const statement = `mutation DeleteFollowRelationship($input: DeleteFollowingRelationshipInput!, $condition: ModelFollowingRelationshipConditionInput) {
-        deleteFollowRelationship(input: $input, condition: $condition) {
-          __typename
-          followeeId
-          followerId
-          timestamp
-        }
-      }`;
-    const gqlAPIServiceArguments: any = {
-      input
-    };
-    if (condition) {
-      gqlAPIServiceArguments.condition = condition;
-    }
-    const response = (await API.graphql(
-      graphqlOperation(statement, gqlAPIServiceArguments)
-    )) as any;
-    return <DeleteFollowRelationshipMutation>(
-      response.data.deleteFollowRelationship
-    );
   }
   async CreateTimeline(
     input: CreateTimelineInput,

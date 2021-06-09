@@ -1,9 +1,41 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>create-oshaberi</ion-title>
-  </ion-toolbar>
-</ion-header>
+<app-header iconType="back" buttonText="おしゃべりを投稿" [buttonDisabled]="buttonDisabled" (buttonClicked)="createOshaberi()">
+</app-header>
 
 <ion-content>
+  <ion-progress-bar *ngIf="uploadProgressRate>0" [value]="uploadProgressRate"></ion-progress-bar>
+  <ion-grid>
+    <ion-row>
+      <ion-col size=2>
+        <ion-avatar>
+          <img src="https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y">
+        </ion-avatar>
+      </ion-col>
+      <ion-col size="10">
+        <ion-textarea [formControl]="oshaberiContent" rows=6 placeholder="みなさま、ごきげんよう">
+        </ion-textarea>
+        <div class="contentLength">
+          <ion-text [color]="contentLengthColor">{{contentLength}}</ion-text>
+          /{{maxContentLength}}
+        </div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <ion-grid>
+    <ion-row>
+      <ion-col *ngFor="let image of images;index as i" size=6 class="selectedImageWrapper">
+        <ion-button fill="outline" color="danger" class="selectedImageButton" (click)="removeSelectedImage(i)">
+          <ion-icon name="close-circle-outline"></ion-icon>
+        </ion-button>
+        <img class="imagePreview" [src]="image.get('imageSrc').value">
+      </ion-col>
+      <ion-col size=6>
+        <input type="file" accept="image/*" multiple #inputImage class="inputImage" (change)="onImageSelected($event)">
+        <ion-button class="inputImageButton" color="medium" expand="block" (click)="browseFiles()">
+          <ion-icon name="image-outline" size=large></ion-icon>
+        </ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 
 </ion-content>

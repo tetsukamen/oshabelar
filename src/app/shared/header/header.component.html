@@ -1,7 +1,10 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>
-      {{ title }}
-    </ion-title>
+    <ion-button *ngIf="iconType=='back'" fill="clear" (click)="boBack()">
+      <ion-icon name="arrow-back-outline"></ion-icon>
+    </ion-button>
+    <ion-title *ngIf="title">{{ title }}</ion-title>
+    <ion-button *ngIf="buttonText" [disabled]="buttonDisabled" slot="end" (click)="sendButtonClickEvent()">{{ buttonText
+      }}</ion-button>
   </ion-toolbar>
 </ion-header>

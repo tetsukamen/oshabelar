@@ -1,4 +1,43 @@
 # this is an auto generated file. This will be overwritten
+mutation CreateOshaberiAndTimeline($content: String!, $imageKeys: [String]) {
+  createOshaberiAndTimeline(content: $content, imageKeys: $imageKeys) {
+    id
+    owner
+    author
+    timestamp
+    userInfo {
+      userId
+      nickname
+      iconImageKey
+      coverImageKey
+      profile
+    }
+    imageKeys
+    content
+    parentOshaberiId
+    replyOshaberi {
+      items {
+        id
+        owner
+        author
+        timestamp
+        imageKeys
+        content
+        parentOshaberiId
+      }
+      nextToken
+    }
+    like {
+      items {
+        id
+        userId
+        timestamp
+        oshaberiId
+      }
+      nextToken
+    }
+  }
+}
 mutation CreateUserInfo(
   $input: CreateUserinfoInput!
   $condition: ModelUserinfoConditionInput
@@ -21,6 +60,26 @@ mutation UpdateUserInfo(
     iconImageKey
     coverImageKey
     profile
+  }
+}
+mutation CreateFollowRelationship(
+  $input: CreateFollowingRelationshipInput!
+  $condition: ModelFollowingRelationshipConditionInput
+) {
+  createFollowRelationship(input: $input, condition: $condition) {
+    followeeId
+    followerId
+    timestamp
+  }
+}
+mutation DeleteFollowRelationship(
+  $input: DeleteFollowingRelationshipInput!
+  $condition: ModelFollowingRelationshipConditionInput
+) {
+  deleteFollowRelationship(input: $input, condition: $condition) {
+    followeeId
+    followerId
+    timestamp
   }
 }
 mutation CreateOshaberi(
@@ -63,26 +122,6 @@ mutation CreateOshaberi(
       }
       nextToken
     }
-  }
-}
-mutation CreateFollowRelationship(
-  $input: CreateFollowingRelationshipInput!
-  $condition: ModelFollowingRelationshipConditionInput
-) {
-  createFollowRelationship(input: $input, condition: $condition) {
-    followeeId
-    followerId
-    timestamp
-  }
-}
-mutation DeleteFollowRelationship(
-  $input: DeleteFollowingRelationshipInput!
-  $condition: ModelFollowingRelationshipConditionInput
-) {
-  deleteFollowRelationship(input: $input, condition: $condition) {
-    followeeId
-    followerId
-    timestamp
   }
 }
 mutation CreateTimeline(

@@ -19,7 +19,7 @@ describe('HomePage', () => {
   }));
 
   beforeEach(async () => {
-    await Amplify.Auth.signIn('tetsukamen', 'ironmask35')
+    await Amplify.Auth.signIn('testuser', 'Jer4*&ZiNtZ^');
     fixture = TestBed.createComponent(HomePage);
     component = fixture.componentInstance;
     fixture.detectChanges();

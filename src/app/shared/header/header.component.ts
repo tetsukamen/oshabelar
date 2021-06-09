@@ -1,3 +1,4 @@
+import { Location } from '@angular/common';
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
@@ -7,13 +8,24 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
   @Input() iconType: 'profile' | 'back';
-  @Input() title: string;
-  @Input() buttonText: string;
+  @Input() title: string = null;
+  @Input() buttonText: string = null;
+  @Input() buttonDisabled: boolean = false;
   @Output() buttonClicked: EventEmitter<boolean> = new EventEmitter();
   @Output() searchText: EventEmitter<string> = new EventEmitter();
 
-  constructor() { }
+  constructor(
+    private location: Location,
+  ) { }
 
   ngOnInit() { }
+
+  boBack(): void {
+    this.location.back();
+  }
+
+  sendButtonClickEvent() {
+    this.buttonClicked.emit(true);
+  }
 
 }
