@@ -1,5 +1,7 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { IonicModule } from '@ionic/angular';
+import { UsernamePipe } from '../../shared/pipes/username.pipe';
+import { ElapsedTimePipe } from '../pipes/elapsed-time.pipe';
 
 import { OshaberiComponent } from './oshaberi.component';
 
@@ -9,8 +11,8 @@ describe('OshaberiComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [OshaberiComponent],
-      imports: [IonicModule.forRoot()]
+      declarations: [OshaberiComponent, UsernamePipe, ElapsedTimePipe],
+      imports: [IonicModule.forRoot()],
     }).compileComponents();
 
     fixture = TestBed.createComponent(OshaberiComponent);

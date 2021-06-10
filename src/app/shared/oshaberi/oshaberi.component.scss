@@ -1,3 +1,27 @@
-div {
-    padding: 300px 0;
+.cardHeader {
+    display: flex;
+    &Avatar {
+        flex: 1 1 auto;
+        cursor: pointer;
+    }
+    &Username {
+        flex: 3 3 auto;
+        cursor: pointer;
+        &Nickname {
+            font-size: 1.3rem;
+        }
+    }
+    &time {
+        flex: 1 1 auto;
+    }
+}
+.cardContent {
+    &Text {
+        color: white;
+    }
+    &Image {
+        margin-top: 0.5rem;
+        --width: 100%;
+        max-height: 90vw;
+    }
 }

@@ -1,1 +1,23 @@
-<div>{{ oshaberi.content }}</div>
+<ion-card>
+    <ion-card-header class="cardHeader">
+        <div class="cardHeaderAvatar" (click)="goToProfilePage()">
+            <ion-avatar>
+                <img src="https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y">
+            </ion-avatar>
+        </div>
+        <div class="cardHeaderUsername" (click)="goToProfilePage()">
+            <ion-card-title class="cardHeaderUsernameNickname">{{oshaberi.author | username}}</ion-card-title>
+            <ion-card-subtitle>{{oshaberi.author | username}}</ion-card-subtitle>
+        </div>
+        <div class="cardHeaderTime">{{oshaberi.timestamp | elapsedTime}}</div>
+    </ion-card-header>
+    <ion-card-content>
+        <p class="cardContentText">{{ oshaberi.content }}</p>
+        <ion-slides pager>
+            <ion-slide *ngFor="let imageKey of oshaberi.imageKeys">
+                <amplify-s3-image class="cardContentImage" [attr.img-key]="imageKey" level="private"></amplify-s3-image>
+            </ion-slide>
+        </ion-slides>
+        <app-action-panel></app-action-panel>
+    </ion-card-content>
+</ion-card>

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Platform } from '@ionic/angular';
-import { APIService, Oshaberi } from '../API.service';
+import { APIService, ModelSortDirection, Oshaberi } from '../API.service';
+import { AuthService } from '../shared/services/auth.service';
 
 @Component({
   selector: 'app-home',
@@ -10,17 +11,18 @@ import { APIService, Oshaberi } from '../API.service';
 export class HomePage implements OnInit {
   public oshaberis: Array<Oshaberi> = [];
   private nextToken: string = null;
-
-  username = "tetsukamen";
-  limit = 5;
+  private username: string;
+  limit = 10;
 
   constructor(
     private platform: Platform,
     private api: APIService,
+    private authService: AuthService,
   ) { }
 
   async ngOnInit() {
     await this.platform.ready();
+    this.username = (await this.authService.getUser()).getUsername();
     [this.oshaberis, this.nextToken] = await this.getOshaberisAndNextToken(this.username, this.limit, this.nextToken);
   }
 
@@ -43,7 +45,7 @@ export class HomePage implements OnInit {
 
   // returns next oshaberis and updated nextToken
   async getOshaberisAndNextToken(username: string, limit: number, nextToken: string): Promise<Array<any>> {
-    return this.api.ListTimelines(username, null, null, limit, nextToken).then(e => {
+    return this.api.ListTimelines(username, null, null, limit, nextToken, ModelSortDirection.DESC).then(e => {
       const oshaberis = e.items.map(timeline => timeline.oshaberi);
       return [oshaberis, e.nextToken];
     });
