@@ -24,7 +24,7 @@ const routes: Routes = [
     loadChildren: () => import('./oshaberi-detail/oshaberi-detail.module').then(m => m.OshaberiDetailPageModule)
   },
   {
-    path: 'like-user-list',
+    path: 'like-user-list/:oshaberi-id',
     loadChildren: () => import('./like-user-list/like-user-list.module').then(m => m.LikeUserListPageModule)
   },
   {

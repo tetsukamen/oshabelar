@@ -7,14 +7,16 @@ import { IonicModule } from '@ionic/angular';
 import { LikeUserListPageRoutingModule } from './like-user-list-routing.module';
 
 import { LikeUserListPage } from './like-user-list.page';
+import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    LikeUserListPageRoutingModule
+    LikeUserListPageRoutingModule,
+    SharedModule,
   ],
   declarations: [LikeUserListPage]
 })
-export class LikeUserListPageModule {}
+export class LikeUserListPageModule { }

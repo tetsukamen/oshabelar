@@ -1,0 +1,8 @@
+.actionPanel {
+    text-align: center;
+    &Col {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+}

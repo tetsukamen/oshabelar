@@ -11,8 +11,8 @@ export class CreateOshaberiService {
     private api: APIService,
   ) { }
 
-  async uploadOshaberi(content: string, imageKeys: Array<string>) {
-    await this.api.CreateOshaberiAndTimeline(content, imageKeys);
+  async uploadOshaberi(content: string, imageKeys: Array<string>, parentOshaberiId?: string) {
+    await this.api.CreateOshaberiAndTimeline(content, imageKeys, parentOshaberiId);
     return;
   }
 

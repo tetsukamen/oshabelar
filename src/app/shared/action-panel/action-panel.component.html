@@ -1,3 +1,16 @@
-<p>
-  action-panel works!
-</p>
+<ion-grid class="actionPanel">
+  <ion-row>
+    <ion-col class="actionPanelCol">
+      <ng-container *ngIf="showNumbers">{{likeAmount}}</ng-container>
+      <ion-button fill="clear" (click)="like()">
+        <ion-icon [name]="likeIconName(isLike)"></ion-icon>
+      </ion-button>
+    </ion-col>
+    <ion-col class="actionPanelCol">
+      <ng-container *ngIf="showNumbers">{{replyAmount}}</ng-container>
+      <ion-button fill="clear" (click)="reply()">
+        <ion-icon name="chatbox-ellipses-outline"></ion-icon>
+      </ion-button>
+    </ion-col>
+  </ion-row>
+</ion-grid>

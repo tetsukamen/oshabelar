@@ -5,6 +5,7 @@ import { Location } from '@angular/common';
 import { CreateOshaberiService } from './create-oshaberi.service';
 import { MessageService } from '../shared/message.service';
 import { FileReaderEx } from '../shared/classes/file-reader-ex';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-create-oshaberi',
@@ -21,6 +22,7 @@ export class CreateOshaberiPage implements OnInit {
   buttonDisabled: boolean = true;
   imageAuthLevel: string = 'private';
   uploadProgressRate: number = 0;
+  parentOshaberiId: string;
 
   @ViewChild('inputImage')
   private inputImageRef: ElementRef;
@@ -31,10 +33,12 @@ export class CreateOshaberiPage implements OnInit {
     private location: Location,
     private createOshaberiService: CreateOshaberiService,
     private messageService: MessageService,
+    private route: ActivatedRoute,
   ) { }
 
   async ngOnInit() {
     this.username = await this.authService.getUser().then(e => e.getUsername());
+    this.parentOshaberiId = this.route.snapshot.params['parentOshaberiId'];
     this.oshaberiContent.valueChanges.subscribe(e => {
       this.contentLength = e.length;
       this.contentLengthColor = e.length >= 140 ? 'danger' : '';
@@ -49,7 +53,7 @@ export class CreateOshaberiPage implements OnInit {
       return [''];
     });
     this.uploadProgressRate = 0.5;
-    await this.createOshaberiService.uploadOshaberi(this.oshaberiContent.value, imageKeys).catch(_ => {
+    await this.createOshaberiService.uploadOshaberi(this.oshaberiContent.value, imageKeys, this.parentOshaberiId).catch(_ => {
       this.messageService.indicateWarning('おしゃべりの投稿に失敗しました');
     });
     this.uploadProgressRate = 1;

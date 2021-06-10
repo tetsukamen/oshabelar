@@ -54,9 +54,37 @@ query GetOshaberi($id: ID!) {
         owner
         author
         timestamp
+        userInfo {
+          userId
+          nickname
+          iconImageKey
+          coverImageKey
+          profile
+        }
         imageKeys
         content
         parentOshaberiId
+        replyOshaberi {
+          items {
+            id
+            owner
+            author
+            timestamp
+            imageKeys
+            content
+            parentOshaberiId
+          }
+          nextToken
+        }
+        like {
+          items {
+            id
+            userId
+            timestamp
+            oshaberiId
+          }
+          nextToken
+        }
       }
       nextToken
     }
@@ -66,6 +94,35 @@ query GetOshaberi($id: ID!) {
         userId
         timestamp
         oshaberiId
+        oshaberi {
+          id
+          owner
+          author
+          timestamp
+          userInfo {
+            userId
+            nickname
+            iconImageKey
+            coverImageKey
+            profile
+          }
+          imageKeys
+          content
+          parentOshaberiId
+          replyOshaberi {
+            nextToken
+          }
+          like {
+            nextToken
+          }
+        }
+        userInfo {
+          userId
+          nickname
+          iconImageKey
+          coverImageKey
+          profile
+        }
       }
       nextToken
     }
@@ -93,9 +150,53 @@ query ListOshaberis(
       content
       parentOshaberiId
       replyOshaberi {
+        items {
+          id
+          owner
+          author
+          timestamp
+          userInfo {
+            userId
+            nickname
+            iconImageKey
+            coverImageKey
+            profile
+          }
+          imageKeys
+          content
+          parentOshaberiId
+          replyOshaberi {
+            nextToken
+          }
+          like {
+            nextToken
+          }
+        }
         nextToken
       }
       like {
+        items {
+          id
+          userId
+          timestamp
+          oshaberiId
+          oshaberi {
+            id
+            owner
+            author
+            timestamp
+            imageKeys
+            content
+            parentOshaberiId
+          }
+          userInfo {
+            userId
+            nickname
+            iconImageKey
+            coverImageKey
+            profile
+          }
+        }
         nextToken
       }
     }
@@ -123,9 +224,53 @@ query GetTimeline($userId: String!, $timestamp: Int!) {
       content
       parentOshaberiId
       replyOshaberi {
+        items {
+          id
+          owner
+          author
+          timestamp
+          userInfo {
+            userId
+            nickname
+            iconImageKey
+            coverImageKey
+            profile
+          }
+          imageKeys
+          content
+          parentOshaberiId
+          replyOshaberi {
+            nextToken
+          }
+          like {
+            nextToken
+          }
+        }
         nextToken
       }
       like {
+        items {
+          id
+          userId
+          timestamp
+          oshaberiId
+          oshaberi {
+            id
+            owner
+            author
+            timestamp
+            imageKeys
+            content
+            parentOshaberiId
+          }
+          userInfo {
+            userId
+            nickname
+            iconImageKey
+            coverImageKey
+            profile
+          }
+        }
         nextToken
       }
     }
@@ -156,9 +301,37 @@ query ListTimelines(
         owner
         author
         timestamp
+        userInfo {
+          userId
+          nickname
+          iconImageKey
+          coverImageKey
+          profile
+        }
         imageKeys
         content
         parentOshaberiId
+        replyOshaberi {
+          items {
+            id
+            owner
+            author
+            timestamp
+            imageKeys
+            content
+            parentOshaberiId
+          }
+          nextToken
+        }
+        like {
+          items {
+            id
+            userId
+            timestamp
+            oshaberiId
+          }
+          nextToken
+        }
       }
     }
     nextToken
@@ -268,9 +441,53 @@ query GetLike($id: ID!) {
       content
       parentOshaberiId
       replyOshaberi {
+        items {
+          id
+          owner
+          author
+          timestamp
+          userInfo {
+            userId
+            nickname
+            iconImageKey
+            coverImageKey
+            profile
+          }
+          imageKeys
+          content
+          parentOshaberiId
+          replyOshaberi {
+            nextToken
+          }
+          like {
+            nextToken
+          }
+        }
         nextToken
       }
       like {
+        items {
+          id
+          userId
+          timestamp
+          oshaberiId
+          oshaberi {
+            id
+            owner
+            author
+            timestamp
+            imageKeys
+            content
+            parentOshaberiId
+          }
+          userInfo {
+            userId
+            nickname
+            iconImageKey
+            coverImageKey
+            profile
+          }
+        }
         nextToken
       }
     }
@@ -299,9 +516,37 @@ query ListLikes(
         owner
         author
         timestamp
+        userInfo {
+          userId
+          nickname
+          iconImageKey
+          coverImageKey
+          profile
+        }
         imageKeys
         content
         parentOshaberiId
+        replyOshaberi {
+          items {
+            id
+            owner
+            author
+            timestamp
+            imageKeys
+            content
+            parentOshaberiId
+          }
+          nextToken
+        }
+        like {
+          items {
+            id
+            userId
+            timestamp
+            oshaberiId
+          }
+          nextToken
+        }
       }
       userInfo {
         userId
@@ -346,9 +591,53 @@ query ListOshaberisBySpecificOwner(
       content
       parentOshaberiId
       replyOshaberi {
+        items {
+          id
+          owner
+          author
+          timestamp
+          userInfo {
+            userId
+            nickname
+            iconImageKey
+            coverImageKey
+            profile
+          }
+          imageKeys
+          content
+          parentOshaberiId
+          replyOshaberi {
+            nextToken
+          }
+          like {
+            nextToken
+          }
+        }
         nextToken
       }
       like {
+        items {
+          id
+          userId
+          timestamp
+          oshaberiId
+          oshaberi {
+            id
+            owner
+            author
+            timestamp
+            imageKeys
+            content
+            parentOshaberiId
+          }
+          userInfo {
+            userId
+            nickname
+            iconImageKey
+            coverImageKey
+            profile
+          }
+        }
         nextToken
       }
     }
@@ -387,9 +676,53 @@ query ListOshaberiByParentOshaberi(
       content
       parentOshaberiId
       replyOshaberi {
+        items {
+          id
+          owner
+          author
+          timestamp
+          userInfo {
+            userId
+            nickname
+            iconImageKey
+            coverImageKey
+            profile
+          }
+          imageKeys
+          content
+          parentOshaberiId
+          replyOshaberi {
+            nextToken
+          }
+          like {
+            nextToken
+          }
+        }
         nextToken
       }
       like {
+        items {
+          id
+          userId
+          timestamp
+          oshaberiId
+          oshaberi {
+            id
+            owner
+            author
+            timestamp
+            imageKeys
+            content
+            parentOshaberiId
+          }
+          userInfo {
+            userId
+            nickname
+            iconImageKey
+            coverImageKey
+            profile
+          }
+        }
         nextToken
       }
     }
@@ -470,9 +803,37 @@ query ListLikesByOshaberiId(
         owner
         author
         timestamp
+        userInfo {
+          userId
+          nickname
+          iconImageKey
+          coverImageKey
+          profile
+        }
         imageKeys
         content
         parentOshaberiId
+        replyOshaberi {
+          items {
+            id
+            owner
+            author
+            timestamp
+            imageKeys
+            content
+            parentOshaberiId
+          }
+          nextToken
+        }
+        like {
+          items {
+            id
+            userId
+            timestamp
+            oshaberiId
+          }
+          nextToken
+        }
       }
       userInfo {
         userId
