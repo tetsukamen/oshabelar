@@ -1,0 +1,17 @@
+.cardHeader {
+    display: flex;
+    &Avatar {
+        flex: 1 1 auto;
+        cursor: pointer;
+    }
+    &Username {
+        flex: 3 3 auto;
+        cursor: pointer;
+        &Nickname {
+            font-size: 1.3rem;
+        }
+    }
+    &time {
+        flex: 1 1 auto;
+    }
+}

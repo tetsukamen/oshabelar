@@ -1,5 +1,4 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 import { Oshaberi } from 'src/app/API.service';
 
 @Component({
@@ -10,14 +9,8 @@ import { Oshaberi } from 'src/app/API.service';
 export class OshaberiComponent implements OnInit {
   @Input() oshaberi: Oshaberi;
 
-  constructor(
-    private router: Router,
-  ) { }
+  constructor() { }
 
   ngOnInit() { }
-
-  goToProfilePage() {
-    this.router.navigate(['/profile', this.oshaberi.author])
-  }
 
 }

@@ -1248,10 +1248,11 @@ export type OnDeleteLikeSubscription = {
 export class APIService {
   async CreateOshaberiAndTimeline(
     content: string,
-    imageKeys?: Array<string | null>
+    imageKeys?: Array<string | null>,
+    parentOshaberiId?: string
   ): Promise<CreateOshaberiAndTimelineMutation> {
-    const statement = `mutation CreateOshaberiAndTimeline($content: String!, $imageKeys: [String]) {
-        createOshaberiAndTimeline(content: $content, imageKeys: $imageKeys) {
+    const statement = `mutation CreateOshaberiAndTimeline($content: String!, $imageKeys: [String], $parentOshaberiId: String) {
+        createOshaberiAndTimeline(content: $content, imageKeys: $imageKeys, parentOshaberiId: $parentOshaberiId) {
           __typename
           id
           owner
@@ -1300,6 +1301,9 @@ export class APIService {
     };
     if (imageKeys) {
       gqlAPIServiceArguments.imageKeys = imageKeys;
+    }
+    if (parentOshaberiId) {
+      gqlAPIServiceArguments.parentOshaberiId = parentOshaberiId;
     }
     const response = (await API.graphql(
       graphqlOperation(statement, gqlAPIServiceArguments)

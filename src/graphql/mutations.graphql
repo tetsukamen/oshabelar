@@ -1,6 +1,14 @@
 # this is an auto generated file. This will be overwritten
-mutation CreateOshaberiAndTimeline($content: String!, $imageKeys: [String]) {
-  createOshaberiAndTimeline(content: $content, imageKeys: $imageKeys) {
+mutation CreateOshaberiAndTimeline(
+  $content: String!
+  $imageKeys: [String]
+  $parentOshaberiId: String
+) {
+  createOshaberiAndTimeline(
+    content: $content
+    imageKeys: $imageKeys
+    parentOshaberiId: $parentOshaberiId
+  ) {
     id
     owner
     author

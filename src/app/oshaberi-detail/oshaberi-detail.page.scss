@@ -1,0 +1,20 @@
+.oshaberiContentWrapper {
+    margin: 0 0.5rem;
+}
+.replyHeader {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    &::before,
+    &::after {
+        border-top: 1px gray solid;
+        content: "";
+        flex: auto;
+    }
+    &::before {
+        margin-right: 1em;
+    }
+    &::after {
+        margin-left: 1em;
+    }
+}

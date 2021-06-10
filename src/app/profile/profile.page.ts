@@ -7,10 +7,10 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./profile.page.scss'],
 })
 export class ProfilePage implements OnInit {
-  private username: string;
+  public username: string;
 
   constructor(
-    private route: ActivatedRoute,
+    public route: ActivatedRoute,
   ) { }
 
   ngOnInit() {

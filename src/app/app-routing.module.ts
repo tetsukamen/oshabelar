@@ -20,7 +20,7 @@ const routes: Routes = [
     loadChildren: () => import('./profile/profile.module').then(m => m.ProfilePageModule)
   },
   {
-    path: 'oshaberi-detail',
+    path: 'oshaberi-detail/:oshaberi-id',
     loadChildren: () => import('./oshaberi-detail/oshaberi-detail.module').then(m => m.OshaberiDetailPageModule)
   },
   {

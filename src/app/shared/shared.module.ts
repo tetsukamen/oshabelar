@@ -7,6 +7,8 @@ import { OshaberiButtonComponent } from './oshaberi-button/oshaberi-button.compo
 import { UsernamePipe } from './pipes/username.pipe';
 import { ElapsedTimePipe } from './pipes/elapsed-time.pipe';
 import { ActionPanelComponent } from './action-panel/action-panel.component';
+import { OshaberiHeaderComponent } from './oshaberi-header/oshaberi-header.component';
+import { OshaberiBodyComponent } from './oshaberi-body/oshaberi-body.component';
 
 
 
@@ -14,6 +16,8 @@ import { ActionPanelComponent } from './action-panel/action-panel.component';
   declarations: [
     HeaderComponent,
     OshaberiComponent,
+    OshaberiHeaderComponent,
+    OshaberiBodyComponent,
     OshaberiButtonComponent,
     UserDigestComponent,
     ActionPanelComponent,
@@ -26,6 +30,8 @@ import { ActionPanelComponent } from './action-panel/action-panel.component';
   exports: [
     HeaderComponent,
     OshaberiComponent,
+    OshaberiHeaderComponent,
+    OshaberiBodyComponent,
     OshaberiButtonComponent,
     UserDigestComponent,
     ActionPanelComponent,
