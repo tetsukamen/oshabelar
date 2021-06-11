@@ -90,7 +90,7 @@ export class ProfilePage implements OnInit {
 
   // return nest likes and update nextToken  
   async getOwnerLikesAndNextToken(username: string, limit: number, nextToken: string): Promise<Array<any>> {
-    return this.api.ListLikesBySpecificUserId(username, null, ModelSortDirection.DESC, null, limit, nextToken).then(e => {
+    return this.api.ListLikesBySpecificUserId(username, null, ModelSortDirection.DESC, null, limit, nextToken,).then(e => {
       return [e.items, e.nextToken];
     })
   }

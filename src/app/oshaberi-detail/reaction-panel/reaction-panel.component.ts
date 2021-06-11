@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Oshaberi } from 'src/app/API.service';
+import { OshaberiDetailService } from '../oshaberi-detail.service';
 
 @Component({
   selector: 'app-reaction-panel',
@@ -9,9 +10,21 @@ import { Oshaberi } from 'src/app/API.service';
 export class ReactionPanelComponent implements OnInit {
   @Input()
   public oshaberi: Oshaberi;
+  public likeAmount: number;
 
-  constructor() { }
+  constructor(
+    private oshaberiDetailService: OshaberiDetailService,
+  ) { }
 
-  ngOnInit() { }
+  ngOnInit() {
+    this.likeAmount = this.oshaberi.like.items.length;
+    this.oshaberiDetailService.likeClickedObservable.subscribe(liked => {
+      if (liked) {
+        this.likeAmount++;
+      } else {
+        this.likeAmount--;
+      }
+    });
+  }
 
 }

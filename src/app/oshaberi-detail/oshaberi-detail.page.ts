@@ -25,7 +25,5 @@ export class OshaberiDetailPage implements OnInit {
       this.messageService.indicateWarning("データ取得に失敗しました");
       return null;
     });
-    console.log(this.oshaberi)
   }
-
 }

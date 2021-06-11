@@ -8,7 +8,8 @@
       <app-oshaberi-body [oshaberi]="oshaberi"></app-oshaberi-body>
     </div>
     <app-reaction-panel [oshaberi]="oshaberi"></app-reaction-panel>
-    <app-action-panel [oshaberi]="oshaberi" [showNumbers]="false"></app-action-panel>
+    <app-action-panel [oshaberi]="oshaberi" [showNumbers]="false">
+    </app-action-panel>
     <div *ngIf="oshaberi.replyOshaberi.items.length>0" class="replyHeader">返信</div>
     <ng-container *ngFor="let oshaberi of oshaberi.replyOshaberi.items">
       <app-oshaberi [oshaberi]="oshaberi"></app-oshaberi>

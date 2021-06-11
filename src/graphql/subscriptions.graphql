@@ -1,28 +1,13 @@
 # this is an auto generated file. This will be overwritten
-subscription OnCreateUserinfo {
-  onCreateUserinfo {
-    userId
-    nickname
-    iconImageKey
-    coverImageKey
-    profile
-  }
-}
-subscription OnUpdateUserinfo {
-  onUpdateUserinfo {
-    userId
-    nickname
-    iconImageKey
-    coverImageKey
-    profile
-  }
-}
 subscription OnCreateOshaberi {
   onCreateOshaberi {
     id
     owner
     author
     timestamp
+    imageKeys
+    content
+    parentOshaberiId
     userInfo {
       userId
       nickname
@@ -30,9 +15,6 @@ subscription OnCreateOshaberi {
       coverImageKey
       profile
     }
-    imageKeys
-    content
-    parentOshaberiId
     replyOshaberi {
       items {
         id
@@ -47,7 +29,6 @@ subscription OnCreateOshaberi {
     }
     like {
       items {
-        id
         userId
         timestamp
         oshaberiId
@@ -66,6 +47,9 @@ subscription OnCreateTimeline($userId: String!) {
       owner
       author
       timestamp
+      imageKeys
+      content
+      parentOshaberiId
       userInfo {
         userId
         nickname
@@ -73,9 +57,6 @@ subscription OnCreateTimeline($userId: String!) {
         coverImageKey
         profile
       }
-      imageKeys
-      content
-      parentOshaberiId
       replyOshaberi {
         nextToken
       }
@@ -90,6 +71,9 @@ subscription OnCreateNotification($userId: String!) {
     userId
     timestamp
     fromUserId
+    oshaberiId
+    haveRead
+    action
     fromUser {
       userId
       nickname
@@ -97,83 +81,24 @@ subscription OnCreateNotification($userId: String!) {
       coverImageKey
       profile
     }
-    oshaberiId
-    haveRead
-    action
   }
 }
-subscription OnCreateLike {
-  onCreateLike {
-    id
+subscription OnCreateUserinfo {
+  onCreateUserinfo {
     userId
-    timestamp
-    oshaberiId
-    oshaberi {
-      id
-      owner
-      author
-      timestamp
-      userInfo {
-        userId
-        nickname
-        iconImageKey
-        coverImageKey
-        profile
-      }
-      imageKeys
-      content
-      parentOshaberiId
-      replyOshaberi {
-        nextToken
-      }
-      like {
-        nextToken
-      }
-    }
-    userInfo {
-      userId
-      nickname
-      iconImageKey
-      coverImageKey
-      profile
-    }
+    nickname
+    iconImageKey
+    coverImageKey
+    profile
   }
 }
-subscription OnDeleteLike {
-  onDeleteLike {
-    id
+subscription OnUpdateUserinfo {
+  onUpdateUserinfo {
     userId
-    timestamp
-    oshaberiId
-    oshaberi {
-      id
-      owner
-      author
-      timestamp
-      userInfo {
-        userId
-        nickname
-        iconImageKey
-        coverImageKey
-        profile
-      }
-      imageKeys
-      content
-      parentOshaberiId
-      replyOshaberi {
-        nextToken
-      }
-      like {
-        nextToken
-      }
-    }
-    userInfo {
-      userId
-      nickname
-      iconImageKey
-      coverImageKey
-      profile
-    }
+    nickname
+    iconImageKey
+    coverImageKey
+    profile
   }
 }
 subscription OnCreateFollowingRelationship {
@@ -188,5 +113,77 @@ subscription OnDeleteFollowingRelationship {
     followeeId
     followerId
     timestamp
+  }
+}
+subscription OnCreateLike {
+  onCreateLike {
+    userId
+    timestamp
+    oshaberiId
+    userInfo {
+      userId
+      nickname
+      iconImageKey
+      coverImageKey
+      profile
+    }
+    oshaberi {
+      id
+      owner
+      author
+      timestamp
+      imageKeys
+      content
+      parentOshaberiId
+      userInfo {
+        userId
+        nickname
+        iconImageKey
+        coverImageKey
+        profile
+      }
+      replyOshaberi {
+        nextToken
+      }
+      like {
+        nextToken
+      }
+    }
+  }
+}
+subscription OnDeleteLike {
+  onDeleteLike {
+    userId
+    timestamp
+    oshaberiId
+    userInfo {
+      userId
+      nickname
+      iconImageKey
+      coverImageKey
+      profile
+    }
+    oshaberi {
+      id
+      owner
+      author
+      timestamp
+      imageKeys
+      content
+      parentOshaberiId
+      userInfo {
+        userId
+        nickname
+        iconImageKey
+        coverImageKey
+        profile
+      }
+      replyOshaberi {
+        nextToken
+      }
+      like {
+        nextToken
+      }
+    }
   }
 }

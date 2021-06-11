@@ -1,6 +1,8 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
-import { Oshaberi } from 'src/app/API.service';
+import { APIService, Oshaberi } from 'src/app/API.service';
+import { OshaberiDetailService } from 'src/app/oshaberi-detail/oshaberi-detail.service';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-action-panel',
@@ -15,14 +17,21 @@ export class ActionPanelComponent implements OnInit {
   public isLike: boolean = false;
   public likeAmount: number = 0;
   public replyAmount: number = 0;
+  private currentUsername: string;
 
   constructor(
     private router: Router,
+    private api: APIService,
+    private authService: AuthService,
+    private oshaberiDetailService: OshaberiDetailService,
   ) { }
 
-  ngOnInit() {
+  async ngOnInit() {
+    this.currentUsername = (await this.authService.getUser()).getUsername();
     if (this.oshaberi.like && this.oshaberi.like.items) {
-      this.likeAmount = this.oshaberi.like.items.length;
+      const likes = this.oshaberi.like.items;
+      this.likeAmount = likes.length;
+      this.isLike = likes.some(like => like.userId == this.currentUsername);
     }
     if (this.oshaberi.replyOshaberi && this.oshaberi.replyOshaberi.items) {
       this.replyAmount = this.oshaberi.replyOshaberi.items.length;
@@ -33,13 +42,28 @@ export class ActionPanelComponent implements OnInit {
     return isLike ? "heart" : "heart-outline";
   }
 
-  like(): void {
+  async like() {
     this.isLike = !this.isLike;
     if (this.isLike) {
       this.likeAmount++;
+      await this.createLike(this.oshaberi.id);
     } else {
       this.likeAmount--;
+      await this.deleteLike(this.oshaberi.id);
     }
+    this.oshaberiDetailService.likeClickedSubject.next(this.isLike);
+  }
+
+  async createLike(oshaberiId: string) {
+    return await this.api.CreateLikeAndNotification(oshaberiId, 'like');
+  }
+
+  async deleteLike(oshaberiId: string) {
+    const input = {
+      userId: this.currentUsername,
+      oshaberiId: oshaberiId,
+    };
+    return await this.api.DeleteLike(input);
   }
 
   reply(): void {
