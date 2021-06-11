@@ -6,14 +6,14 @@
     <!-- cover image -->
     <div class="profileCoverImage">
       <amplify-s3-image *ngIf="userInfo && userInfo.coverImageKey;else coverImageUnset" class="profileCoverImageS3Image"
-        [attr.img-key]="userInfo.coverImageKey" level="private">
+        [attr.img-key]="userInfo.coverImageKey" level="public">
       </amplify-s3-image>
     </div>
     <!-- avatar and button -->
     <div class="profileAvatarButton">
       <ion-avatar slot="start" class="profileAvatar">
         <amplify-s3-image *ngIf="userInfo && userInfo.iconImageKey;else iconImageUnset" class="profileIconImage"
-          [attr.img-key]="userInfo.iconImageKey" level="private">
+          [attr.img-key]="userInfo.iconImageKey" level="public">
         </amplify-s3-image>
       </ion-avatar>
       <ion-button *ngIf="isMyProfile;else followButton" (click)="goToEditProfilePage()">プロフィールを編集</ion-button>
@@ -65,7 +65,9 @@
 </ng-template>
 
 <ng-template #followButton>
-  <ion-button>フォロー</ion-button>
+  <ion-button [color]="isFollowing ? 'danger' : 'primary'" fill="outline" (click)="toggleFollowingRelationship()">
+    {{!isFollowing ? "フォロー"
+    : "フォロー解除"}}</ion-button>
 </ng-template>
 
 <ng-template #iconImageUnset>

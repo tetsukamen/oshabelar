@@ -54,37 +54,9 @@ query GetOshaberi($id: ID!) {
         owner
         author
         timestamp
-        userInfo {
-          userId
-          nickname
-          iconImageKey
-          coverImageKey
-          profile
-        }
         imageKeys
         content
         parentOshaberiId
-        replyOshaberi {
-          items {
-            id
-            owner
-            author
-            timestamp
-            imageKeys
-            content
-            parentOshaberiId
-          }
-          nextToken
-        }
-        like {
-          items {
-            id
-            userId
-            timestamp
-            oshaberiId
-          }
-          nextToken
-        }
       }
       nextToken
     }
@@ -94,35 +66,6 @@ query GetOshaberi($id: ID!) {
         userId
         timestamp
         oshaberiId
-        oshaberi {
-          id
-          owner
-          author
-          timestamp
-          userInfo {
-            userId
-            nickname
-            iconImageKey
-            coverImageKey
-            profile
-          }
-          imageKeys
-          content
-          parentOshaberiId
-          replyOshaberi {
-            nextToken
-          }
-          like {
-            nextToken
-          }
-        }
-        userInfo {
-          userId
-          nickname
-          iconImageKey
-          coverImageKey
-          profile
-        }
       }
       nextToken
     }
@@ -150,53 +93,9 @@ query ListOshaberis(
       content
       parentOshaberiId
       replyOshaberi {
-        items {
-          id
-          owner
-          author
-          timestamp
-          userInfo {
-            userId
-            nickname
-            iconImageKey
-            coverImageKey
-            profile
-          }
-          imageKeys
-          content
-          parentOshaberiId
-          replyOshaberi {
-            nextToken
-          }
-          like {
-            nextToken
-          }
-        }
         nextToken
       }
       like {
-        items {
-          id
-          userId
-          timestamp
-          oshaberiId
-          oshaberi {
-            id
-            owner
-            author
-            timestamp
-            imageKeys
-            content
-            parentOshaberiId
-          }
-          userInfo {
-            userId
-            nickname
-            iconImageKey
-            coverImageKey
-            profile
-          }
-        }
         nextToken
       }
     }
@@ -224,53 +123,9 @@ query GetTimeline($userId: String!, $timestamp: Int!) {
       content
       parentOshaberiId
       replyOshaberi {
-        items {
-          id
-          owner
-          author
-          timestamp
-          userInfo {
-            userId
-            nickname
-            iconImageKey
-            coverImageKey
-            profile
-          }
-          imageKeys
-          content
-          parentOshaberiId
-          replyOshaberi {
-            nextToken
-          }
-          like {
-            nextToken
-          }
-        }
         nextToken
       }
       like {
-        items {
-          id
-          userId
-          timestamp
-          oshaberiId
-          oshaberi {
-            id
-            owner
-            author
-            timestamp
-            imageKeys
-            content
-            parentOshaberiId
-          }
-          userInfo {
-            userId
-            nickname
-            iconImageKey
-            coverImageKey
-            profile
-          }
-        }
         nextToken
       }
     }
@@ -301,69 +156,10 @@ query ListTimelines(
         owner
         author
         timestamp
-        userInfo {
-          userId
-          nickname
-          iconImageKey
-          coverImageKey
-          profile
-        }
         imageKeys
         content
         parentOshaberiId
-        replyOshaberi {
-          items {
-            id
-            owner
-            author
-            timestamp
-            imageKeys
-            content
-            parentOshaberiId
-          }
-          nextToken
-        }
-        like {
-          items {
-            id
-            userId
-            timestamp
-            oshaberiId
-          }
-          nextToken
-        }
       }
-    }
-    nextToken
-  }
-}
-query GetFollowingRelationship($followeeId: String!, $followerId: String!) {
-  getFollowingRelationship(followeeId: $followeeId, followerId: $followerId) {
-    followeeId
-    followerId
-    timestamp
-  }
-}
-query ListFollowingRelationships(
-  $followeeId: String
-  $followerId: ModelStringKeyConditionInput
-  $filter: ModelFollowingRelationshipFilterInput
-  $limit: Int
-  $nextToken: String
-  $sortDirection: ModelSortDirection
-) {
-  listFollowingRelationships(
-    followeeId: $followeeId
-    followerId: $followerId
-    filter: $filter
-    limit: $limit
-    nextToken: $nextToken
-    sortDirection: $sortDirection
-  ) {
-    items {
-      followeeId
-      followerId
-      timestamp
     }
     nextToken
   }
@@ -441,53 +237,9 @@ query GetLike($id: ID!) {
       content
       parentOshaberiId
       replyOshaberi {
-        items {
-          id
-          owner
-          author
-          timestamp
-          userInfo {
-            userId
-            nickname
-            iconImageKey
-            coverImageKey
-            profile
-          }
-          imageKeys
-          content
-          parentOshaberiId
-          replyOshaberi {
-            nextToken
-          }
-          like {
-            nextToken
-          }
-        }
         nextToken
       }
       like {
-        items {
-          id
-          userId
-          timestamp
-          oshaberiId
-          oshaberi {
-            id
-            owner
-            author
-            timestamp
-            imageKeys
-            content
-            parentOshaberiId
-          }
-          userInfo {
-            userId
-            nickname
-            iconImageKey
-            coverImageKey
-            profile
-          }
-        }
         nextToken
       }
     }
@@ -516,37 +268,9 @@ query ListLikes(
         owner
         author
         timestamp
-        userInfo {
-          userId
-          nickname
-          iconImageKey
-          coverImageKey
-          profile
-        }
         imageKeys
         content
         parentOshaberiId
-        replyOshaberi {
-          items {
-            id
-            owner
-            author
-            timestamp
-            imageKeys
-            content
-            parentOshaberiId
-          }
-          nextToken
-        }
-        like {
-          items {
-            id
-            userId
-            timestamp
-            oshaberiId
-          }
-          nextToken
-        }
       }
       userInfo {
         userId
@@ -591,53 +315,9 @@ query ListOshaberisBySpecificOwner(
       content
       parentOshaberiId
       replyOshaberi {
-        items {
-          id
-          owner
-          author
-          timestamp
-          userInfo {
-            userId
-            nickname
-            iconImageKey
-            coverImageKey
-            profile
-          }
-          imageKeys
-          content
-          parentOshaberiId
-          replyOshaberi {
-            nextToken
-          }
-          like {
-            nextToken
-          }
-        }
         nextToken
       }
       like {
-        items {
-          id
-          userId
-          timestamp
-          oshaberiId
-          oshaberi {
-            id
-            owner
-            author
-            timestamp
-            imageKeys
-            content
-            parentOshaberiId
-          }
-          userInfo {
-            userId
-            nickname
-            iconImageKey
-            coverImageKey
-            profile
-          }
-        }
         nextToken
       }
     }
@@ -676,55 +356,124 @@ query ListOshaberiByParentOshaberi(
       content
       parentOshaberiId
       replyOshaberi {
-        items {
-          id
-          owner
-          author
-          timestamp
-          userInfo {
-            userId
-            nickname
-            iconImageKey
-            coverImageKey
-            profile
-          }
-          imageKeys
-          content
-          parentOshaberiId
-          replyOshaberi {
-            nextToken
-          }
-          like {
-            nextToken
-          }
-        }
         nextToken
       }
       like {
-        items {
-          id
-          userId
-          timestamp
-          oshaberiId
-          oshaberi {
-            id
-            owner
-            author
-            timestamp
-            imageKeys
-            content
-            parentOshaberiId
-          }
-          userInfo {
-            userId
-            nickname
-            iconImageKey
-            coverImageKey
-            profile
-          }
-        }
         nextToken
       }
+    }
+    nextToken
+  }
+}
+query ListLikesByOshaberiId(
+  $oshaberiId: ID
+  $timestamp: ModelIntKeyConditionInput
+  $sortDirection: ModelSortDirection
+  $filter: ModelLikeFilterInput
+  $limit: Int
+  $nextToken: String
+) {
+  listLikesByOshaberiId(
+    oshaberiId: $oshaberiId
+    timestamp: $timestamp
+    sortDirection: $sortDirection
+    filter: $filter
+    limit: $limit
+    nextToken: $nextToken
+  ) {
+    items {
+      id
+      userId
+      timestamp
+      oshaberiId
+      oshaberi {
+        id
+        owner
+        author
+        timestamp
+        imageKeys
+        content
+        parentOshaberiId
+      }
+      userInfo {
+        userId
+        nickname
+        iconImageKey
+        coverImageKey
+        profile
+      }
+    }
+    nextToken
+  }
+}
+query ListLikesBySpecificUserId(
+  $userId: String
+  $timestamp: ModelIntKeyConditionInput
+  $sortDirection: ModelSortDirection
+  $filter: ModelLikeFilterInput
+  $limit: Int
+  $nextToken: String
+) {
+  listLikesBySpecificUserId(
+    userId: $userId
+    timestamp: $timestamp
+    sortDirection: $sortDirection
+    filter: $filter
+    limit: $limit
+    nextToken: $nextToken
+  ) {
+    items {
+      id
+      userId
+      timestamp
+      oshaberiId
+      oshaberi {
+        id
+        owner
+        author
+        timestamp
+        imageKeys
+        content
+        parentOshaberiId
+      }
+      userInfo {
+        userId
+        nickname
+        iconImageKey
+        coverImageKey
+        profile
+      }
+    }
+    nextToken
+  }
+}
+query GetFollowingRelationship($followeeId: String!, $followerId: String!) {
+  getFollowingRelationship(followeeId: $followeeId, followerId: $followerId) {
+    followeeId
+    followerId
+    timestamp
+  }
+}
+query ListFollowingRelationships(
+  $followeeId: String
+  $followerId: ModelStringKeyConditionInput
+  $filter: ModelFollowingRelationshipFilterInput
+  $limit: Int
+  $nextToken: String
+  $sortDirection: ModelSortDirection
+) {
+  listFollowingRelationships(
+    followeeId: $followeeId
+    followerId: $followerId
+    filter: $filter
+    limit: $limit
+    nextToken: $nextToken
+    sortDirection: $sortDirection
+  ) {
+    items {
+      followeeId
+      followerId
+      timestamp
     }
     nextToken
   }
@@ -773,144 +522,6 @@ query ListFollowingRelationshipByFollower(
       followeeId
       followerId
       timestamp
-    }
-    nextToken
-  }
-}
-query ListLikesByOshaberiId(
-  $oshaberiId: ID
-  $timestamp: ModelIntKeyConditionInput
-  $sortDirection: ModelSortDirection
-  $filter: ModelLikeFilterInput
-  $limit: Int
-  $nextToken: String
-) {
-  listLikesByOshaberiId(
-    oshaberiId: $oshaberiId
-    timestamp: $timestamp
-    sortDirection: $sortDirection
-    filter: $filter
-    limit: $limit
-    nextToken: $nextToken
-  ) {
-    items {
-      id
-      userId
-      timestamp
-      oshaberiId
-      oshaberi {
-        id
-        owner
-        author
-        timestamp
-        userInfo {
-          userId
-          nickname
-          iconImageKey
-          coverImageKey
-          profile
-        }
-        imageKeys
-        content
-        parentOshaberiId
-        replyOshaberi {
-          items {
-            id
-            owner
-            author
-            timestamp
-            imageKeys
-            content
-            parentOshaberiId
-          }
-          nextToken
-        }
-        like {
-          items {
-            id
-            userId
-            timestamp
-            oshaberiId
-          }
-          nextToken
-        }
-      }
-      userInfo {
-        userId
-        nickname
-        iconImageKey
-        coverImageKey
-        profile
-      }
-    }
-    nextToken
-  }
-}
-query ListLikesBySpecificUserId(
-  $userId: String
-  $timestamp: ModelIntKeyConditionInput
-  $sortDirection: ModelSortDirection
-  $filter: ModelLikeFilterInput
-  $limit: Int
-  $nextToken: String
-) {
-  listLikesBySpecificUserId(
-    userId: $userId
-    timestamp: $timestamp
-    sortDirection: $sortDirection
-    filter: $filter
-    limit: $limit
-    nextToken: $nextToken
-  ) {
-    items {
-      id
-      userId
-      timestamp
-      oshaberiId
-      oshaberi {
-        id
-        owner
-        author
-        timestamp
-        userInfo {
-          userId
-          nickname
-          iconImageKey
-          coverImageKey
-          profile
-        }
-        imageKeys
-        content
-        parentOshaberiId
-        replyOshaberi {
-          items {
-            id
-            owner
-            author
-            timestamp
-            imageKeys
-            content
-            parentOshaberiId
-          }
-          nextToken
-        }
-        like {
-          items {
-            id
-            userId
-            timestamp
-            oshaberiId
-          }
-          nextToken
-        }
-      }
-      userInfo {
-        userId
-        nickname
-        iconImageKey
-        coverImageKey
-        profile
-      }
     }
     nextToken
   }

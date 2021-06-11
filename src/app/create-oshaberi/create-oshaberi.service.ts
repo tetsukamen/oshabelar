@@ -13,7 +13,7 @@ export class CreateOshaberiService {
 
   async uploadOshaberi(content: string, imageKeys: Array<string>, parentOshaberiId?: string) {
     await this.api.CreateOshaberiAndTimeline(content, imageKeys, parentOshaberiId);
-    return;
+    return true;
   }
 
   async uploadImages(images, imageAuthLevel): Promise<Array<string>> {

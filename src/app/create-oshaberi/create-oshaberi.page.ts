@@ -20,7 +20,7 @@ export class CreateOshaberiPage implements OnInit {
   contentLength: number = 0;
   contentLengthColor: 'danger' | '' = '';
   buttonDisabled: boolean = true;
-  imageAuthLevel: string = 'private';
+  imageAuthLevel: string = 'public';
   uploadProgressRate: number = 0;
   parentOshaberiId: string;
 
@@ -53,14 +53,19 @@ export class CreateOshaberiPage implements OnInit {
       return [''];
     });
     this.uploadProgressRate = 0.5;
-    await this.createOshaberiService.uploadOshaberi(this.oshaberiContent.value, imageKeys, this.parentOshaberiId).catch(_ => {
-      this.messageService.indicateWarning('おしゃべりの投稿に失敗しました');
-    });
-    this.uploadProgressRate = 1;
-    this.messageService.indicateSuccess('投稿しました');
-    setTimeout(() => {
-      this.location.back();
-    }, 300);
+    let createOshaberi;
+    if (imageKeys) {
+      createOshaberi = await this.createOshaberiService.uploadOshaberi(this.oshaberiContent.value, imageKeys, this.parentOshaberiId).catch(_ => {
+        this.messageService.indicateWarning('おしゃべりの投稿に失敗しました');
+      });
+    }
+    if (createOshaberi) {
+      this.uploadProgressRate = 1;
+      this.messageService.indicateSuccess('投稿しました');
+      setTimeout(() => {
+        this.location.back();
+      }, 300);
+    }
   }
 
   browseFiles() {

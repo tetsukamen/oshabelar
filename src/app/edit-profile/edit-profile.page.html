@@ -41,7 +41,7 @@
 
 <ng-template #coverImageUnchoosed>
   <amplify-s3-image *ngIf="userInfo && userInfo.coverImageKey; else coverImageUnset"
-    [attr.img-key]="userInfo.coverImageKey" level="private"></amplify-s3-image>
+    [attr.img-key]="userInfo.coverImageKey" level="public"></amplify-s3-image>
 </ng-template>
 
 <ng-template #coverImageUnset>
@@ -50,7 +50,7 @@
 
 <ng-template #iconImageUnchoosed>
   <amplify-s3-image *ngIf="userInfo && userInfo.iconImageKey; else iconImageUnset" class="profileEditAvatarS3Image"
-    [attr.img-key]="userInfo.iconImageKey" level="private"></amplify-s3-image>
+    [attr.img-key]="userInfo.iconImageKey" level="public"></amplify-s3-image>
 </ng-template>
 
 <ng-template #iconImageUnset>

@@ -1,6 +1,6 @@
 <p class="cardContentText" (click)="goToOshaberiDetailPage()">{{ oshaberi.content }}</p>
 <ion-slides pager>
   <ion-slide *ngFor="let imageKey of oshaberi.imageKeys">
-    <amplify-s3-image class="cardContentImage" [attr.img-key]="imageKey" level="private"></amplify-s3-image>
+    <amplify-s3-image class="cardContentImage" [attr.img-key]="imageKey" level="public"></amplify-s3-image>
   </ion-slide>
 </ion-slides>

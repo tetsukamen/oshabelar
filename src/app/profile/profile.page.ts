@@ -10,6 +10,7 @@ import { AuthService } from '../shared/services/auth.service';
 })
 export class ProfilePage implements OnInit {
   public username: string;
+  private currentUsername: string;
   public userInfo: Userinfo;
   public isMyProfile: boolean = false;
   public segmentValue: string = "oshaberi";
@@ -18,6 +19,7 @@ export class ProfilePage implements OnInit {
   public likes: Array<Like> = [];
   private likeNextToken: string = null;
   private limit: number = 10;
+  public isFollowing: boolean = false;
 
   constructor(
     public route: ActivatedRoute,
@@ -30,12 +32,14 @@ export class ProfilePage implements OnInit {
     this.username = await this.route.snapshot.params['username'];
     this.userInfo = await this.api.GetUserinfo(this.username);
     // jadge if this is my profile page
-    const currentUserame = (await this.authService.getUser()).getUsername();
-    if (currentUserame == this.username) {
+    this.currentUsername = (await this.authService.getUser()).getUsername();
+    if (this.currentUsername == this.username) {
       this.isMyProfile = true;
     }
     [this.oshaberis, this.oshaberiNextToken] = await this.getOwnerOshaberisAndNextToken(this.username, this.limit, this.oshaberiNextToken);
     [this.likes, this.likeNextToken] = await this.getOwnerLikesAndNextToken(this.username, this.limit, this.likeNextToken);
+    // jadge if is following
+    this.isFollowing = await this.api.GetFollowingRelationship(this.username, this.currentUsername).then(e => !!e);
   }
 
   public goToEditProfilePage(): void {
@@ -89,5 +93,23 @@ export class ProfilePage implements OnInit {
     return this.api.ListLikesBySpecificUserId(username, null, ModelSortDirection.DESC, null, limit, nextToken).then(e => {
       return [e.items, e.nextToken];
     })
+  }
+
+  toggleFollowingRelationship() {
+    if (!this.isFollowing) {
+      const input = {
+        followeeId: this.username,
+        followerId: this.currentUsername,
+        timestamp: Math.floor(Date.now() / 1000),
+      }
+      this.api.CreateFollowRelationship(input);
+    } else {
+      const input = {
+        followeeId: this.username,
+        followerId: this.currentUsername,
+      }
+      this.api.DeleteFollowRelationship(input);
+    }
+    this.isFollowing = !this.isFollowing;
   }
 }

@@ -20,9 +20,9 @@ export class EditProfilePage implements OnInit {
   public profileForms: FormGroup;
   public nickname = new FormControl('', [Validators.maxLength(30)]);
   public profileText = new FormControl('', [Validators.maxLength(200)]);
-  private coverImageObj: File;
-  private iconImageObj: File;
-  private level: string = "private";
+  private coverImageObj: File = null;
+  private iconImageObj: File = null;
+  private level: string = "public";
   public uploadProgressRate: number = 0;
 
   @ViewChild('inputCoverImage')
@@ -42,35 +42,40 @@ export class EditProfilePage implements OnInit {
     this.currentUsername = (await this.authService.getUser()).getUsername();
     this.userInfo = await this.api.GetUserinfo(this.currentUsername);
     this.profileForms = this.fb.group({
-      nickname: [this.userInfo.nickname ? this.userInfo.nickname : '', Validators.maxLength(30)],
-      profile: [this.userInfo.profile ? this.userInfo.profile : '', Validators.maxLength(200)],
-      coverImageKey: [this.userInfo.coverImageKey ? this.userInfo.coverImageKey : ''],
-      iconImageKey: [this.userInfo.iconImageKey ? this.userInfo.iconImageKey : ''],
+      nickname: [this.userInfo && this.userInfo.nickname ? this.userInfo.nickname : '', Validators.maxLength(30)],
+      profile: [this.userInfo && this.userInfo.profile ? this.userInfo.profile : '', Validators.maxLength(200)],
+      coverImageKey: [this.userInfo && this.userInfo.coverImageKey ? this.userInfo.coverImageKey : ''],
+      iconImageKey: [this.userInfo && this.userInfo.iconImageKey ? this.userInfo.iconImageKey : ''],
     });
   }
 
   async updateProfile() {
     this.uploadProgressRate = 0.1;
-    await this.uploadImages().catch(_ => {
+    const uploadImages = await this.uploadImages().catch(_ => {
       this.messageService.indicateWarning('画像のアップロードに失敗しました');
-      return;
     });
     this.uploadProgressRate = 0.5;
-    await this.uploadProfile().catch(_ => {
-      this.messageService.indicateWarning('プロフィールの更新に失敗しました');
-    });
-    this.uploadProgressRate = 1;
-    this.messageService.indicateSuccess('プロフィールを更新しました');
-    setTimeout(() => {
-      this.location.back();
-    }, 300);
+    let uploadProfile;
+    if (uploadImages) {
+      uploadProfile = await this.uploadProfile().catch(_ => {
+        this.messageService.indicateWarning('プロフィールの更新に失敗しました');
+      });
+    }
+    if (uploadProfile) {
+      this.uploadProgressRate = 1;
+      this.messageService.indicateSuccess('プロフィールを更新しました');
+      setTimeout(() => {
+        this.location.back();
+      }, 300);
+    }
   }
 
   async uploadProfile() {
     const input = this.profileForms.value;
     input.userId = this.currentUsername;
+    console.log(input)
     await this.api.UpdateUserInfo(input);
-    return;
+    return true;
   }
 
   async uploadImages() {
@@ -80,7 +85,7 @@ export class EditProfilePage implements OnInit {
     if (this.iconImageObj) {
       await this.uploadSingleImage(this.profileForms.get('iconImageKey').value, this.iconImageObj, this.level);
     }
-    return;
+    return true;
   }
 
   async onImageSelected(event, type: string) {
@@ -106,7 +111,6 @@ export class EditProfilePage implements OnInit {
         this.profileForms.get('iconImageKey').setValue(key);
         this.iconImageObj = file;
       }
-      console.log(this.profileForms.value)
     }
   }
 
