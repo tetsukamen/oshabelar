@@ -1739,6 +1739,69 @@ export type ListLikesByOshaberiIdQuery = {
   nextToken?: string | null;
 };
 
+export type ListLikesBySpecificUserIdQuery = {
+  __typename: "ModelLikeConnection";
+  items?: Array<{
+    __typename: "Like";
+    id: string;
+    userId: string;
+    timestamp: number;
+    oshaberiId: string;
+    oshaberi?: {
+      __typename: "Oshaberi";
+      id?: string | null;
+      owner: string;
+      author: string;
+      timestamp: number;
+      userInfo?: {
+        __typename: "Userinfo";
+        userId: string;
+        nickname?: string | null;
+        iconImageKey?: string | null;
+        coverImageKey?: string | null;
+        profile?: string | null;
+      } | null;
+      imageKeys?: Array<string | null> | null;
+      content: string;
+      parentOshaberiId?: string | null;
+      replyOshaberi?: {
+        __typename: "ModelOshaberiConnection";
+        items?: Array<{
+          __typename: "Oshaberi";
+          id?: string | null;
+          owner: string;
+          author: string;
+          timestamp: number;
+          imageKeys?: Array<string | null> | null;
+          content: string;
+          parentOshaberiId?: string | null;
+        } | null> | null;
+        nextToken?: string | null;
+      } | null;
+      like?: {
+        __typename: "ModelLikeConnection";
+        items?: Array<{
+          __typename: "Like";
+          id: string;
+          userId: string;
+          timestamp: number;
+          oshaberiId: string;
+        } | null> | null;
+        nextToken?: string | null;
+      } | null;
+    } | null;
+    userInfo?: {
+      __typename: "Userinfo";
+      userId: string;
+      nickname?: string | null;
+      iconImageKey?: string | null;
+      coverImageKey?: string | null;
+      profile?: string | null;
+    } | null;
+  } | null> | null;
+  nextToken?: string | null;
+};
+
 export type OnCreateUserinfoSubscription = {
   __typename: "Userinfo";
   userId: string;
@@ -4120,6 +4183,104 @@ export class APIService {
       graphqlOperation(statement, gqlAPIServiceArguments)
     )) as any;
     return <ListLikesByOshaberiIdQuery>response.data.listLikesByOshaberiId;
+  }
+  async ListLikesBySpecificUserId(
+    userId?: string,
+    timestamp?: ModelIntKeyConditionInput,
+    sortDirection?: ModelSortDirection,
+    filter?: ModelLikeFilterInput,
+    limit?: number,
+    nextToken?: string
+  ): Promise<ListLikesBySpecificUserIdQuery> {
+    const statement = `query ListLikesBySpecificUserId($userId: String, $timestamp: ModelIntKeyConditionInput, $sortDirection: ModelSortDirection, $filter: ModelLikeFilterInput, $limit: Int, $nextToken: String) {
+        listLikesBySpecificUserId(userId: $userId, timestamp: $timestamp, sortDirection: $sortDirection, filter: $filter, limit: $limit, nextToken: $nextToken) {
+          __typename
+          items {
+            __typename
+            id
+            userId
+            timestamp
+            oshaberiId
+            oshaberi {
+              __typename
+              id
+              owner
+              author
+              timestamp
+              userInfo {
+                __typename
+                userId
+                nickname
+                iconImageKey
+                coverImageKey
+                profile
+              }
+              imageKeys
+              content
+              parentOshaberiId
+              replyOshaberi {
+                __typename
+                items {
+                  __typename
+                  id
+                  owner
+                  author
+                  timestamp
+                  imageKeys
+                  content
+                  parentOshaberiId
+                }
+                nextToken
+              }
+              like {
+                __typename
+                items {
+                  __typename
+                  id
+                  userId
+                  timestamp
+                  oshaberiId
+                }
+                nextToken
+              }
+            }
+            userInfo {
+              __typename
+              userId
+              nickname
+              iconImageKey
+              coverImageKey
+              profile
+            }
+          }
+          nextToken
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {};
+    if (userId) {
+      gqlAPIServiceArguments.userId = userId;
+    }
+    if (timestamp) {
+      gqlAPIServiceArguments.timestamp = timestamp;
+    }
+    if (sortDirection) {
+      gqlAPIServiceArguments.sortDirection = sortDirection;
+    }
+    if (filter) {
+      gqlAPIServiceArguments.filter = filter;
+    }
+    if (limit) {
+      gqlAPIServiceArguments.limit = limit;
+    }
+    if (nextToken) {
+      gqlAPIServiceArguments.nextToken = nextToken;
+    }
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <ListLikesBySpecificUserIdQuery>(
+      response.data.listLikesBySpecificUserId
+    );
   }
   OnCreateUserinfoListener: Observable<
     SubscriptionResponse<OnCreateUserinfoSubscription>

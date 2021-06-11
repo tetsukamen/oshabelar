@@ -12,7 +12,7 @@ export class HomePage implements OnInit {
   public oshaberis: Array<Oshaberi> = [];
   private nextToken: string = null;
   private username: string;
-  limit = 10;
+  private limit: number = 10;
 
   constructor(
     private platform: Platform,
@@ -27,12 +27,16 @@ export class HomePage implements OnInit {
   }
 
   async loadNextOshaberis(event) {
-    let nextOshaberis: Array<Oshaberi>;
-    [nextOshaberis, this.nextToken] = await this.getOshaberisAndNextToken(this.username, this.limit, this.nextToken);
-    event.target.complete(); // terminate animation
-    this.oshaberis = [...this.oshaberis, ...nextOshaberis];
-    // stop loading next if no next oshaberis or number of oshaberi items exceeds 300
-    if (this.nextToken == null || this.oshaberis.length > 300) {
+    if (this.nextToken) {
+      let nextOshaberis: Array<Oshaberi>;
+      [nextOshaberis, this.nextToken] = await this.getOshaberisAndNextToken(this.username, this.limit, this.nextToken);
+      event.target.complete(); // terminate animation
+      this.oshaberis = [...this.oshaberis, ...nextOshaberis];
+      // stop loading next if no next oshaberis or number of oshaberi items exceeds 300
+      if (this.nextToken == null || this.oshaberis.length > 300) {
+        event.target.disabled = true;
+      }
+    } else {
       event.target.disabled = true;
     }
   }

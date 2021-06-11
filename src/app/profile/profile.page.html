@@ -1,10 +1,73 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>profile</ion-title>
-  </ion-toolbar>
-</ion-header>
+<app-header iconType="back" [title]="username"></app-header>
 
 <ion-content>
   <app-oshaberi-button></app-oshaberi-button>
-  {{username}}
+  <div class="profile">
+    <!-- cover image -->
+    <div class="profileCoverImage">
+      <amplify-s3-image *ngIf="userInfo && userInfo.coverImageKey;else coverImageUnset" class="profileCoverImageS3Image"
+        [attr.img-key]="userInfo.coverImageKey" level="private">
+      </amplify-s3-image>
+    </div>
+    <!-- avatar and button -->
+    <div class="profileAvatarButton">
+      <ion-avatar slot="start" class="profileAvatar">
+        <amplify-s3-image *ngIf="userInfo && userInfo.iconImageKey;else iconImageUnset" class="profileIconImage"
+          [attr.img-key]="userInfo.iconImageKey" level="private">
+        </amplify-s3-image>
+      </ion-avatar>
+      <ion-button *ngIf="isMyProfile;else followButton" (click)="goToEditProfilePage()">プロフィールを編集</ion-button>
+    </div>
+    <!-- nickname, username and profile text -->
+    <h3 class="profileNickname">{{userInfo ? userInfo.nickname : "未設定"}}</h3>
+    <p class="profileUsername">
+      <ion-text color="medium">@{{username}}</ion-text>
+    </p>
+    <p>{{userInfo ? userInfo.profile : ''}}</p>
+    <!-- follow number panel -->
+    <div class="profileFollowRelationship">
+      <div>
+        フォロー中
+      </div>
+      <div>
+        フォロワー
+      </div>
+    </div>
+    <!-- segment -->
+    <ion-segment color="primary" [value]="segmentValue" (ionChange)="segmentChange($event)">
+      <ion-segment-button value="oshaberi">
+        <ion-label>おしゃべり</ion-label>
+      </ion-segment-button>
+      <ion-segment-button value="like">
+        <ion-label>いいね</ion-label>
+      </ion-segment-button>
+    </ion-segment>
+    <!-- oshaberi list -->
+    <ng-container *ngIf="segmentValue=='oshaberi';else likeList">
+      <app-oshaberi *ngFor="let oshaberi of oshaberis" [oshaberi]="oshaberi"></app-oshaberi>
+      <ion-infinite-scroll #infinitScroll threshold="50px" (ionInfinite)="loadNextOshaberis($event)">
+        <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Loading more data...">
+        </ion-infinite-scroll-content>
+      </ion-infinite-scroll>
+    </ng-container>
+    <ng-template #likeList>
+      <app-oshaberi *ngFor="let like of likes" [oshaberi]="like.oshaberi"></app-oshaberi>
+      <ion-infinite-scroll #infinitScroll threshold="50px" (ionInfinite)="loadNextLikes($event)">
+        <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Loading more data...">
+        </ion-infinite-scroll-content>
+      </ion-infinite-scroll>
+    </ng-template>
+  </div>
 </ion-content>
+
+<ng-template #coverImageUnset>
+  <div class="profileCoverImageUnset"></div>
+</ng-template>
+
+<ng-template #followButton>
+  <ion-button>フォロー</ion-button>
+</ng-template>
+
+<ng-template #iconImageUnset>
+  <img src="assets/iconImageUnset.jpg">
+</ng-template>

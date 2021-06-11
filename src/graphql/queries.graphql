@@ -846,3 +846,72 @@ query ListLikesByOshaberiId(
     nextToken
   }
 }
+query ListLikesBySpecificUserId(
+  $userId: String
+  $timestamp: ModelIntKeyConditionInput
+  $sortDirection: ModelSortDirection
+  $filter: ModelLikeFilterInput
+  $limit: Int
+  $nextToken: String
+) {
+  listLikesBySpecificUserId(
+    userId: $userId
+    timestamp: $timestamp
+    sortDirection: $sortDirection
+    filter: $filter
+    limit: $limit
+    nextToken: $nextToken
+  ) {
+    items {
+      id
+      userId
+      timestamp
+      oshaberiId
+      oshaberi {
+        id
+        owner
+        author
+        timestamp
+        userInfo {
+          userId
+          nickname
+          iconImageKey
+          coverImageKey
+          profile
+        }
+        imageKeys
+        content
+        parentOshaberiId
+        replyOshaberi {
+          items {
+            id
+            owner
+            author
+            timestamp
+            imageKeys
+            content
+            parentOshaberiId
+          }
+          nextToken
+        }
+        like {
+          items {
+            id
+            userId
+            timestamp
+            oshaberiId
+          }
+          nextToken
+        }
+      }
+      userInfo {
+        userId
+        nickname
+        iconImageKey
+        coverImageKey
+        profile
+      }
+    }
+    nextToken
+  }
+}

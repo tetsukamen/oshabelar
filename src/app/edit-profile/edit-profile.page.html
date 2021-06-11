@@ -1,9 +1,58 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>edit-profile</ion-title>
-  </ion-toolbar>
-</ion-header>
+<app-header iconType="back" title="プロフィール編集" buttonText="保存" (buttonClicked)="updateProfile()"></app-header>
 
 <ion-content>
-
+  <ion-progress-bar *ngIf="uploadProgressRate>0" [value]="uploadProgressRate"></ion-progress-bar>
+  <div *ngIf="profileForms" class="profileEdit">
+    <!-- cover image -->
+    <div class="profileEditCoverImage">
+      <img *ngIf="newCoverImageSrc;else coverImageUnchoosed" [src]="newCoverImageSrc">
+      <div class="profileEditCoverImageChooseButton">
+        <input type="file" accept="image/*" #inputCoverImage class="profileEditCoverImageChooseButtonInputImage"
+          (change)="onImageSelected($event,'cover')">
+        <ion-button fill="clear" color="light" (click)="browseFile('cover')">
+          <ion-icon name="camera-outline" size="large"></ion-icon>
+        </ion-button>
+      </div>
+    </div>
+    <!-- avatar and button -->
+    <div class="profileEditAvatarButton">
+      <ion-avatar slot="start" class="profileEditAvatar">
+        <img *ngIf="newIconImageSrc; else iconImageUnchoosed" [src]="newIconImageSrc">
+        <ion-button fill="clear" color="light" (click)="browseFile('icon')" class="profileEditAvatarChooseButton">
+          <input type="file" accept="image/*" #inputIconImage class="profileEditAvatarChooseButtonInput"
+            (change)="onImageSelected($event,'icon')">
+          <ion-icon name="camera-outline" size="large"></ion-icon>
+        </ion-button>
+      </ion-avatar>
+    </div>
+    <!-- nickname and profile text -->
+    <ion-list>
+      <ion-item>
+        <ion-label position="floating">ニックネーム</ion-label>
+        <ion-input [formControl]="profileForms.get('nickname')" type="text"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">プロフィール</ion-label>
+        <ion-textarea [formControl]="profileForms.get('profile')" rows=6></ion-textarea>
+      </ion-item>
+    </ion-list>
+  </div>
 </ion-content>
+
+<ng-template #coverImageUnchoosed>
+  <amplify-s3-image *ngIf="userInfo && userInfo.coverImageKey; else coverImageUnset"
+    [attr.img-key]="userInfo.coverImageKey" level="private"></amplify-s3-image>
+</ng-template>
+
+<ng-template #coverImageUnset>
+  <div class="profileEditCoverImageUnset"></div>
+</ng-template>
+
+<ng-template #iconImageUnchoosed>
+  <amplify-s3-image *ngIf="userInfo && userInfo.iconImageKey; else iconImageUnset" class="profileEditAvatarS3Image"
+    [attr.img-key]="userInfo.iconImageKey" level="private"></amplify-s3-image>
+</ng-template>
+
+<ng-template #iconImageUnset>
+  <img src="assets/iconImageUnset.jpg">
+</ng-template>

@@ -1,0 +1,38 @@
+.profile {
+    margin: 0.5rem;
+    &CoverImage {
+        height: 80px;
+        overflow: hidden;
+        &Unset {
+            padding-top: 80px;
+            background-color: gray;
+        }
+    }
+    &AvatarButton {
+        display: flex;
+        justify-content: space-between;
+    }
+    &Avatar {
+        margin-top: -15px;
+        margin-left: 10px;
+        width: 70px;
+        height: 70px;
+        overflow: hidden;
+    }
+    &Nickname {
+        margin-bottom: 0;
+    }
+    &Username {
+        margin-top: 0;
+    }
+    &FollowRelationship {
+        display: flex;
+        margin-bottom: 0.5rem;
+        div {
+            margin-right: 1rem;
+        }
+    }
+    &IconImage {
+        --width: 100%;
+    }
+}

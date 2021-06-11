@@ -21,10 +21,10 @@ export class ActionPanelComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    if (this.oshaberi.like) {
+    if (this.oshaberi.like && this.oshaberi.like.items) {
       this.likeAmount = this.oshaberi.like.items.length;
     }
-    if (this.oshaberi.replyOshaberi) {
+    if (this.oshaberi.replyOshaberi && this.oshaberi.replyOshaberi.items) {
       this.replyAmount = this.oshaberi.replyOshaberi.items.length;
     }
   }

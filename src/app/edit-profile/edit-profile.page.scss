@@ -1,0 +1,51 @@
+.profileEdit {
+    margin: 0.5rem;
+    &CoverImage {
+        position: relative;
+        height: 80px;
+        overflow: hidden;
+        &Unset {
+            padding-top: 80px;
+            background-color: gray;
+        }
+        &ChooseButton {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            &InputImage {
+                display: none;
+            }
+        }
+    }
+    &AvatarButton {
+        display: flex;
+        justify-content: space-between;
+    }
+    &Avatar {
+        position: relative;
+        margin-top: -15px;
+        margin-left: 10px;
+        width: 70px;
+        height: 70px;
+        overflow: hidden;
+        img {
+            opacity: 0.5;
+        }
+        &S3Image {
+            --width: 100%;
+        }
+        &ChooseButton {
+            position: absolute;
+            top: 0;
+            left: 0;
+            &Input {
+                display: none;
+            }
+        }
+    }
+}
