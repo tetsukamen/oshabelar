@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { APIService, Oshaberi } from '../API.service';
-import { MessageService } from '../shared/message.service';
+import { MessageService } from '../shared/services/message.service';
 
 @Component({
   selector: 'app-oshaberi-detail',

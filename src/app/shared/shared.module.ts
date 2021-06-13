@@ -1,14 +1,14 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { OshaberiComponent } from './oshaberi/oshaberi.component';
-import { UserDigestComponent } from './user-digest/user-digest.component';
-import { HeaderComponent } from './header/header.component';
-import { OshaberiButtonComponent } from './oshaberi-button/oshaberi-button.component';
+import { OshaberiComponent } from './components/oshaberi/oshaberi.component';
+import { UserDigestComponent } from './components/user-digest/user-digest.component';
+import { HeaderComponent } from './components/header/header.component';
+import { OshaberiButtonComponent } from './components/oshaberi-button/oshaberi-button.component';
 import { UsernamePipe } from './pipes/username.pipe';
 import { ElapsedTimePipe } from './pipes/elapsed-time.pipe';
-import { ActionPanelComponent } from './action-panel/action-panel.component';
-import { OshaberiHeaderComponent } from './oshaberi-header/oshaberi-header.component';
-import { OshaberiBodyComponent } from './oshaberi-body/oshaberi-body.component';
+import { ActionPanelComponent } from './components/action-panel/action-panel.component';
+import { OshaberiHeaderComponent } from './components/oshaberi-header/oshaberi-header.component';
+import { OshaberiBodyComponent } from './components/oshaberi-body/oshaberi-body.component';
 
 
 

@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { IonicModule } from '@ionic/angular';
-import { UsernamePipe } from '../../shared/pipes/username.pipe';
-import { ElapsedTimePipe } from '../pipes/elapsed-time.pipe';
+import { UsernamePipe } from '../../pipes/username.pipe';
+import { ElapsedTimePipe } from '../../pipes/elapsed-time.pipe';
 import { ActivatedRoute } from '@angular/router';
 import { OshaberiComponent } from './oshaberi.component';
 import { Router } from '@angular/router';

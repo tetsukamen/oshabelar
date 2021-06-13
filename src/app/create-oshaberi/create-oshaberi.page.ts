@@ -3,9 +3,9 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { AuthService } from '../shared/services/auth.service';
 import { Location } from '@angular/common';
 import { CreateOshaberiService } from './create-oshaberi.service';
-import { MessageService } from '../shared/message.service';
 import { FileReaderEx } from '../shared/classes/file-reader-ex';
 import { ActivatedRoute } from '@angular/router';
+import { MessageService } from '../shared/services/message.service';
 
 @Component({
   selector: 'app-create-oshaberi',

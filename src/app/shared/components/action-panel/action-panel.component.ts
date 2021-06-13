@@ -2,7 +2,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
 import { APIService, Oshaberi } from 'src/app/API.service';
 import { OshaberiDetailService } from 'src/app/oshaberi-detail/oshaberi-detail.service';
-import { AuthService } from '../services/auth.service';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-action-panel',

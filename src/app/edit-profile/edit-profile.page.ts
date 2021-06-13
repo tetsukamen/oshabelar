@@ -2,10 +2,10 @@ import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { APIService, Userinfo } from '../API.service';
 import { AuthService } from '../shared/services/auth.service';
 import { FileReaderEx } from '../shared/classes/file-reader-ex';
-import { MessageService } from '../shared/message.service';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Storage } from 'aws-amplify';
 import { Location } from '@angular/common';
+import { MessageService } from '../shared/services/message.service';
 
 @Component({
   selector: 'app-edit-profile',
