@@ -1,6 +1,9 @@
-<ion-app>
-  <amplify-authenticator>
-    <ion-router-outlet></ion-router-outlet>
+<amplify-authenticator>
+  <amplify-sign-up slot="sign-up" [formFields]="signUpFormFields">
+  </amplify-sign-up>
+  <ion-app>
+    <app-menu></app-menu>
+    <ion-router-outlet id="main"></ion-router-outlet>
     <app-footer></app-footer>
-  </amplify-authenticator>
-</ion-app>
+  </ion-app>
+</amplify-authenticator>

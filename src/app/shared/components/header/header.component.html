@@ -1,10 +1,21 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-button *ngIf="iconType=='back'" fill="clear" (click)="boBack()">
+    <ion-button *ngIf="iconType=='back'" fill="clear" (click)="goBack()">
       <ion-icon name="arrow-back-outline"></ion-icon>
+    </ion-button>
+    <ion-button *ngIf="iconType=='menu'" fill="clear" (click)="openMenu()">
+      <ion-avatar class="headerAvatar">
+        <amplify-s3-image *ngIf="userInfo && userInfo.iconImageKey;else iconImageUnset" class="headerAvatarS3"
+          [attr.img-key]="userInfo.iconImageKey" level="public">
+        </amplify-s3-image>
+      </ion-avatar>
     </ion-button>
     <ion-title *ngIf="title">{{ title }}</ion-title>
     <ion-button *ngIf="buttonText" [disabled]="buttonDisabled" slot="end" (click)="sendButtonClickEvent()">{{ buttonText
       }}</ion-button>
   </ion-toolbar>
 </ion-header>
+
+<ng-template #iconImageUnset>
+  <img src="assets/iconImageUnset.jpg">
+</ng-template>

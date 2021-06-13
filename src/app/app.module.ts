@@ -7,10 +7,12 @@ import { AmplifyUIAngularModule } from '@aws-amplify/ui-angular';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { FooterComponent } from './footer/footer.component';
+import { MenuComponent } from './menu/menu.component';
 
 @NgModule({
   declarations: [
     AppComponent,
+    MenuComponent,
     FooterComponent,
   ],
   entryComponents: [],
