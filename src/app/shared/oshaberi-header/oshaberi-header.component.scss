@@ -3,6 +3,12 @@
     &Avatar {
         flex: 1 1 auto;
         cursor: pointer;
+        &Image {
+            overflow: hidden;
+            &S3 {
+                --width: 100%;
+            }
+        }
     }
     &Username {
         flex: 3 3 auto;

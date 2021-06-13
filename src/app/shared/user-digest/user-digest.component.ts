@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { Userinfo } from 'src/app/API.service';
 
 @Component({
   selector: 'app-user-digest',
@@ -6,9 +7,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./user-digest.component.scss'],
 })
 export class UserDigestComponent implements OnInit {
+  @Input()
+  userInfo: Userinfo;
 
   constructor() { }
 
-  ngOnInit() {}
+  ngOnInit() { }
 
 }

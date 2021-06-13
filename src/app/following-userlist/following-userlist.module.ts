@@ -7,14 +7,16 @@ import { IonicModule } from '@ionic/angular';
 import { FollowingUserlistPageRoutingModule } from './following-userlist-routing.module';
 
 import { FollowingUserlistPage } from './following-userlist.page';
+import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    FollowingUserlistPageRoutingModule
+    FollowingUserlistPageRoutingModule,
+    SharedModule,
   ],
   declarations: [FollowingUserlistPage]
 })
-export class FollowingUserlistPageModule {}
+export class FollowingUserlistPageModule { }

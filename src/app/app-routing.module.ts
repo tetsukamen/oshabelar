@@ -32,7 +32,7 @@ const routes: Routes = [
     loadChildren: () => import('./search/search.module').then(m => m.SearchPageModule)
   },
   {
-    path: 'following-userlist',
+    path: 'following-userlist/:username',
     loadChildren: () => import('./following-userlist/following-userlist.module').then(m => m.FollowingUserlistPageModule)
   },
   {

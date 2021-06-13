@@ -13,7 +13,7 @@ import { Location } from '@angular/common';
   styleUrls: ['./edit-profile.page.scss'],
 })
 export class EditProfilePage implements OnInit {
-  public userInfo: Userinfo;
+  public userInfo: Userinfo = null;
   private currentUsername: string;
   public newCoverImageSrc = null;
   public newIconImageSrc = null;
@@ -74,7 +74,11 @@ export class EditProfilePage implements OnInit {
     const input = this.profileForms.value;
     input.userId = this.currentUsername;
     console.log(input)
-    await this.api.UpdateUserInfo(input);
+    if (this.userInfo) {
+      await this.api.UpdateUserInfo(input);
+    } else {
+      await this.api.CreateUserInfo(input);
+    }
     return true;
   }
 

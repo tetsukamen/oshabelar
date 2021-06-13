@@ -140,6 +140,8 @@ export type FollowingRelationship = {
   followeeId: string;
   followerId: string;
   timestamp: number;
+  followee?: Userinfo | null;
+  follower?: Userinfo | null;
 };
 
 export type DeleteFollowingRelationshipInput = {
@@ -417,6 +419,38 @@ export type CreateOshaberiAndTimelineMutation = {
       imageKeys?: Array<string | null> | null;
       content: string;
       parentOshaberiId?: string | null;
+      userInfo?: {
+        __typename: "Userinfo";
+        userId: string;
+        nickname?: string | null;
+        iconImageKey?: string | null;
+        coverImageKey?: string | null;
+        profile?: string | null;
+      } | null;
+      replyOshaberi?: {
+        __typename: "ModelOshaberiConnection";
+        items?: Array<{
+          __typename: "Oshaberi";
+          id?: string | null;
+          owner: string;
+          author: string;
+          timestamp: number;
+          imageKeys?: Array<string | null> | null;
+          content: string;
+          parentOshaberiId?: string | null;
+        } | null> | null;
+        nextToken?: string | null;
+      } | null;
+      like?: {
+        __typename: "ModelLikeConnection";
+        items?: Array<{
+          __typename: "Like";
+          userId: string;
+          timestamp: number;
+          oshaberiId: string;
+        } | null> | null;
+        nextToken?: string | null;
+      } | null;
     } | null> | null;
     nextToken?: string | null;
   } | null;
@@ -427,6 +461,40 @@ export type CreateOshaberiAndTimelineMutation = {
       userId: string;
       timestamp: number;
       oshaberiId: string;
+      userInfo?: {
+        __typename: "Userinfo";
+        userId: string;
+        nickname?: string | null;
+        iconImageKey?: string | null;
+        coverImageKey?: string | null;
+        profile?: string | null;
+      } | null;
+      oshaberi?: {
+        __typename: "Oshaberi";
+        id?: string | null;
+        owner: string;
+        author: string;
+        timestamp: number;
+        imageKeys?: Array<string | null> | null;
+        content: string;
+        parentOshaberiId?: string | null;
+        userInfo?: {
+          __typename: "Userinfo";
+          userId: string;
+          nickname?: string | null;
+          iconImageKey?: string | null;
+          coverImageKey?: string | null;
+          profile?: string | null;
+        } | null;
+        replyOshaberi?: {
+          __typename: "ModelOshaberiConnection";
+          nextToken?: string | null;
+        } | null;
+        like?: {
+          __typename: "ModelLikeConnection";
+          nextToken?: string | null;
+        } | null;
+      } | null;
     } | null> | null;
     nextToken?: string | null;
   } | null;
@@ -464,10 +532,60 @@ export type CreateLikeAndNotificationMutation = {
     } | null;
     replyOshaberi?: {
       __typename: "ModelOshaberiConnection";
+      items?: Array<{
+        __typename: "Oshaberi";
+        id?: string | null;
+        owner: string;
+        author: string;
+        timestamp: number;
+        imageKeys?: Array<string | null> | null;
+        content: string;
+        parentOshaberiId?: string | null;
+        userInfo?: {
+          __typename: "Userinfo";
+          userId: string;
+          nickname?: string | null;
+          iconImageKey?: string | null;
+          coverImageKey?: string | null;
+          profile?: string | null;
+        } | null;
+        replyOshaberi?: {
+          __typename: "ModelOshaberiConnection";
+          nextToken?: string | null;
+        } | null;
+        like?: {
+          __typename: "ModelLikeConnection";
+          nextToken?: string | null;
+        } | null;
+      } | null> | null;
       nextToken?: string | null;
     } | null;
     like?: {
       __typename: "ModelLikeConnection";
+      items?: Array<{
+        __typename: "Like";
+        userId: string;
+        timestamp: number;
+        oshaberiId: string;
+        userInfo?: {
+          __typename: "Userinfo";
+          userId: string;
+          nickname?: string | null;
+          iconImageKey?: string | null;
+          coverImageKey?: string | null;
+          profile?: string | null;
+        } | null;
+        oshaberi?: {
+          __typename: "Oshaberi";
+          id?: string | null;
+          owner: string;
+          author: string;
+          timestamp: number;
+          imageKeys?: Array<string | null> | null;
+          content: string;
+          parentOshaberiId?: string | null;
+        } | null;
+      } | null> | null;
       nextToken?: string | null;
     } | null;
   } | null;
@@ -487,6 +605,22 @@ export type CreateFollowRelationshipMutation = {
   followeeId: string;
   followerId: string;
   timestamp: number;
+  followee?: {
+    __typename: "Userinfo";
+    userId: string;
+    nickname?: string | null;
+    iconImageKey?: string | null;
+    coverImageKey?: string | null;
+    profile?: string | null;
+  } | null;
+  follower?: {
+    __typename: "Userinfo";
+    userId: string;
+    nickname?: string | null;
+    iconImageKey?: string | null;
+    coverImageKey?: string | null;
+    profile?: string | null;
+  } | null;
 };
 
 export type DeleteFollowRelationshipMutation = {
@@ -494,6 +628,22 @@ export type DeleteFollowRelationshipMutation = {
   followeeId: string;
   followerId: string;
   timestamp: number;
+  followee?: {
+    __typename: "Userinfo";
+    userId: string;
+    nickname?: string | null;
+    iconImageKey?: string | null;
+    coverImageKey?: string | null;
+    profile?: string | null;
+  } | null;
+  follower?: {
+    __typename: "Userinfo";
+    userId: string;
+    nickname?: string | null;
+    iconImageKey?: string | null;
+    coverImageKey?: string | null;
+    profile?: string | null;
+  } | null;
 };
 
 export type CreateUserInfoMutation = {
@@ -533,6 +683,38 @@ export type CreateOshaberiMutation = {
       imageKeys?: Array<string | null> | null;
       content: string;
       parentOshaberiId?: string | null;
+      userInfo?: {
+        __typename: "Userinfo";
+        userId: string;
+        nickname?: string | null;
+        iconImageKey?: string | null;
+        coverImageKey?: string | null;
+        profile?: string | null;
+      } | null;
+      replyOshaberi?: {
+        __typename: "ModelOshaberiConnection";
+        items?: Array<{
+          __typename: "Oshaberi";
+          id?: string | null;
+          owner: string;
+          author: string;
+          timestamp: number;
+          imageKeys?: Array<string | null> | null;
+          content: string;
+          parentOshaberiId?: string | null;
+        } | null> | null;
+        nextToken?: string | null;
+      } | null;
+      like?: {
+        __typename: "ModelLikeConnection";
+        items?: Array<{
+          __typename: "Like";
+          userId: string;
+          timestamp: number;
+          oshaberiId: string;
+        } | null> | null;
+        nextToken?: string | null;
+      } | null;
     } | null> | null;
     nextToken?: string | null;
   } | null;
@@ -543,6 +725,40 @@ export type CreateOshaberiMutation = {
       userId: string;
       timestamp: number;
       oshaberiId: string;
+      userInfo?: {
+        __typename: "Userinfo";
+        userId: string;
+        nickname?: string | null;
+        iconImageKey?: string | null;
+        coverImageKey?: string | null;
+        profile?: string | null;
+      } | null;
+      oshaberi?: {
+        __typename: "Oshaberi";
+        id?: string | null;
+        owner: string;
+        author: string;
+        timestamp: number;
+        imageKeys?: Array<string | null> | null;
+        content: string;
+        parentOshaberiId?: string | null;
+        userInfo?: {
+          __typename: "Userinfo";
+          userId: string;
+          nickname?: string | null;
+          iconImageKey?: string | null;
+          coverImageKey?: string | null;
+          profile?: string | null;
+        } | null;
+        replyOshaberi?: {
+          __typename: "ModelOshaberiConnection";
+          nextToken?: string | null;
+        } | null;
+        like?: {
+          __typename: "ModelLikeConnection";
+          nextToken?: string | null;
+        } | null;
+      } | null;
     } | null> | null;
     nextToken?: string | null;
   } | null;
@@ -572,10 +788,60 @@ export type CreateTimelineMutation = {
     } | null;
     replyOshaberi?: {
       __typename: "ModelOshaberiConnection";
+      items?: Array<{
+        __typename: "Oshaberi";
+        id?: string | null;
+        owner: string;
+        author: string;
+        timestamp: number;
+        imageKeys?: Array<string | null> | null;
+        content: string;
+        parentOshaberiId?: string | null;
+        userInfo?: {
+          __typename: "Userinfo";
+          userId: string;
+          nickname?: string | null;
+          iconImageKey?: string | null;
+          coverImageKey?: string | null;
+          profile?: string | null;
+        } | null;
+        replyOshaberi?: {
+          __typename: "ModelOshaberiConnection";
+          nextToken?: string | null;
+        } | null;
+        like?: {
+          __typename: "ModelLikeConnection";
+          nextToken?: string | null;
+        } | null;
+      } | null> | null;
       nextToken?: string | null;
     } | null;
     like?: {
       __typename: "ModelLikeConnection";
+      items?: Array<{
+        __typename: "Like";
+        userId: string;
+        timestamp: number;
+        oshaberiId: string;
+        userInfo?: {
+          __typename: "Userinfo";
+          userId: string;
+          nickname?: string | null;
+          iconImageKey?: string | null;
+          coverImageKey?: string | null;
+          profile?: string | null;
+        } | null;
+        oshaberi?: {
+          __typename: "Oshaberi";
+          id?: string | null;
+          owner: string;
+          author: string;
+          timestamp: number;
+          imageKeys?: Array<string | null> | null;
+          content: string;
+          parentOshaberiId?: string | null;
+        } | null;
+      } | null> | null;
       nextToken?: string | null;
     } | null;
   } | null;
@@ -631,10 +897,60 @@ export type CreateLikeMutation = {
     } | null;
     replyOshaberi?: {
       __typename: "ModelOshaberiConnection";
+      items?: Array<{
+        __typename: "Oshaberi";
+        id?: string | null;
+        owner: string;
+        author: string;
+        timestamp: number;
+        imageKeys?: Array<string | null> | null;
+        content: string;
+        parentOshaberiId?: string | null;
+        userInfo?: {
+          __typename: "Userinfo";
+          userId: string;
+          nickname?: string | null;
+          iconImageKey?: string | null;
+          coverImageKey?: string | null;
+          profile?: string | null;
+        } | null;
+        replyOshaberi?: {
+          __typename: "ModelOshaberiConnection";
+          nextToken?: string | null;
+        } | null;
+        like?: {
+          __typename: "ModelLikeConnection";
+          nextToken?: string | null;
+        } | null;
+      } | null> | null;
       nextToken?: string | null;
     } | null;
     like?: {
       __typename: "ModelLikeConnection";
+      items?: Array<{
+        __typename: "Like";
+        userId: string;
+        timestamp: number;
+        oshaberiId: string;
+        userInfo?: {
+          __typename: "Userinfo";
+          userId: string;
+          nickname?: string | null;
+          iconImageKey?: string | null;
+          coverImageKey?: string | null;
+          profile?: string | null;
+        } | null;
+        oshaberi?: {
+          __typename: "Oshaberi";
+          id?: string | null;
+          owner: string;
+          author: string;
+          timestamp: number;
+          imageKeys?: Array<string | null> | null;
+          content: string;
+          parentOshaberiId?: string | null;
+        } | null;
+      } | null> | null;
       nextToken?: string | null;
     } | null;
   } | null;
@@ -672,10 +988,60 @@ export type DeleteLikeMutation = {
     } | null;
     replyOshaberi?: {
       __typename: "ModelOshaberiConnection";
+      items?: Array<{
+        __typename: "Oshaberi";
+        id?: string | null;
+        owner: string;
+        author: string;
+        timestamp: number;
+        imageKeys?: Array<string | null> | null;
+        content: string;
+        parentOshaberiId?: string | null;
+        userInfo?: {
+          __typename: "Userinfo";
+          userId: string;
+          nickname?: string | null;
+          iconImageKey?: string | null;
+          coverImageKey?: string | null;
+          profile?: string | null;
+        } | null;
+        replyOshaberi?: {
+          __typename: "ModelOshaberiConnection";
+          nextToken?: string | null;
+        } | null;
+        like?: {
+          __typename: "ModelLikeConnection";
+          nextToken?: string | null;
+        } | null;
+      } | null> | null;
       nextToken?: string | null;
     } | null;
     like?: {
       __typename: "ModelLikeConnection";
+      items?: Array<{
+        __typename: "Like";
+        userId: string;
+        timestamp: number;
+        oshaberiId: string;
+        userInfo?: {
+          __typename: "Userinfo";
+          userId: string;
+          nickname?: string | null;
+          iconImageKey?: string | null;
+          coverImageKey?: string | null;
+          profile?: string | null;
+        } | null;
+        oshaberi?: {
+          __typename: "Oshaberi";
+          id?: string | null;
+          owner: string;
+          author: string;
+          timestamp: number;
+          imageKeys?: Array<string | null> | null;
+          content: string;
+          parentOshaberiId?: string | null;
+        } | null;
+      } | null> | null;
       nextToken?: string | null;
     } | null;
   } | null;
@@ -705,10 +1071,60 @@ export type GetTimelineQuery = {
     } | null;
     replyOshaberi?: {
       __typename: "ModelOshaberiConnection";
+      items?: Array<{
+        __typename: "Oshaberi";
+        id?: string | null;
+        owner: string;
+        author: string;
+        timestamp: number;
+        imageKeys?: Array<string | null> | null;
+        content: string;
+        parentOshaberiId?: string | null;
+        userInfo?: {
+          __typename: "Userinfo";
+          userId: string;
+          nickname?: string | null;
+          iconImageKey?: string | null;
+          coverImageKey?: string | null;
+          profile?: string | null;
+        } | null;
+        replyOshaberi?: {
+          __typename: "ModelOshaberiConnection";
+          nextToken?: string | null;
+        } | null;
+        like?: {
+          __typename: "ModelLikeConnection";
+          nextToken?: string | null;
+        } | null;
+      } | null> | null;
       nextToken?: string | null;
     } | null;
     like?: {
       __typename: "ModelLikeConnection";
+      items?: Array<{
+        __typename: "Like";
+        userId: string;
+        timestamp: number;
+        oshaberiId: string;
+        userInfo?: {
+          __typename: "Userinfo";
+          userId: string;
+          nickname?: string | null;
+          iconImageKey?: string | null;
+          coverImageKey?: string | null;
+          profile?: string | null;
+        } | null;
+        oshaberi?: {
+          __typename: "Oshaberi";
+          id?: string | null;
+          owner: string;
+          author: string;
+          timestamp: number;
+          imageKeys?: Array<string | null> | null;
+          content: string;
+          parentOshaberiId?: string | null;
+        } | null;
+      } | null> | null;
       nextToken?: string | null;
     } | null;
   } | null;
@@ -730,6 +1146,38 @@ export type ListTimelinesQuery = {
       imageKeys?: Array<string | null> | null;
       content: string;
       parentOshaberiId?: string | null;
+      userInfo?: {
+        __typename: "Userinfo";
+        userId: string;
+        nickname?: string | null;
+        iconImageKey?: string | null;
+        coverImageKey?: string | null;
+        profile?: string | null;
+      } | null;
+      replyOshaberi?: {
+        __typename: "ModelOshaberiConnection";
+        items?: Array<{
+          __typename: "Oshaberi";
+          id?: string | null;
+          owner: string;
+          author: string;
+          timestamp: number;
+          imageKeys?: Array<string | null> | null;
+          content: string;
+          parentOshaberiId?: string | null;
+        } | null> | null;
+        nextToken?: string | null;
+      } | null;
+      like?: {
+        __typename: "ModelLikeConnection";
+        items?: Array<{
+          __typename: "Like";
+          userId: string;
+          timestamp: number;
+          oshaberiId: string;
+        } | null> | null;
+        nextToken?: string | null;
+      } | null;
     } | null;
   } | null> | null;
   nextToken?: string | null;
@@ -825,6 +1273,38 @@ export type GetOshaberiQuery = {
       imageKeys?: Array<string | null> | null;
       content: string;
       parentOshaberiId?: string | null;
+      userInfo?: {
+        __typename: "Userinfo";
+        userId: string;
+        nickname?: string | null;
+        iconImageKey?: string | null;
+        coverImageKey?: string | null;
+        profile?: string | null;
+      } | null;
+      replyOshaberi?: {
+        __typename: "ModelOshaberiConnection";
+        items?: Array<{
+          __typename: "Oshaberi";
+          id?: string | null;
+          owner: string;
+          author: string;
+          timestamp: number;
+          imageKeys?: Array<string | null> | null;
+          content: string;
+          parentOshaberiId?: string | null;
+        } | null> | null;
+        nextToken?: string | null;
+      } | null;
+      like?: {
+        __typename: "ModelLikeConnection";
+        items?: Array<{
+          __typename: "Like";
+          userId: string;
+          timestamp: number;
+          oshaberiId: string;
+        } | null> | null;
+        nextToken?: string | null;
+      } | null;
     } | null> | null;
     nextToken?: string | null;
   } | null;
@@ -835,6 +1315,40 @@ export type GetOshaberiQuery = {
       userId: string;
       timestamp: number;
       oshaberiId: string;
+      userInfo?: {
+        __typename: "Userinfo";
+        userId: string;
+        nickname?: string | null;
+        iconImageKey?: string | null;
+        coverImageKey?: string | null;
+        profile?: string | null;
+      } | null;
+      oshaberi?: {
+        __typename: "Oshaberi";
+        id?: string | null;
+        owner: string;
+        author: string;
+        timestamp: number;
+        imageKeys?: Array<string | null> | null;
+        content: string;
+        parentOshaberiId?: string | null;
+        userInfo?: {
+          __typename: "Userinfo";
+          userId: string;
+          nickname?: string | null;
+          iconImageKey?: string | null;
+          coverImageKey?: string | null;
+          profile?: string | null;
+        } | null;
+        replyOshaberi?: {
+          __typename: "ModelOshaberiConnection";
+          nextToken?: string | null;
+        } | null;
+        like?: {
+          __typename: "ModelLikeConnection";
+          nextToken?: string | null;
+        } | null;
+      } | null;
     } | null> | null;
     nextToken?: string | null;
   } | null;
@@ -861,10 +1375,60 @@ export type ListOshaberisQuery = {
     } | null;
     replyOshaberi?: {
       __typename: "ModelOshaberiConnection";
+      items?: Array<{
+        __typename: "Oshaberi";
+        id?: string | null;
+        owner: string;
+        author: string;
+        timestamp: number;
+        imageKeys?: Array<string | null> | null;
+        content: string;
+        parentOshaberiId?: string | null;
+        userInfo?: {
+          __typename: "Userinfo";
+          userId: string;
+          nickname?: string | null;
+          iconImageKey?: string | null;
+          coverImageKey?: string | null;
+          profile?: string | null;
+        } | null;
+        replyOshaberi?: {
+          __typename: "ModelOshaberiConnection";
+          nextToken?: string | null;
+        } | null;
+        like?: {
+          __typename: "ModelLikeConnection";
+          nextToken?: string | null;
+        } | null;
+      } | null> | null;
       nextToken?: string | null;
     } | null;
     like?: {
       __typename: "ModelLikeConnection";
+      items?: Array<{
+        __typename: "Like";
+        userId: string;
+        timestamp: number;
+        oshaberiId: string;
+        userInfo?: {
+          __typename: "Userinfo";
+          userId: string;
+          nickname?: string | null;
+          iconImageKey?: string | null;
+          coverImageKey?: string | null;
+          profile?: string | null;
+        } | null;
+        oshaberi?: {
+          __typename: "Oshaberi";
+          id?: string | null;
+          owner: string;
+          author: string;
+          timestamp: number;
+          imageKeys?: Array<string | null> | null;
+          content: string;
+          parentOshaberiId?: string | null;
+        } | null;
+      } | null> | null;
       nextToken?: string | null;
     } | null;
   } | null> | null;
@@ -892,10 +1456,60 @@ export type ListOshaberisBySpecificOwnerQuery = {
     } | null;
     replyOshaberi?: {
       __typename: "ModelOshaberiConnection";
+      items?: Array<{
+        __typename: "Oshaberi";
+        id?: string | null;
+        owner: string;
+        author: string;
+        timestamp: number;
+        imageKeys?: Array<string | null> | null;
+        content: string;
+        parentOshaberiId?: string | null;
+        userInfo?: {
+          __typename: "Userinfo";
+          userId: string;
+          nickname?: string | null;
+          iconImageKey?: string | null;
+          coverImageKey?: string | null;
+          profile?: string | null;
+        } | null;
+        replyOshaberi?: {
+          __typename: "ModelOshaberiConnection";
+          nextToken?: string | null;
+        } | null;
+        like?: {
+          __typename: "ModelLikeConnection";
+          nextToken?: string | null;
+        } | null;
+      } | null> | null;
       nextToken?: string | null;
     } | null;
     like?: {
       __typename: "ModelLikeConnection";
+      items?: Array<{
+        __typename: "Like";
+        userId: string;
+        timestamp: number;
+        oshaberiId: string;
+        userInfo?: {
+          __typename: "Userinfo";
+          userId: string;
+          nickname?: string | null;
+          iconImageKey?: string | null;
+          coverImageKey?: string | null;
+          profile?: string | null;
+        } | null;
+        oshaberi?: {
+          __typename: "Oshaberi";
+          id?: string | null;
+          owner: string;
+          author: string;
+          timestamp: number;
+          imageKeys?: Array<string | null> | null;
+          content: string;
+          parentOshaberiId?: string | null;
+        } | null;
+      } | null> | null;
       nextToken?: string | null;
     } | null;
   } | null> | null;
@@ -923,10 +1537,60 @@ export type ListOshaberiByParentOshaberiQuery = {
     } | null;
     replyOshaberi?: {
       __typename: "ModelOshaberiConnection";
+      items?: Array<{
+        __typename: "Oshaberi";
+        id?: string | null;
+        owner: string;
+        author: string;
+        timestamp: number;
+        imageKeys?: Array<string | null> | null;
+        content: string;
+        parentOshaberiId?: string | null;
+        userInfo?: {
+          __typename: "Userinfo";
+          userId: string;
+          nickname?: string | null;
+          iconImageKey?: string | null;
+          coverImageKey?: string | null;
+          profile?: string | null;
+        } | null;
+        replyOshaberi?: {
+          __typename: "ModelOshaberiConnection";
+          nextToken?: string | null;
+        } | null;
+        like?: {
+          __typename: "ModelLikeConnection";
+          nextToken?: string | null;
+        } | null;
+      } | null> | null;
       nextToken?: string | null;
     } | null;
     like?: {
       __typename: "ModelLikeConnection";
+      items?: Array<{
+        __typename: "Like";
+        userId: string;
+        timestamp: number;
+        oshaberiId: string;
+        userInfo?: {
+          __typename: "Userinfo";
+          userId: string;
+          nickname?: string | null;
+          iconImageKey?: string | null;
+          coverImageKey?: string | null;
+          profile?: string | null;
+        } | null;
+        oshaberi?: {
+          __typename: "Oshaberi";
+          id?: string | null;
+          owner: string;
+          author: string;
+          timestamp: number;
+          imageKeys?: Array<string | null> | null;
+          content: string;
+          parentOshaberiId?: string | null;
+        } | null;
+      } | null> | null;
       nextToken?: string | null;
     } | null;
   } | null> | null;
@@ -938,6 +1602,22 @@ export type GetFollowingRelationshipQuery = {
   followeeId: string;
   followerId: string;
   timestamp: number;
+  followee?: {
+    __typename: "Userinfo";
+    userId: string;
+    nickname?: string | null;
+    iconImageKey?: string | null;
+    coverImageKey?: string | null;
+    profile?: string | null;
+  } | null;
+  follower?: {
+    __typename: "Userinfo";
+    userId: string;
+    nickname?: string | null;
+    iconImageKey?: string | null;
+    coverImageKey?: string | null;
+    profile?: string | null;
+  } | null;
 };
 
 export type ListFollowingRelationshipsQuery = {
@@ -947,6 +1627,22 @@ export type ListFollowingRelationshipsQuery = {
     followeeId: string;
     followerId: string;
     timestamp: number;
+    followee?: {
+      __typename: "Userinfo";
+      userId: string;
+      nickname?: string | null;
+      iconImageKey?: string | null;
+      coverImageKey?: string | null;
+      profile?: string | null;
+    } | null;
+    follower?: {
+      __typename: "Userinfo";
+      userId: string;
+      nickname?: string | null;
+      iconImageKey?: string | null;
+      coverImageKey?: string | null;
+      profile?: string | null;
+    } | null;
   } | null> | null;
   nextToken?: string | null;
 };
@@ -958,6 +1654,22 @@ export type ListFollowingRelationshipByFolloweeQuery = {
     followeeId: string;
     followerId: string;
     timestamp: number;
+    followee?: {
+      __typename: "Userinfo";
+      userId: string;
+      nickname?: string | null;
+      iconImageKey?: string | null;
+      coverImageKey?: string | null;
+      profile?: string | null;
+    } | null;
+    follower?: {
+      __typename: "Userinfo";
+      userId: string;
+      nickname?: string | null;
+      iconImageKey?: string | null;
+      coverImageKey?: string | null;
+      profile?: string | null;
+    } | null;
   } | null> | null;
   nextToken?: string | null;
 };
@@ -969,6 +1681,22 @@ export type ListFollowingRelationshipByFollowerQuery = {
     followeeId: string;
     followerId: string;
     timestamp: number;
+    followee?: {
+      __typename: "Userinfo";
+      userId: string;
+      nickname?: string | null;
+      iconImageKey?: string | null;
+      coverImageKey?: string | null;
+      profile?: string | null;
+    } | null;
+    follower?: {
+      __typename: "Userinfo";
+      userId: string;
+      nickname?: string | null;
+      iconImageKey?: string | null;
+      coverImageKey?: string | null;
+      profile?: string | null;
+    } | null;
   } | null> | null;
   nextToken?: string | null;
 };
@@ -1005,10 +1733,60 @@ export type GetLikeQuery = {
     } | null;
     replyOshaberi?: {
       __typename: "ModelOshaberiConnection";
+      items?: Array<{
+        __typename: "Oshaberi";
+        id?: string | null;
+        owner: string;
+        author: string;
+        timestamp: number;
+        imageKeys?: Array<string | null> | null;
+        content: string;
+        parentOshaberiId?: string | null;
+        userInfo?: {
+          __typename: "Userinfo";
+          userId: string;
+          nickname?: string | null;
+          iconImageKey?: string | null;
+          coverImageKey?: string | null;
+          profile?: string | null;
+        } | null;
+        replyOshaberi?: {
+          __typename: "ModelOshaberiConnection";
+          nextToken?: string | null;
+        } | null;
+        like?: {
+          __typename: "ModelLikeConnection";
+          nextToken?: string | null;
+        } | null;
+      } | null> | null;
       nextToken?: string | null;
     } | null;
     like?: {
       __typename: "ModelLikeConnection";
+      items?: Array<{
+        __typename: "Like";
+        userId: string;
+        timestamp: number;
+        oshaberiId: string;
+        userInfo?: {
+          __typename: "Userinfo";
+          userId: string;
+          nickname?: string | null;
+          iconImageKey?: string | null;
+          coverImageKey?: string | null;
+          profile?: string | null;
+        } | null;
+        oshaberi?: {
+          __typename: "Oshaberi";
+          id?: string | null;
+          owner: string;
+          author: string;
+          timestamp: number;
+          imageKeys?: Array<string | null> | null;
+          content: string;
+          parentOshaberiId?: string | null;
+        } | null;
+      } | null> | null;
       nextToken?: string | null;
     } | null;
   } | null;
@@ -1038,6 +1816,38 @@ export type ListLikesQuery = {
       imageKeys?: Array<string | null> | null;
       content: string;
       parentOshaberiId?: string | null;
+      userInfo?: {
+        __typename: "Userinfo";
+        userId: string;
+        nickname?: string | null;
+        iconImageKey?: string | null;
+        coverImageKey?: string | null;
+        profile?: string | null;
+      } | null;
+      replyOshaberi?: {
+        __typename: "ModelOshaberiConnection";
+        items?: Array<{
+          __typename: "Oshaberi";
+          id?: string | null;
+          owner: string;
+          author: string;
+          timestamp: number;
+          imageKeys?: Array<string | null> | null;
+          content: string;
+          parentOshaberiId?: string | null;
+        } | null> | null;
+        nextToken?: string | null;
+      } | null;
+      like?: {
+        __typename: "ModelLikeConnection";
+        items?: Array<{
+          __typename: "Like";
+          userId: string;
+          timestamp: number;
+          oshaberiId: string;
+        } | null> | null;
+        nextToken?: string | null;
+      } | null;
     } | null;
   } | null> | null;
   nextToken?: string | null;
@@ -1067,6 +1877,38 @@ export type ListLikesByOshaberiIdQuery = {
       imageKeys?: Array<string | null> | null;
       content: string;
       parentOshaberiId?: string | null;
+      userInfo?: {
+        __typename: "Userinfo";
+        userId: string;
+        nickname?: string | null;
+        iconImageKey?: string | null;
+        coverImageKey?: string | null;
+        profile?: string | null;
+      } | null;
+      replyOshaberi?: {
+        __typename: "ModelOshaberiConnection";
+        items?: Array<{
+          __typename: "Oshaberi";
+          id?: string | null;
+          owner: string;
+          author: string;
+          timestamp: number;
+          imageKeys?: Array<string | null> | null;
+          content: string;
+          parentOshaberiId?: string | null;
+        } | null> | null;
+        nextToken?: string | null;
+      } | null;
+      like?: {
+        __typename: "ModelLikeConnection";
+        items?: Array<{
+          __typename: "Like";
+          userId: string;
+          timestamp: number;
+          oshaberiId: string;
+        } | null> | null;
+        nextToken?: string | null;
+      } | null;
     } | null;
   } | null> | null;
   nextToken?: string | null;
@@ -1096,6 +1938,38 @@ export type ListLikesBySpecificUserIdQuery = {
       imageKeys?: Array<string | null> | null;
       content: string;
       parentOshaberiId?: string | null;
+      userInfo?: {
+        __typename: "Userinfo";
+        userId: string;
+        nickname?: string | null;
+        iconImageKey?: string | null;
+        coverImageKey?: string | null;
+        profile?: string | null;
+      } | null;
+      replyOshaberi?: {
+        __typename: "ModelOshaberiConnection";
+        items?: Array<{
+          __typename: "Oshaberi";
+          id?: string | null;
+          owner: string;
+          author: string;
+          timestamp: number;
+          imageKeys?: Array<string | null> | null;
+          content: string;
+          parentOshaberiId?: string | null;
+        } | null> | null;
+        nextToken?: string | null;
+      } | null;
+      like?: {
+        __typename: "ModelLikeConnection";
+        items?: Array<{
+          __typename: "Like";
+          userId: string;
+          timestamp: number;
+          oshaberiId: string;
+        } | null> | null;
+        nextToken?: string | null;
+      } | null;
     } | null;
   } | null> | null;
   nextToken?: string | null;
@@ -1129,6 +2003,38 @@ export type OnCreateOshaberiSubscription = {
       imageKeys?: Array<string | null> | null;
       content: string;
       parentOshaberiId?: string | null;
+      userInfo?: {
+        __typename: "Userinfo";
+        userId: string;
+        nickname?: string | null;
+        iconImageKey?: string | null;
+        coverImageKey?: string | null;
+        profile?: string | null;
+      } | null;
+      replyOshaberi?: {
+        __typename: "ModelOshaberiConnection";
+        items?: Array<{
+          __typename: "Oshaberi";
+          id?: string | null;
+          owner: string;
+          author: string;
+          timestamp: number;
+          imageKeys?: Array<string | null> | null;
+          content: string;
+          parentOshaberiId?: string | null;
+        } | null> | null;
+        nextToken?: string | null;
+      } | null;
+      like?: {
+        __typename: "ModelLikeConnection";
+        items?: Array<{
+          __typename: "Like";
+          userId: string;
+          timestamp: number;
+          oshaberiId: string;
+        } | null> | null;
+        nextToken?: string | null;
+      } | null;
     } | null> | null;
     nextToken?: string | null;
   } | null;
@@ -1139,6 +2045,40 @@ export type OnCreateOshaberiSubscription = {
       userId: string;
       timestamp: number;
       oshaberiId: string;
+      userInfo?: {
+        __typename: "Userinfo";
+        userId: string;
+        nickname?: string | null;
+        iconImageKey?: string | null;
+        coverImageKey?: string | null;
+        profile?: string | null;
+      } | null;
+      oshaberi?: {
+        __typename: "Oshaberi";
+        id?: string | null;
+        owner: string;
+        author: string;
+        timestamp: number;
+        imageKeys?: Array<string | null> | null;
+        content: string;
+        parentOshaberiId?: string | null;
+        userInfo?: {
+          __typename: "Userinfo";
+          userId: string;
+          nickname?: string | null;
+          iconImageKey?: string | null;
+          coverImageKey?: string | null;
+          profile?: string | null;
+        } | null;
+        replyOshaberi?: {
+          __typename: "ModelOshaberiConnection";
+          nextToken?: string | null;
+        } | null;
+        like?: {
+          __typename: "ModelLikeConnection";
+          nextToken?: string | null;
+        } | null;
+      } | null;
     } | null> | null;
     nextToken?: string | null;
   } | null;
@@ -1168,10 +2108,60 @@ export type OnCreateTimelineSubscription = {
     } | null;
     replyOshaberi?: {
       __typename: "ModelOshaberiConnection";
+      items?: Array<{
+        __typename: "Oshaberi";
+        id?: string | null;
+        owner: string;
+        author: string;
+        timestamp: number;
+        imageKeys?: Array<string | null> | null;
+        content: string;
+        parentOshaberiId?: string | null;
+        userInfo?: {
+          __typename: "Userinfo";
+          userId: string;
+          nickname?: string | null;
+          iconImageKey?: string | null;
+          coverImageKey?: string | null;
+          profile?: string | null;
+        } | null;
+        replyOshaberi?: {
+          __typename: "ModelOshaberiConnection";
+          nextToken?: string | null;
+        } | null;
+        like?: {
+          __typename: "ModelLikeConnection";
+          nextToken?: string | null;
+        } | null;
+      } | null> | null;
       nextToken?: string | null;
     } | null;
     like?: {
       __typename: "ModelLikeConnection";
+      items?: Array<{
+        __typename: "Like";
+        userId: string;
+        timestamp: number;
+        oshaberiId: string;
+        userInfo?: {
+          __typename: "Userinfo";
+          userId: string;
+          nickname?: string | null;
+          iconImageKey?: string | null;
+          coverImageKey?: string | null;
+          profile?: string | null;
+        } | null;
+        oshaberi?: {
+          __typename: "Oshaberi";
+          id?: string | null;
+          owner: string;
+          author: string;
+          timestamp: number;
+          imageKeys?: Array<string | null> | null;
+          content: string;
+          parentOshaberiId?: string | null;
+        } | null;
+      } | null> | null;
       nextToken?: string | null;
     } | null;
   } | null;
@@ -1218,6 +2208,22 @@ export type OnCreateFollowingRelationshipSubscription = {
   followeeId: string;
   followerId: string;
   timestamp: number;
+  followee?: {
+    __typename: "Userinfo";
+    userId: string;
+    nickname?: string | null;
+    iconImageKey?: string | null;
+    coverImageKey?: string | null;
+    profile?: string | null;
+  } | null;
+  follower?: {
+    __typename: "Userinfo";
+    userId: string;
+    nickname?: string | null;
+    iconImageKey?: string | null;
+    coverImageKey?: string | null;
+    profile?: string | null;
+  } | null;
 };
 
 export type OnDeleteFollowingRelationshipSubscription = {
@@ -1225,6 +2231,22 @@ export type OnDeleteFollowingRelationshipSubscription = {
   followeeId: string;
   followerId: string;
   timestamp: number;
+  followee?: {
+    __typename: "Userinfo";
+    userId: string;
+    nickname?: string | null;
+    iconImageKey?: string | null;
+    coverImageKey?: string | null;
+    profile?: string | null;
+  } | null;
+  follower?: {
+    __typename: "Userinfo";
+    userId: string;
+    nickname?: string | null;
+    iconImageKey?: string | null;
+    coverImageKey?: string | null;
+    profile?: string | null;
+  } | null;
 };
 
 export type OnCreateLikeSubscription = {
@@ -1259,10 +2281,60 @@ export type OnCreateLikeSubscription = {
     } | null;
     replyOshaberi?: {
       __typename: "ModelOshaberiConnection";
+      items?: Array<{
+        __typename: "Oshaberi";
+        id?: string | null;
+        owner: string;
+        author: string;
+        timestamp: number;
+        imageKeys?: Array<string | null> | null;
+        content: string;
+        parentOshaberiId?: string | null;
+        userInfo?: {
+          __typename: "Userinfo";
+          userId: string;
+          nickname?: string | null;
+          iconImageKey?: string | null;
+          coverImageKey?: string | null;
+          profile?: string | null;
+        } | null;
+        replyOshaberi?: {
+          __typename: "ModelOshaberiConnection";
+          nextToken?: string | null;
+        } | null;
+        like?: {
+          __typename: "ModelLikeConnection";
+          nextToken?: string | null;
+        } | null;
+      } | null> | null;
       nextToken?: string | null;
     } | null;
     like?: {
       __typename: "ModelLikeConnection";
+      items?: Array<{
+        __typename: "Like";
+        userId: string;
+        timestamp: number;
+        oshaberiId: string;
+        userInfo?: {
+          __typename: "Userinfo";
+          userId: string;
+          nickname?: string | null;
+          iconImageKey?: string | null;
+          coverImageKey?: string | null;
+          profile?: string | null;
+        } | null;
+        oshaberi?: {
+          __typename: "Oshaberi";
+          id?: string | null;
+          owner: string;
+          author: string;
+          timestamp: number;
+          imageKeys?: Array<string | null> | null;
+          content: string;
+          parentOshaberiId?: string | null;
+        } | null;
+      } | null> | null;
       nextToken?: string | null;
     } | null;
   } | null;
@@ -1300,10 +2372,60 @@ export type OnDeleteLikeSubscription = {
     } | null;
     replyOshaberi?: {
       __typename: "ModelOshaberiConnection";
+      items?: Array<{
+        __typename: "Oshaberi";
+        id?: string | null;
+        owner: string;
+        author: string;
+        timestamp: number;
+        imageKeys?: Array<string | null> | null;
+        content: string;
+        parentOshaberiId?: string | null;
+        userInfo?: {
+          __typename: "Userinfo";
+          userId: string;
+          nickname?: string | null;
+          iconImageKey?: string | null;
+          coverImageKey?: string | null;
+          profile?: string | null;
+        } | null;
+        replyOshaberi?: {
+          __typename: "ModelOshaberiConnection";
+          nextToken?: string | null;
+        } | null;
+        like?: {
+          __typename: "ModelLikeConnection";
+          nextToken?: string | null;
+        } | null;
+      } | null> | null;
       nextToken?: string | null;
     } | null;
     like?: {
       __typename: "ModelLikeConnection";
+      items?: Array<{
+        __typename: "Like";
+        userId: string;
+        timestamp: number;
+        oshaberiId: string;
+        userInfo?: {
+          __typename: "Userinfo";
+          userId: string;
+          nickname?: string | null;
+          iconImageKey?: string | null;
+          coverImageKey?: string | null;
+          profile?: string | null;
+        } | null;
+        oshaberi?: {
+          __typename: "Oshaberi";
+          id?: string | null;
+          owner: string;
+          author: string;
+          timestamp: number;
+          imageKeys?: Array<string | null> | null;
+          content: string;
+          parentOshaberiId?: string | null;
+        } | null;
+      } | null> | null;
       nextToken?: string | null;
     } | null;
   } | null;
@@ -1347,6 +2469,38 @@ export class APIService {
               imageKeys
               content
               parentOshaberiId
+              userInfo {
+                __typename
+                userId
+                nickname
+                iconImageKey
+                coverImageKey
+                profile
+              }
+              replyOshaberi {
+                __typename
+                items {
+                  __typename
+                  id
+                  owner
+                  author
+                  timestamp
+                  imageKeys
+                  content
+                  parentOshaberiId
+                }
+                nextToken
+              }
+              like {
+                __typename
+                items {
+                  __typename
+                  userId
+                  timestamp
+                  oshaberiId
+                }
+                nextToken
+              }
             }
             nextToken
           }
@@ -1357,6 +2511,40 @@ export class APIService {
               userId
               timestamp
               oshaberiId
+              userInfo {
+                __typename
+                userId
+                nickname
+                iconImageKey
+                coverImageKey
+                profile
+              }
+              oshaberi {
+                __typename
+                id
+                owner
+                author
+                timestamp
+                imageKeys
+                content
+                parentOshaberiId
+                userInfo {
+                  __typename
+                  userId
+                  nickname
+                  iconImageKey
+                  coverImageKey
+                  profile
+                }
+                replyOshaberi {
+                  __typename
+                  nextToken
+                }
+                like {
+                  __typename
+                  nextToken
+                }
+              }
             }
             nextToken
           }
@@ -1415,10 +2603,60 @@ export class APIService {
             }
             replyOshaberi {
               __typename
+              items {
+                __typename
+                id
+                owner
+                author
+                timestamp
+                imageKeys
+                content
+                parentOshaberiId
+                userInfo {
+                  __typename
+                  userId
+                  nickname
+                  iconImageKey
+                  coverImageKey
+                  profile
+                }
+                replyOshaberi {
+                  __typename
+                  nextToken
+                }
+                like {
+                  __typename
+                  nextToken
+                }
+              }
               nextToken
             }
             like {
               __typename
+              items {
+                __typename
+                userId
+                timestamp
+                oshaberiId
+                userInfo {
+                  __typename
+                  userId
+                  nickname
+                  iconImageKey
+                  coverImageKey
+                  profile
+                }
+                oshaberi {
+                  __typename
+                  id
+                  owner
+                  author
+                  timestamp
+                  imageKeys
+                  content
+                  parentOshaberiId
+                }
+              }
               nextToken
             }
           }
@@ -1470,6 +2708,22 @@ export class APIService {
           followeeId
           followerId
           timestamp
+          followee {
+            __typename
+            userId
+            nickname
+            iconImageKey
+            coverImageKey
+            profile
+          }
+          follower {
+            __typename
+            userId
+            nickname
+            iconImageKey
+            coverImageKey
+            profile
+          }
         }
       }`;
     const gqlAPIServiceArguments: any = {
@@ -1495,6 +2749,22 @@ export class APIService {
           followeeId
           followerId
           timestamp
+          followee {
+            __typename
+            userId
+            nickname
+            iconImageKey
+            coverImageKey
+            profile
+          }
+          follower {
+            __typename
+            userId
+            nickname
+            iconImageKey
+            coverImageKey
+            profile
+          }
         }
       }`;
     const gqlAPIServiceArguments: any = {
@@ -1568,6 +2838,38 @@ export class APIService {
               imageKeys
               content
               parentOshaberiId
+              userInfo {
+                __typename
+                userId
+                nickname
+                iconImageKey
+                coverImageKey
+                profile
+              }
+              replyOshaberi {
+                __typename
+                items {
+                  __typename
+                  id
+                  owner
+                  author
+                  timestamp
+                  imageKeys
+                  content
+                  parentOshaberiId
+                }
+                nextToken
+              }
+              like {
+                __typename
+                items {
+                  __typename
+                  userId
+                  timestamp
+                  oshaberiId
+                }
+                nextToken
+              }
             }
             nextToken
           }
@@ -1578,6 +2880,40 @@ export class APIService {
               userId
               timestamp
               oshaberiId
+              userInfo {
+                __typename
+                userId
+                nickname
+                iconImageKey
+                coverImageKey
+                profile
+              }
+              oshaberi {
+                __typename
+                id
+                owner
+                author
+                timestamp
+                imageKeys
+                content
+                parentOshaberiId
+                userInfo {
+                  __typename
+                  userId
+                  nickname
+                  iconImageKey
+                  coverImageKey
+                  profile
+                }
+                replyOshaberi {
+                  __typename
+                  nextToken
+                }
+                like {
+                  __typename
+                  nextToken
+                }
+              }
             }
             nextToken
           }
@@ -1623,10 +2959,60 @@ export class APIService {
             }
             replyOshaberi {
               __typename
+              items {
+                __typename
+                id
+                owner
+                author
+                timestamp
+                imageKeys
+                content
+                parentOshaberiId
+                userInfo {
+                  __typename
+                  userId
+                  nickname
+                  iconImageKey
+                  coverImageKey
+                  profile
+                }
+                replyOshaberi {
+                  __typename
+                  nextToken
+                }
+                like {
+                  __typename
+                  nextToken
+                }
+              }
               nextToken
             }
             like {
               __typename
+              items {
+                __typename
+                userId
+                timestamp
+                oshaberiId
+                userInfo {
+                  __typename
+                  userId
+                  nickname
+                  iconImageKey
+                  coverImageKey
+                  profile
+                }
+                oshaberi {
+                  __typename
+                  id
+                  owner
+                  author
+                  timestamp
+                  imageKeys
+                  content
+                  parentOshaberiId
+                }
+              }
               nextToken
             }
           }
@@ -1714,10 +3100,60 @@ export class APIService {
             }
             replyOshaberi {
               __typename
+              items {
+                __typename
+                id
+                owner
+                author
+                timestamp
+                imageKeys
+                content
+                parentOshaberiId
+                userInfo {
+                  __typename
+                  userId
+                  nickname
+                  iconImageKey
+                  coverImageKey
+                  profile
+                }
+                replyOshaberi {
+                  __typename
+                  nextToken
+                }
+                like {
+                  __typename
+                  nextToken
+                }
+              }
               nextToken
             }
             like {
               __typename
+              items {
+                __typename
+                userId
+                timestamp
+                oshaberiId
+                userInfo {
+                  __typename
+                  userId
+                  nickname
+                  iconImageKey
+                  coverImageKey
+                  profile
+                }
+                oshaberi {
+                  __typename
+                  id
+                  owner
+                  author
+                  timestamp
+                  imageKeys
+                  content
+                  parentOshaberiId
+                }
+              }
               nextToken
             }
           }
@@ -1771,10 +3207,60 @@ export class APIService {
             }
             replyOshaberi {
               __typename
+              items {
+                __typename
+                id
+                owner
+                author
+                timestamp
+                imageKeys
+                content
+                parentOshaberiId
+                userInfo {
+                  __typename
+                  userId
+                  nickname
+                  iconImageKey
+                  coverImageKey
+                  profile
+                }
+                replyOshaberi {
+                  __typename
+                  nextToken
+                }
+                like {
+                  __typename
+                  nextToken
+                }
+              }
               nextToken
             }
             like {
               __typename
+              items {
+                __typename
+                userId
+                timestamp
+                oshaberiId
+                userInfo {
+                  __typename
+                  userId
+                  nickname
+                  iconImageKey
+                  coverImageKey
+                  profile
+                }
+                oshaberi {
+                  __typename
+                  id
+                  owner
+                  author
+                  timestamp
+                  imageKeys
+                  content
+                  parentOshaberiId
+                }
+              }
               nextToken
             }
           }
@@ -1820,10 +3306,60 @@ export class APIService {
             }
             replyOshaberi {
               __typename
+              items {
+                __typename
+                id
+                owner
+                author
+                timestamp
+                imageKeys
+                content
+                parentOshaberiId
+                userInfo {
+                  __typename
+                  userId
+                  nickname
+                  iconImageKey
+                  coverImageKey
+                  profile
+                }
+                replyOshaberi {
+                  __typename
+                  nextToken
+                }
+                like {
+                  __typename
+                  nextToken
+                }
+              }
               nextToken
             }
             like {
               __typename
+              items {
+                __typename
+                userId
+                timestamp
+                oshaberiId
+                userInfo {
+                  __typename
+                  userId
+                  nickname
+                  iconImageKey
+                  coverImageKey
+                  profile
+                }
+                oshaberi {
+                  __typename
+                  id
+                  owner
+                  author
+                  timestamp
+                  imageKeys
+                  content
+                  parentOshaberiId
+                }
+              }
               nextToken
             }
           }
@@ -1863,6 +3399,38 @@ export class APIService {
               imageKeys
               content
               parentOshaberiId
+              userInfo {
+                __typename
+                userId
+                nickname
+                iconImageKey
+                coverImageKey
+                profile
+              }
+              replyOshaberi {
+                __typename
+                items {
+                  __typename
+                  id
+                  owner
+                  author
+                  timestamp
+                  imageKeys
+                  content
+                  parentOshaberiId
+                }
+                nextToken
+              }
+              like {
+                __typename
+                items {
+                  __typename
+                  userId
+                  timestamp
+                  oshaberiId
+                }
+                nextToken
+              }
             }
           }
           nextToken
@@ -2070,6 +3638,38 @@ export class APIService {
               imageKeys
               content
               parentOshaberiId
+              userInfo {
+                __typename
+                userId
+                nickname
+                iconImageKey
+                coverImageKey
+                profile
+              }
+              replyOshaberi {
+                __typename
+                items {
+                  __typename
+                  id
+                  owner
+                  author
+                  timestamp
+                  imageKeys
+                  content
+                  parentOshaberiId
+                }
+                nextToken
+              }
+              like {
+                __typename
+                items {
+                  __typename
+                  userId
+                  timestamp
+                  oshaberiId
+                }
+                nextToken
+              }
             }
             nextToken
           }
@@ -2080,6 +3680,40 @@ export class APIService {
               userId
               timestamp
               oshaberiId
+              userInfo {
+                __typename
+                userId
+                nickname
+                iconImageKey
+                coverImageKey
+                profile
+              }
+              oshaberi {
+                __typename
+                id
+                owner
+                author
+                timestamp
+                imageKeys
+                content
+                parentOshaberiId
+                userInfo {
+                  __typename
+                  userId
+                  nickname
+                  iconImageKey
+                  coverImageKey
+                  profile
+                }
+                replyOshaberi {
+                  __typename
+                  nextToken
+                }
+                like {
+                  __typename
+                  nextToken
+                }
+              }
             }
             nextToken
           }
@@ -2120,10 +3754,60 @@ export class APIService {
             }
             replyOshaberi {
               __typename
+              items {
+                __typename
+                id
+                owner
+                author
+                timestamp
+                imageKeys
+                content
+                parentOshaberiId
+                userInfo {
+                  __typename
+                  userId
+                  nickname
+                  iconImageKey
+                  coverImageKey
+                  profile
+                }
+                replyOshaberi {
+                  __typename
+                  nextToken
+                }
+                like {
+                  __typename
+                  nextToken
+                }
+              }
               nextToken
             }
             like {
               __typename
+              items {
+                __typename
+                userId
+                timestamp
+                oshaberiId
+                userInfo {
+                  __typename
+                  userId
+                  nickname
+                  iconImageKey
+                  coverImageKey
+                  profile
+                }
+                oshaberi {
+                  __typename
+                  id
+                  owner
+                  author
+                  timestamp
+                  imageKeys
+                  content
+                  parentOshaberiId
+                }
+              }
               nextToken
             }
           }
@@ -2175,10 +3859,60 @@ export class APIService {
             }
             replyOshaberi {
               __typename
+              items {
+                __typename
+                id
+                owner
+                author
+                timestamp
+                imageKeys
+                content
+                parentOshaberiId
+                userInfo {
+                  __typename
+                  userId
+                  nickname
+                  iconImageKey
+                  coverImageKey
+                  profile
+                }
+                replyOshaberi {
+                  __typename
+                  nextToken
+                }
+                like {
+                  __typename
+                  nextToken
+                }
+              }
               nextToken
             }
             like {
               __typename
+              items {
+                __typename
+                userId
+                timestamp
+                oshaberiId
+                userInfo {
+                  __typename
+                  userId
+                  nickname
+                  iconImageKey
+                  coverImageKey
+                  profile
+                }
+                oshaberi {
+                  __typename
+                  id
+                  owner
+                  author
+                  timestamp
+                  imageKeys
+                  content
+                  parentOshaberiId
+                }
+              }
               nextToken
             }
           }
@@ -2241,10 +3975,60 @@ export class APIService {
             }
             replyOshaberi {
               __typename
+              items {
+                __typename
+                id
+                owner
+                author
+                timestamp
+                imageKeys
+                content
+                parentOshaberiId
+                userInfo {
+                  __typename
+                  userId
+                  nickname
+                  iconImageKey
+                  coverImageKey
+                  profile
+                }
+                replyOshaberi {
+                  __typename
+                  nextToken
+                }
+                like {
+                  __typename
+                  nextToken
+                }
+              }
               nextToken
             }
             like {
               __typename
+              items {
+                __typename
+                userId
+                timestamp
+                oshaberiId
+                userInfo {
+                  __typename
+                  userId
+                  nickname
+                  iconImageKey
+                  coverImageKey
+                  profile
+                }
+                oshaberi {
+                  __typename
+                  id
+                  owner
+                  author
+                  timestamp
+                  imageKeys
+                  content
+                  parentOshaberiId
+                }
+              }
               nextToken
             }
           }
@@ -2287,6 +4071,22 @@ export class APIService {
           followeeId
           followerId
           timestamp
+          followee {
+            __typename
+            userId
+            nickname
+            iconImageKey
+            coverImageKey
+            profile
+          }
+          follower {
+            __typename
+            userId
+            nickname
+            iconImageKey
+            coverImageKey
+            profile
+          }
         }
       }`;
     const gqlAPIServiceArguments: any = {
@@ -2316,6 +4116,22 @@ export class APIService {
             followeeId
             followerId
             timestamp
+            followee {
+              __typename
+              userId
+              nickname
+              iconImageKey
+              coverImageKey
+              profile
+            }
+            follower {
+              __typename
+              userId
+              nickname
+              iconImageKey
+              coverImageKey
+              profile
+            }
           }
           nextToken
         }
@@ -2362,6 +4178,22 @@ export class APIService {
             followeeId
             followerId
             timestamp
+            followee {
+              __typename
+              userId
+              nickname
+              iconImageKey
+              coverImageKey
+              profile
+            }
+            follower {
+              __typename
+              userId
+              nickname
+              iconImageKey
+              coverImageKey
+              profile
+            }
           }
           nextToken
         }
@@ -2408,6 +4240,22 @@ export class APIService {
             followeeId
             followerId
             timestamp
+            followee {
+              __typename
+              userId
+              nickname
+              iconImageKey
+              coverImageKey
+              profile
+            }
+            follower {
+              __typename
+              userId
+              nickname
+              iconImageKey
+              coverImageKey
+              profile
+            }
           }
           nextToken
         }
@@ -2472,10 +4320,60 @@ export class APIService {
             }
             replyOshaberi {
               __typename
+              items {
+                __typename
+                id
+                owner
+                author
+                timestamp
+                imageKeys
+                content
+                parentOshaberiId
+                userInfo {
+                  __typename
+                  userId
+                  nickname
+                  iconImageKey
+                  coverImageKey
+                  profile
+                }
+                replyOshaberi {
+                  __typename
+                  nextToken
+                }
+                like {
+                  __typename
+                  nextToken
+                }
+              }
               nextToken
             }
             like {
               __typename
+              items {
+                __typename
+                userId
+                timestamp
+                oshaberiId
+                userInfo {
+                  __typename
+                  userId
+                  nickname
+                  iconImageKey
+                  coverImageKey
+                  profile
+                }
+                oshaberi {
+                  __typename
+                  id
+                  owner
+                  author
+                  timestamp
+                  imageKeys
+                  content
+                  parentOshaberiId
+                }
+              }
               nextToken
             }
           }
@@ -2523,6 +4421,38 @@ export class APIService {
               imageKeys
               content
               parentOshaberiId
+              userInfo {
+                __typename
+                userId
+                nickname
+                iconImageKey
+                coverImageKey
+                profile
+              }
+              replyOshaberi {
+                __typename
+                items {
+                  __typename
+                  id
+                  owner
+                  author
+                  timestamp
+                  imageKeys
+                  content
+                  parentOshaberiId
+                }
+                nextToken
+              }
+              like {
+                __typename
+                items {
+                  __typename
+                  userId
+                  timestamp
+                  oshaberiId
+                }
+                nextToken
+              }
             }
           }
           nextToken
@@ -2585,6 +4515,38 @@ export class APIService {
               imageKeys
               content
               parentOshaberiId
+              userInfo {
+                __typename
+                userId
+                nickname
+                iconImageKey
+                coverImageKey
+                profile
+              }
+              replyOshaberi {
+                __typename
+                items {
+                  __typename
+                  id
+                  owner
+                  author
+                  timestamp
+                  imageKeys
+                  content
+                  parentOshaberiId
+                }
+                nextToken
+              }
+              like {
+                __typename
+                items {
+                  __typename
+                  userId
+                  timestamp
+                  oshaberiId
+                }
+                nextToken
+              }
             }
           }
           nextToken
@@ -2647,6 +4609,38 @@ export class APIService {
               imageKeys
               content
               parentOshaberiId
+              userInfo {
+                __typename
+                userId
+                nickname
+                iconImageKey
+                coverImageKey
+                profile
+              }
+              replyOshaberi {
+                __typename
+                items {
+                  __typename
+                  id
+                  owner
+                  author
+                  timestamp
+                  imageKeys
+                  content
+                  parentOshaberiId
+                }
+                nextToken
+              }
+              like {
+                __typename
+                items {
+                  __typename
+                  userId
+                  timestamp
+                  oshaberiId
+                }
+                nextToken
+              }
             }
           }
           nextToken
@@ -2711,6 +4705,38 @@ export class APIService {
               imageKeys
               content
               parentOshaberiId
+              userInfo {
+                __typename
+                userId
+                nickname
+                iconImageKey
+                coverImageKey
+                profile
+              }
+              replyOshaberi {
+                __typename
+                items {
+                  __typename
+                  id
+                  owner
+                  author
+                  timestamp
+                  imageKeys
+                  content
+                  parentOshaberiId
+                }
+                nextToken
+              }
+              like {
+                __typename
+                items {
+                  __typename
+                  userId
+                  timestamp
+                  oshaberiId
+                }
+                nextToken
+              }
             }
             nextToken
           }
@@ -2721,6 +4747,40 @@ export class APIService {
               userId
               timestamp
               oshaberiId
+              userInfo {
+                __typename
+                userId
+                nickname
+                iconImageKey
+                coverImageKey
+                profile
+              }
+              oshaberi {
+                __typename
+                id
+                owner
+                author
+                timestamp
+                imageKeys
+                content
+                parentOshaberiId
+                userInfo {
+                  __typename
+                  userId
+                  nickname
+                  iconImageKey
+                  coverImageKey
+                  profile
+                }
+                replyOshaberi {
+                  __typename
+                  nextToken
+                }
+                like {
+                  __typename
+                  nextToken
+                }
+              }
             }
             nextToken
           }
@@ -2757,10 +4817,60 @@ export class APIService {
             }
             replyOshaberi {
               __typename
+              items {
+                __typename
+                id
+                owner
+                author
+                timestamp
+                imageKeys
+                content
+                parentOshaberiId
+                userInfo {
+                  __typename
+                  userId
+                  nickname
+                  iconImageKey
+                  coverImageKey
+                  profile
+                }
+                replyOshaberi {
+                  __typename
+                  nextToken
+                }
+                like {
+                  __typename
+                  nextToken
+                }
+              }
               nextToken
             }
             like {
               __typename
+              items {
+                __typename
+                userId
+                timestamp
+                oshaberiId
+                userInfo {
+                  __typename
+                  userId
+                  nickname
+                  iconImageKey
+                  coverImageKey
+                  profile
+                }
+                oshaberi {
+                  __typename
+                  id
+                  owner
+                  author
+                  timestamp
+                  imageKeys
+                  content
+                  parentOshaberiId
+                }
+              }
               nextToken
             }
           }
@@ -2848,6 +4958,22 @@ export class APIService {
           followeeId
           followerId
           timestamp
+          followee {
+            __typename
+            userId
+            nickname
+            iconImageKey
+            coverImageKey
+            profile
+          }
+          follower {
+            __typename
+            userId
+            nickname
+            iconImageKey
+            coverImageKey
+            profile
+          }
         }
       }`
     )
@@ -2865,6 +4991,22 @@ export class APIService {
           followeeId
           followerId
           timestamp
+          followee {
+            __typename
+            userId
+            nickname
+            iconImageKey
+            coverImageKey
+            profile
+          }
+          follower {
+            __typename
+            userId
+            nickname
+            iconImageKey
+            coverImageKey
+            profile
+          }
         }
       }`
     )
@@ -2909,10 +5051,60 @@ export class APIService {
             }
             replyOshaberi {
               __typename
+              items {
+                __typename
+                id
+                owner
+                author
+                timestamp
+                imageKeys
+                content
+                parentOshaberiId
+                userInfo {
+                  __typename
+                  userId
+                  nickname
+                  iconImageKey
+                  coverImageKey
+                  profile
+                }
+                replyOshaberi {
+                  __typename
+                  nextToken
+                }
+                like {
+                  __typename
+                  nextToken
+                }
+              }
               nextToken
             }
             like {
               __typename
+              items {
+                __typename
+                userId
+                timestamp
+                oshaberiId
+                userInfo {
+                  __typename
+                  userId
+                  nickname
+                  iconImageKey
+                  coverImageKey
+                  profile
+                }
+                oshaberi {
+                  __typename
+                  id
+                  owner
+                  author
+                  timestamp
+                  imageKeys
+                  content
+                  parentOshaberiId
+                }
+              }
               nextToken
             }
           }
@@ -2958,10 +5150,60 @@ export class APIService {
             }
             replyOshaberi {
               __typename
+              items {
+                __typename
+                id
+                owner
+                author
+                timestamp
+                imageKeys
+                content
+                parentOshaberiId
+                userInfo {
+                  __typename
+                  userId
+                  nickname
+                  iconImageKey
+                  coverImageKey
+                  profile
+                }
+                replyOshaberi {
+                  __typename
+                  nextToken
+                }
+                like {
+                  __typename
+                  nextToken
+                }
+              }
               nextToken
             }
             like {
               __typename
+              items {
+                __typename
+                userId
+                timestamp
+                oshaberiId
+                userInfo {
+                  __typename
+                  userId
+                  nickname
+                  iconImageKey
+                  coverImageKey
+                  profile
+                }
+                oshaberi {
+                  __typename
+                  id
+                  owner
+                  author
+                  timestamp
+                  imageKeys
+                  content
+                  parentOshaberiId
+                }
+              }
               nextToken
             }
           }

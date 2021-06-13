@@ -26,11 +26,11 @@
     <p>{{userInfo ? userInfo.profile : ''}}</p>
     <!-- follow number panel -->
     <div class="profileFollowRelationship">
-      <div>
-        フォロー中
+      <div [routerLink]="['/following-userlist',username,{segment:'followees'}]">
+        {{followeesRelationships ? followeesRelationships.length : ''}}&nbsp;フォロー中
       </div>
-      <div>
-        フォロワー
+      <div [routerLink]="['/following-userlist',username,{segment:'followers'}]">
+        {{followersRelationships ? followersRelationships.length : ''}}&nbsp;フォロワー
       </div>
     </div>
     <!-- segment -->

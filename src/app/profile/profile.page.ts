@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { APIService, Like, ModelSortDirection, Oshaberi, Userinfo } from '../API.service';
+import { APIService, FollowingRelationship, Like, ModelSortDirection, Oshaberi, Userinfo } from '../API.service';
 import { AuthService } from '../shared/services/auth.service';
 
 @Component({
@@ -20,6 +20,8 @@ export class ProfilePage implements OnInit {
   private likeNextToken: string = null;
   private limit: number = 10;
   public isFollowing: boolean = false;
+  public followeesRelationships: FollowingRelationship[];
+  public followersRelationships: FollowingRelationship[];
 
   constructor(
     public route: ActivatedRoute,
@@ -40,6 +42,9 @@ export class ProfilePage implements OnInit {
     [this.likes, this.likeNextToken] = await this.getOwnerLikesAndNextToken(this.username, this.limit, this.likeNextToken);
     // jadge if is following
     this.isFollowing = await this.api.GetFollowingRelationship(this.username, this.currentUsername).then(e => !!e);
+    // get following relationships
+    this.followeesRelationships = await this.api.ListFollowingRelationshipByFollower(this.username, null, ModelSortDirection.DESC).then(e => e.items);
+    this.followersRelationships = await this.api.ListFollowingRelationshipByFollowee(this.username, null, ModelSortDirection.DESC).then(e => e.items);
   }
 
   public goToEditProfilePage(): void {

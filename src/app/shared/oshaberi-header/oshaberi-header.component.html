@@ -1,7 +1,9 @@
 <div class="cardHeader">
   <div class="cardHeaderAvatar" (click)="goToProfilePage()">
-    <ion-avatar>
-      <img src="https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y">
+    <ion-avatar class="cardHeaderAvatarImage">
+      <amplify-s3-image *ngIf="oshaberi.userInfo && oshaberi.userInfo.iconImageKey;else iconImageUnset"
+        class="cardHeaderAvatarImageS3" [attr.img-key]="oshaberi.userInfo.iconImageKey" level="public">
+      </amplify-s3-image>
     </ion-avatar>
   </div>
   <div class="cardHeaderUsername" (click)="goToProfilePage()">
@@ -10,3 +12,7 @@
   </div>
   <div class="cardHeaderTime">{{oshaberi.timestamp | elapsedTime}}</div>
 </div>
+
+<ng-template #iconImageUnset>
+  <img src="assets/iconImageUnset.jpg">
+</ng-template>

@@ -24,6 +24,33 @@ subscription OnCreateOshaberi {
         imageKeys
         content
         parentOshaberiId
+        userInfo {
+          userId
+          nickname
+          iconImageKey
+          coverImageKey
+          profile
+        }
+        replyOshaberi {
+          items {
+            id
+            owner
+            author
+            timestamp
+            imageKeys
+            content
+            parentOshaberiId
+          }
+          nextToken
+        }
+        like {
+          items {
+            userId
+            timestamp
+            oshaberiId
+          }
+          nextToken
+        }
       }
       nextToken
     }
@@ -32,6 +59,35 @@ subscription OnCreateOshaberi {
         userId
         timestamp
         oshaberiId
+        userInfo {
+          userId
+          nickname
+          iconImageKey
+          coverImageKey
+          profile
+        }
+        oshaberi {
+          id
+          owner
+          author
+          timestamp
+          imageKeys
+          content
+          parentOshaberiId
+          userInfo {
+            userId
+            nickname
+            iconImageKey
+            coverImageKey
+            profile
+          }
+          replyOshaberi {
+            nextToken
+          }
+          like {
+            nextToken
+          }
+        }
       }
       nextToken
     }
@@ -58,9 +114,52 @@ subscription OnCreateTimeline($userId: String!) {
         profile
       }
       replyOshaberi {
+        items {
+          id
+          owner
+          author
+          timestamp
+          imageKeys
+          content
+          parentOshaberiId
+          userInfo {
+            userId
+            nickname
+            iconImageKey
+            coverImageKey
+            profile
+          }
+          replyOshaberi {
+            nextToken
+          }
+          like {
+            nextToken
+          }
+        }
         nextToken
       }
       like {
+        items {
+          userId
+          timestamp
+          oshaberiId
+          userInfo {
+            userId
+            nickname
+            iconImageKey
+            coverImageKey
+            profile
+          }
+          oshaberi {
+            id
+            owner
+            author
+            timestamp
+            imageKeys
+            content
+            parentOshaberiId
+          }
+        }
         nextToken
       }
     }
@@ -106,6 +205,20 @@ subscription OnCreateFollowingRelationship {
     followeeId
     followerId
     timestamp
+    followee {
+      userId
+      nickname
+      iconImageKey
+      coverImageKey
+      profile
+    }
+    follower {
+      userId
+      nickname
+      iconImageKey
+      coverImageKey
+      profile
+    }
   }
 }
 subscription OnDeleteFollowingRelationship {
@@ -113,6 +226,20 @@ subscription OnDeleteFollowingRelationship {
     followeeId
     followerId
     timestamp
+    followee {
+      userId
+      nickname
+      iconImageKey
+      coverImageKey
+      profile
+    }
+    follower {
+      userId
+      nickname
+      iconImageKey
+      coverImageKey
+      profile
+    }
   }
 }
 subscription OnCreateLike {
@@ -143,9 +270,52 @@ subscription OnCreateLike {
         profile
       }
       replyOshaberi {
+        items {
+          id
+          owner
+          author
+          timestamp
+          imageKeys
+          content
+          parentOshaberiId
+          userInfo {
+            userId
+            nickname
+            iconImageKey
+            coverImageKey
+            profile
+          }
+          replyOshaberi {
+            nextToken
+          }
+          like {
+            nextToken
+          }
+        }
         nextToken
       }
       like {
+        items {
+          userId
+          timestamp
+          oshaberiId
+          userInfo {
+            userId
+            nickname
+            iconImageKey
+            coverImageKey
+            profile
+          }
+          oshaberi {
+            id
+            owner
+            author
+            timestamp
+            imageKeys
+            content
+            parentOshaberiId
+          }
+        }
         nextToken
       }
     }
@@ -179,9 +349,52 @@ subscription OnDeleteLike {
         profile
       }
       replyOshaberi {
+        items {
+          id
+          owner
+          author
+          timestamp
+          imageKeys
+          content
+          parentOshaberiId
+          userInfo {
+            userId
+            nickname
+            iconImageKey
+            coverImageKey
+            profile
+          }
+          replyOshaberi {
+            nextToken
+          }
+          like {
+            nextToken
+          }
+        }
         nextToken
       }
       like {
+        items {
+          userId
+          timestamp
+          oshaberiId
+          userInfo {
+            userId
+            nickname
+            iconImageKey
+            coverImageKey
+            profile
+          }
+          oshaberi {
+            id
+            owner
+            author
+            timestamp
+            imageKeys
+            content
+            parentOshaberiId
+          }
+        }
         nextToken
       }
     }
