@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { APIService, Oshaberi, Userinfo } from '../API.service';
 
 @Component({
   selector: 'app-like-user-list',
@@ -7,14 +8,28 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./like-user-list.page.scss'],
 })
 export class LikeUserListPage implements OnInit {
-  public oshaberiId: string;
+  public oshaberi: Oshaberi;
+  public likeUsers: Userinfo[];
 
   constructor(
     public route: ActivatedRoute,
+    private api: APIService,
   ) { }
 
-  ngOnInit() {
-    this.oshaberiId = this.route.snapshot.params['oshaberi-id'];
+  async ngOnInit() {
+    const oshaberiId = this.route.snapshot.params['oshaberi-id'];
+    this.oshaberi = await this.api.GetOshaberi(oshaberiId);
+    this.likeUsers = this.oshaberi.like.items.map(like => {
+      if (like.userInfo) {
+        return like.userInfo;
+      } else {
+        const userInfoObj: Userinfo = {
+          __typename: "Userinfo",
+          userId: like.userId,
+        }
+        return userInfoObj;
+      }
+    });
   }
 
 }

@@ -1,10 +1,8 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>like-user-list</ion-title>
-  </ion-toolbar>
-</ion-header>
+<app-header iconType="back" title="いいねしたユーザー"></app-header>
 
 <ion-content>
   <app-oshaberi-button></app-oshaberi-button>
-  {{oshaberiId}}
+  <ng-container *ngIf="likeUsers">
+    <app-user-digest *ngFor="let userInfo of likeUsers" [userInfo]="userInfo"></app-user-digest>
+  </ng-container>
 </ion-content>
