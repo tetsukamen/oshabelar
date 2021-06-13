@@ -1,18 +1,27 @@
 <ion-card class="userDigest">
-  <ion-card-header>
-    <div class="userDigestAvatar">
-      {{userInfo.iconImageKey ? userInfo.iconImageKey:''}}
+  <ion-card-header class="userDigestHeader">
+    <div class="userDigestHeaderAvatar" (click)="goToProfilePage()">
+      <ion-avatar class="userDigestHeaderAvatarImage">
+        <amplify-s3-image *ngIf="userInfo.iconImageKey;else iconImageUnset" class="userDigestHeaderAvatarImageS3"
+          [attr.img-key]="userInfo.iconImageKey" level="public">
+        </amplify-s3-image>
+      </ion-avatar>
     </div>
-    <div class="userDigestUsername">
-      <ion-card-subtitle>{{userInfo.nickname ? userInfo.nickname:'未設定'}}</ion-card-subtitle>
-      <ion-card-title>{{userInfo.userId}}</ion-card-title>
+    <div class="userDigestHeaderUsername" (click)="goToProfilePage()">
+      <ion-card-title class="userDigestHeaderUsernameNickname">{{userInfo.nickname ? userInfo.nickname:'未設定' |
+        username}}
+      </ion-card-title>
+      <ion-card-subtitle class="">{{userInfo.userId | username}}</ion-card-subtitle>
     </div>
-    <ion-button>フォローする</ion-button>
-
+    <ion-button class="userDigestHeaderFollowButton" color="primary" [fill]="isFollowing ? 'solid':'outline'"
+      size="small" (click)="toggleFollowingRelationship()">
+      {{!isFollowing ? "フォロー" : "フォロー中"}}</ion-button>
   </ion-card-header>
-  <ion-card-content>
+  <ion-card-content class="userDigestContent" (click)="goToProfilePage()">
     {{userInfo.profile ? userInfo.profile:''}}
   </ion-card-content>
-
-
 </ion-card>
+
+<ng-template #iconImageUnset>
+  <img src="assets/iconImageUnset.jpg">
+</ng-template>

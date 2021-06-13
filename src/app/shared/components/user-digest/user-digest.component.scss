@@ -1,0 +1,25 @@
+.userDigest {
+    &Header {
+        display: flex;
+        &Avatar {
+            flex: 2;
+            &Image {
+                overflow: hidden;
+                &S3 {
+                    --width: 100%;
+                }
+            }
+        }
+        &Username {
+            flex: 3;
+            &Nickname {
+                font-size: 1rem;
+            }
+        }
+        &FollowButton {
+            flex: 2;
+        }
+    }
+    &Content {
+    }
+}
