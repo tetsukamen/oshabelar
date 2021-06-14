@@ -66,6 +66,7 @@ exports.handler = async (event, context, callback) => {
     mutation: gql(createOshaberi),
     variables: {
       input: {
+        type: 'oshaberi',
         timestamp: Math.floor(Date.now() / 1000),
         owner: event.identity.username,
         author: event.identity.username,
@@ -81,8 +82,39 @@ exports.handler = async (event, context, callback) => {
   console.log(res);
   const oshaberi = res.data.createOshaberi;
 
-  // end up if this is child oshaberi
+
   if (event.arguments.parentOshaberiId) {
+    // create notification
+    if (event.arguments.parentOshaberiId) {
+      // get parent oshaberi author
+      const getOshaberiQueryInput = {
+        id: event.arguments.parentOshaberiId,
+      };
+      const getOshaberiResult = await graphqlClient.query({
+        query: gql(getOshaberi),
+        fetchPolicy: 'network-only',
+        variables: getOshaberiQueryInput,
+      })
+      const parentOshaberiAuthor = getOshaberiResult.data.getOshaberi.author;
+      console.log(parentOshaberiAuthor)
+
+      const notificationInput = {
+        mutation: gql(createNotification),
+        variables: {
+          input: {
+            userId: parentOshaberiAuthor,
+            timestamp: Math.floor(Date.now() / 1000),
+            fromUserId: event.identity.username,
+            oshaberiId: event.arguments.parentOshaberiId,
+            haveRead: false,
+            action: "reply",
+          }
+        }
+      }
+      const createNotificationInputRes = await graphqlClient.mutate(notificationInput);
+      console.log(createNotificationInputRes);
+    }
+    // end up if this is child oshaberi
     return oshaberi;
   }
 
@@ -159,6 +191,7 @@ const createOshaberi = /* GraphQL */ `
     $condition: ModelOshaberiConditionInput
   ) {
     createOshaberi(input: $input, condition: $condition) {
+        type
         id
         owner
         author
@@ -188,4 +221,41 @@ const createTimeline = /* GraphQL */ `
       }
     }
   }
+`;
+
+const getOshaberi = /* GraphQL */`
+  query GetOshaberi($id: ID!) {
+    getOshaberi(id: $id) {
+      id
+      owner
+      author
+      timestamp
+      imageKeys
+      content
+      parentOshaberiId
+    }
+  }
+`;
+
+const createNotification = /* GraphQL */`
+    mutation CreateNotification(
+    $input: CreateNotificationInput!
+    $condition: ModelNotificationConditionInput
+    ) {
+        createNotification(input: $input, condition: $condition) {
+            userId
+            timestamp
+            fromUserId
+            fromUser {
+                userId
+                nickname
+                iconImageKey
+                coverImageKey
+                profile
+            }
+            oshaberiId
+            haveRead
+            action
+        }
+    }
 `;

@@ -12,7 +12,7 @@
       </div>
     </div>
     <div>
-      <div *ngIf="notification.action=='like' || notification.action=='reply'">
+      <div *ngIf="(notification.action=='like' || notification.action=='reply') && notification.oshaberi">
         <ion-card [routerLink]="['/oshaberi-detail',notification.oshaberiId]">
           <ion-card-content>
             {{notification.oshaberi.content}}

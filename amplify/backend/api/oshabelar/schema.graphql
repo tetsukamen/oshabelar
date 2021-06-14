@@ -30,7 +30,10 @@ type Oshaberi
   ])
   @key(name:"bySpecificOwner",fields:["owner","timestamp"],queryField:"listOshaberisBySpecificOwner")
   @key(name:"byParentOshaberi", fields:["parentOshaberiId","timestamp"], queryField:"listOshaberiByParentOshaberi")
+  @key(name:"byTimestamp",fields:["type","timestamp"],queryField:"listOshaberisByTimestamp")
+  @searchable
 {
+  type:String! # always 'oshaberi'
   id:ID
   owner:String!
   author:String!
@@ -83,12 +86,12 @@ type FollowingRelationship
 
 type Notification
   @model(
-    mutations:{create:"createNotification",delete:null,update:null}
+    mutations:{create:"createNotification",delete:null,update:"updateNotification"}
     timestamps:null
   )
   @auth(rules: [
-		{allow: owner, ownerField:"userId", provider: userPools, operations:[read]},
-    {allow: private, provider: iam ,operations:[create,update]},
+		{allow: owner, ownerField:"userId", provider: userPools, operations:[read,update]},
+    {allow: private, provider: iam ,operations:[create]},
 	])
   @key(fields:["userId","timestamp"])
 {
@@ -96,7 +99,8 @@ type Notification
   timestamp:Int!
   fromUserId:String!
   fromUser:Userinfo @connection(fields:["fromUserId"])
-  oshaberiId:String
+  oshaberiId:ID
+  oshaberi:Oshaberi @connection(fields:["oshaberiId"])
   haveRead:Boolean!
   action:String!
 }
