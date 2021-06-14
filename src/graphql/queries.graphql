@@ -146,6 +146,71 @@ query GetNotification($userId: String!, $timestamp: Int!) {
       coverImageKey
       profile
     }
+    oshaberi {
+      id
+      owner
+      author
+      timestamp
+      imageKeys
+      content
+      parentOshaberiId
+      userInfo {
+        userId
+        nickname
+        iconImageKey
+        coverImageKey
+        profile
+      }
+      replyOshaberi {
+        items {
+          id
+          owner
+          author
+          timestamp
+          imageKeys
+          content
+          parentOshaberiId
+          userInfo {
+            userId
+            nickname
+            iconImageKey
+            coverImageKey
+            profile
+          }
+          replyOshaberi {
+            nextToken
+          }
+          like {
+            nextToken
+          }
+        }
+        nextToken
+      }
+      like {
+        items {
+          userId
+          timestamp
+          oshaberiId
+          userInfo {
+            userId
+            nickname
+            iconImageKey
+            coverImageKey
+            profile
+          }
+          oshaberi {
+            id
+            owner
+            author
+            timestamp
+            imageKeys
+            content
+            parentOshaberiId
+          }
+        }
+        nextToken
+      }
+    }
   }
 }
 query ListNotifications(
@@ -177,6 +242,42 @@ query ListNotifications(
         iconImageKey
         coverImageKey
         profile
+      }
+      oshaberi {
+        id
+        owner
+        author
+        timestamp
+        imageKeys
+        content
+        parentOshaberiId
+        userInfo {
+          userId
+          nickname
+          iconImageKey
+          coverImageKey
+          profile
+        }
+        replyOshaberi {
+          items {
+            id
+            owner
+            author
+            timestamp
+            imageKeys
+            content
+            parentOshaberiId
+          }
+          nextToken
+        }
+        like {
+          items {
+            userId
+            timestamp
+            oshaberiId
+          }
+          nextToken
+        }
       }
     }
     nextToken

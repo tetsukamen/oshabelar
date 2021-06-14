@@ -1,0 +1,12 @@
+.item {
+    margin-top: 10px;
+    &Header {
+        display: flex;
+        &Avatar {
+            overflow: hidden;
+            &S3 {
+                --width: 100%;
+            }
+        }
+    }
+}

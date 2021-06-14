@@ -8,7 +8,7 @@
       <ion-icon name="search"></ion-icon>
       <ion-label>検索</ion-label>
     </ion-tab-button>
-    <ion-tab-button tab="notification">
+    <ion-tab-button tab="notification" (click)="readNotifications()">
       <ion-icon name="notifications"></ion-icon>
       <ion-label>通知</ion-label>
       <ion-badge *ngIf="notificationService.haveNotReadCount>0">{{notificationService.haveNotReadCount}}</ion-badge>

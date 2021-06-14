@@ -1,0 +1,28 @@
+<ion-item class="item">
+  <div>
+    <div class="itemHeader">
+      <ion-avatar class="itemHeaderAvatar" [routerLink]="['/profile',notification.fromUserId]">
+        <amplify-s3-image *ngIf="notification.fromUser && notification.fromUser.iconImageKey;else iconImageUnset"
+          class="itemHeaderAvatarS3" [attr.img-key]="notification.fromUser.iconImageKey" level="public">
+        </amplify-s3-image>
+      </ion-avatar>
+      <div>
+        <span [routerLink]="['/profile',notification.fromUserId]">{{getUserName()}}さん</span>
+        が{{getActionName()}}しました
+      </div>
+    </div>
+    <div>
+      <div *ngIf="notification.action=='like' || notification.action=='reply'">
+        <ion-card [routerLink]="['/oshaberi-detail',notification.oshaberiId]">
+          <ion-card-content>
+            {{notification.oshaberi.content}}
+          </ion-card-content>
+        </ion-card>
+      </div>
+    </div>
+  </div>
+</ion-item>
+
+<ng-template #iconImageUnset>
+  <img src="assets/iconImageUnset.jpg">
+</ng-template>

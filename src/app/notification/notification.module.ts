@@ -8,6 +8,7 @@ import { NotificationPageRoutingModule } from './notification-routing.module';
 
 import { NotificationPage } from './notification.page';
 import { SharedModule } from '../shared/shared.module';
+import { NotificationItemComponent } from './notification-item/notification-item.component';
 
 @NgModule({
   imports: [
@@ -17,6 +18,9 @@ import { SharedModule } from '../shared/shared.module';
     NotificationPageRoutingModule,
     SharedModule,
   ],
-  declarations: [NotificationPage]
+  declarations: [
+    NotificationPage,
+    NotificationItemComponent,
+  ]
 })
 export class NotificationPageModule { }

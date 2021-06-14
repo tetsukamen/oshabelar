@@ -29,8 +29,6 @@ export class NotificationPage implements OnInit {
       const newNotification = event.value.data.onCreateNotification;
       this.notifications = [newNotification, ...this.notifications];
     });
-    // make allready read notifications
-    this.notificationService.makeNotificationsAllreadyRead();
   }
 
   async loadNextNotification(event?) {

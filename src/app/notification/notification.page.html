@@ -2,8 +2,12 @@
 
 <ion-content>
   <app-oshaberi-button></app-oshaberi-button>
-  <div *ngFor="let notification of notifications">
-    {{notification.userId}}
-    {{notification.action}}
-  </div>
+  <ion-list>
+    <app-notification-item *ngFor="let notification of notifications" [notification]="notification">
+    </app-notification-item>
+  </ion-list>
+  <ion-infinite-scroll #infinitScroll threshold="50px" (ionInfinite)="loadNextNotification($event)">
+    <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Loading more data...">
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
 </ion-content>

@@ -16,4 +16,9 @@ export class FooterComponent implements OnInit {
     this.notificationService.haveNotReadCount = await this.notificationService.getNotificationsCount();
   }
 
+  readNotifications() {
+    // make allready read notifications
+    this.notificationService.makeNotificationsAllreadyRead();
+  }
+
 }
