@@ -1,0 +1,11 @@
+{
+  "permissions": {
+    "api": {
+      "oshabelar": [
+        "Query",
+        "Mutation"
+      ]
+    }
+  },
+  "lambdaLayers": []
+}

@@ -55,7 +55,8 @@ export class CreateOshaberiPage implements OnInit {
     this.uploadProgressRate = 0.5;
     let createOshaberi;
     if (imageKeys) {
-      createOshaberi = await this.createOshaberiService.uploadOshaberi(this.oshaberiContent.value, imageKeys, this.parentOshaberiId).catch(_ => {
+      createOshaberi = await this.createOshaberiService.uploadOshaberi(this.oshaberiContent.value, imageKeys, this.parentOshaberiId).catch(e => {
+        console.log(e)
         this.messageService.indicateWarning('おしゃべりの投稿に失敗しました');
       });
     }

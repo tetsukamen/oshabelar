@@ -10,12 +10,19 @@ import { Oshaberi } from 'src/app/API.service';
 export class OshaberiHeaderComponent implements OnInit {
   @Input()
   public oshaberi: Oshaberi;
+  public displayName: string;
 
   constructor(
     private router: Router,
   ) { }
 
-  ngOnInit() { }
+  ngOnInit() {
+    if (this.oshaberi.userInfo && this.oshaberi.userInfo.nickname) {
+      this.displayName = this.oshaberi.userInfo.nickname;
+    } else {
+      this.displayName = this.oshaberi.author;
+    }
+  }
 
   goToProfilePage() {
     this.router.navigate(['/profile', this.oshaberi.author]);

@@ -1,6 +1,6 @@
 {
     "identityPoolName": "oshabelar73f1b91d_identitypool_73f1b91d",
-    "allowUnauthenticatedIdentities": false,
+    "allowUnauthenticatedIdentities": true,
     "resourceNameTruncated": "oshabe73f1b91d",
     "userPoolName": "oshabelar73f1b91d_userpool_73f1b91d",
     "autoVerifiedAttributes": [
