@@ -182,6 +182,23 @@ subscription OnCreateNotification($userId: String!) {
     }
   }
 }
+subscription OnUpdateNotification($userId: String!) {
+  onUpdateNotification(userId: $userId) {
+    userId
+    timestamp
+    fromUserId
+    oshaberiId
+    haveRead
+    action
+    fromUser {
+      userId
+      nickname
+      iconImageKey
+      coverImageKey
+      profile
+    }
+  }
+}
 subscription OnCreateUserinfo {
   onCreateUserinfo {
     userId

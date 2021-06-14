@@ -240,6 +240,26 @@ mutation DeleteFollowRelationship(
     }
   }
 }
+mutation UpdateNotification(
+  $input: UpdateNotificationInput!
+  $condition: ModelNotificationConditionInput
+) {
+  updateNotification(input: $input, condition: $condition) {
+    userId
+    timestamp
+    fromUserId
+    oshaberiId
+    haveRead
+    action
+    fromUser {
+      userId
+      nickname
+      iconImageKey
+      coverImageKey
+      profile
+    }
+  }
+}
 mutation CreateUserInfo(
   $input: CreateUserinfoInput!
   $condition: ModelUserinfoConditionInput

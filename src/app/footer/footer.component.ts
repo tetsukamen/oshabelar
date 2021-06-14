@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { NotificationService } from '../shared/services/notification.service';
 
 @Component({
   selector: 'app-footer',
@@ -7,8 +8,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FooterComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private notificationService: NotificationService,
+  ) { }
 
-  ngOnInit() { }
+  async ngOnInit() {
+    this.notificationService.haveNotReadCount = await this.notificationService.getNotificationsCount();
+  }
 
 }

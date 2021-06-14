@@ -2,5 +2,8 @@
 
 <ion-content>
   <app-oshaberi-button></app-oshaberi-button>
-  通知機能は開発中です
+  <div *ngFor="let notification of notifications">
+    {{notification.userId}}
+    {{notification.action}}
+  </div>
 </ion-content>

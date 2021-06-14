@@ -149,6 +149,43 @@ export type DeleteFollowingRelationshipInput = {
   followerId: string;
 };
 
+export type UpdateNotificationInput = {
+  userId: string;
+  timestamp: number;
+  fromUserId?: string | null;
+  oshaberiId?: string | null;
+  haveRead?: boolean | null;
+  action?: string | null;
+};
+
+export type ModelNotificationConditionInput = {
+  fromUserId?: ModelStringInput | null;
+  oshaberiId?: ModelStringInput | null;
+  haveRead?: ModelBooleanInput | null;
+  action?: ModelStringInput | null;
+  and?: Array<ModelNotificationConditionInput | null> | null;
+  or?: Array<ModelNotificationConditionInput | null> | null;
+  not?: ModelNotificationConditionInput | null;
+};
+
+export type ModelBooleanInput = {
+  ne?: boolean | null;
+  eq?: boolean | null;
+  attributeExists?: boolean | null;
+  attributeType?: ModelAttributeTypes | null;
+};
+
+export type Notification = {
+  __typename: "Notification";
+  userId: string;
+  timestamp: number;
+  fromUserId: string;
+  oshaberiId?: string | null;
+  haveRead: boolean;
+  action: string;
+  fromUser?: Userinfo | null;
+};
+
 export type CreateUserinfoInput = {
   userId: string;
   nickname?: string | null;
@@ -222,34 +259,6 @@ export type CreateNotificationInput = {
   oshaberiId?: string | null;
   haveRead: boolean;
   action: string;
-};
-
-export type ModelNotificationConditionInput = {
-  fromUserId?: ModelStringInput | null;
-  oshaberiId?: ModelStringInput | null;
-  haveRead?: ModelBooleanInput | null;
-  action?: ModelStringInput | null;
-  and?: Array<ModelNotificationConditionInput | null> | null;
-  or?: Array<ModelNotificationConditionInput | null> | null;
-  not?: ModelNotificationConditionInput | null;
-};
-
-export type ModelBooleanInput = {
-  ne?: boolean | null;
-  eq?: boolean | null;
-  attributeExists?: boolean | null;
-  attributeType?: ModelAttributeTypes | null;
-};
-
-export type Notification = {
-  __typename: "Notification";
-  userId: string;
-  timestamp: number;
-  fromUserId: string;
-  oshaberiId?: string | null;
-  haveRead: boolean;
-  action: string;
-  fromUser?: Userinfo | null;
 };
 
 export type CreateLikeInput = {
@@ -637,6 +646,24 @@ export type DeleteFollowRelationshipMutation = {
     profile?: string | null;
   } | null;
   follower?: {
+    __typename: "Userinfo";
+    userId: string;
+    nickname?: string | null;
+    iconImageKey?: string | null;
+    coverImageKey?: string | null;
+    profile?: string | null;
+  } | null;
+};
+
+export type UpdateNotificationMutation = {
+  __typename: "Notification";
+  userId: string;
+  timestamp: number;
+  fromUserId: string;
+  oshaberiId?: string | null;
+  haveRead: boolean;
+  action: string;
+  fromUser?: {
     __typename: "Userinfo";
     userId: string;
     nickname?: string | null;
@@ -2185,6 +2212,24 @@ export type OnCreateNotificationSubscription = {
   } | null;
 };
 
+export type OnUpdateNotificationSubscription = {
+  __typename: "Notification";
+  userId: string;
+  timestamp: number;
+  fromUserId: string;
+  oshaberiId?: string | null;
+  haveRead: boolean;
+  action: string;
+  fromUser?: {
+    __typename: "Userinfo";
+    userId: string;
+    nickname?: string | null;
+    iconImageKey?: string | null;
+    coverImageKey?: string | null;
+    profile?: string | null;
+  } | null;
+};
+
 export type OnCreateUserinfoSubscription = {
   __typename: "Userinfo";
   userId: string;
@@ -2779,6 +2824,40 @@ export class APIService {
     return <DeleteFollowRelationshipMutation>(
       response.data.deleteFollowRelationship
     );
+  }
+  async UpdateNotification(
+    input: UpdateNotificationInput,
+    condition?: ModelNotificationConditionInput
+  ): Promise<UpdateNotificationMutation> {
+    const statement = `mutation UpdateNotification($input: UpdateNotificationInput!, $condition: ModelNotificationConditionInput) {
+        updateNotification(input: $input, condition: $condition) {
+          __typename
+          userId
+          timestamp
+          fromUserId
+          oshaberiId
+          haveRead
+          action
+          fromUser {
+            __typename
+            userId
+            nickname
+            iconImageKey
+            coverImageKey
+            profile
+          }
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {
+      input
+    };
+    if (condition) {
+      gqlAPIServiceArguments.condition = condition;
+    }
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <UpdateNotificationMutation>response.data.updateNotification;
   }
   async CreateUserInfo(
     input: CreateUserinfoInput,
@@ -4912,6 +4991,36 @@ export class APIService {
     return API.graphql(
       graphqlOperation(statement, gqlAPIServiceArguments)
     ) as Observable<SubscriptionResponse<OnCreateNotificationSubscription>>;
+  }
+
+  OnUpdateNotificationListener(
+    userId: string
+  ): Observable<SubscriptionResponse<OnUpdateNotificationSubscription>> {
+    const statement = `subscription OnUpdateNotification($userId: String!) {
+        onUpdateNotification(userId: $userId) {
+          __typename
+          userId
+          timestamp
+          fromUserId
+          oshaberiId
+          haveRead
+          action
+          fromUser {
+            __typename
+            userId
+            nickname
+            iconImageKey
+            coverImageKey
+            profile
+          }
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {
+      userId
+    };
+    return API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    ) as Observable<SubscriptionResponse<OnUpdateNotificationSubscription>>;
   }
 
   OnCreateUserinfoListener: Observable<
