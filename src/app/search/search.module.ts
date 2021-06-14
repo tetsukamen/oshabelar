@@ -8,6 +8,9 @@ import { SearchPageRoutingModule } from './search-routing.module';
 
 import { SearchPage } from './search.page';
 import { SharedModule } from '../shared/shared.module';
+import { LatestComponent } from './latest/latest.component';
+import { PopularComponent } from './popular/popular.component';
+import { UserComponent } from './user/user.component';
 
 @NgModule({
   imports: [
@@ -17,6 +20,11 @@ import { SharedModule } from '../shared/shared.module';
     SearchPageRoutingModule,
     SharedModule,
   ],
-  declarations: [SearchPage]
+  declarations: [
+    SearchPage,
+    LatestComponent,
+    PopularComponent,
+    UserComponent,
+  ]
 })
 export class SearchPageModule { }

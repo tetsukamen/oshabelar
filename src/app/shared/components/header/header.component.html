@@ -1,9 +1,16 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-buttons slot="start">
-      <ion-menu-button *ngIf="iconType=='menu';else backButton"></ion-menu-button>
+    <ion-buttons *ngIf="iconType=='menu'">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-buttons slot="start" *ngIf="iconType=='back'">
+      <ion-button fill="clear" (click)="goBack()">
+        <ion-icon name="arrow-back-outline"></ion-icon>
+      </ion-button>
     </ion-buttons>
     <ion-title *ngIf="title">{{ title }}</ion-title>
+    <ion-searchbar *ngIf="iconType=='search'" showCancelButton="always" placeholder="キーワード" animated
+      (ionChange)="search($event)"></ion-searchbar>
     <ion-buttons slot="end">
       <ion-button *ngIf="buttonText" [disabled]="buttonDisabled" slot="end" (click)="sendButtonClickEvent()">{{
         buttonText
@@ -11,13 +18,3 @@
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
-
-<ng-template #iconImageUnset>
-  <img src="assets/iconImageUnset.jpg">
-</ng-template>
-
-<ng-template #backButton>
-  <ion-button fill="clear" (click)="goBack()">
-    <ion-icon name="arrow-back-outline"></ion-icon>
-  </ion-button>
-</ng-template>

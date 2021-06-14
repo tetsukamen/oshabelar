@@ -1,0 +1,5 @@
+<app-oshaberi *ngFor="let oshaberi of oshaberis" [oshaberi]="oshaberi"></app-oshaberi>
+<ion-infinite-scroll #infinitScroll threshold="50px" (ionInfinite)="loadNextOshaberis($event)">
+  <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Loading more data...">
+  </ion-infinite-scroll-content>
+</ion-infinite-scroll>

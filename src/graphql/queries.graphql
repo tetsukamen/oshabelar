@@ -5,6 +5,7 @@ query GetTimeline($userId: String!, $timestamp: Int!) {
     timestamp
     oshaberiId
     oshaberi {
+      type
       id
       owner
       author
@@ -21,6 +22,7 @@ query GetTimeline($userId: String!, $timestamp: Int!) {
       }
       replyOshaberi {
         items {
+          type
           id
           owner
           author
@@ -57,6 +59,7 @@ query GetTimeline($userId: String!, $timestamp: Int!) {
             profile
           }
           oshaberi {
+            type
             id
             owner
             author
@@ -92,6 +95,7 @@ query ListTimelines(
       timestamp
       oshaberiId
       oshaberi {
+        type
         id
         owner
         author
@@ -108,6 +112,7 @@ query ListTimelines(
         }
         replyOshaberi {
           items {
+            type
             id
             owner
             author
@@ -147,6 +152,7 @@ query GetNotification($userId: String!, $timestamp: Int!) {
       profile
     }
     oshaberi {
+      type
       id
       owner
       author
@@ -163,6 +169,7 @@ query GetNotification($userId: String!, $timestamp: Int!) {
       }
       replyOshaberi {
         items {
+          type
           id
           owner
           author
@@ -199,6 +206,7 @@ query GetNotification($userId: String!, $timestamp: Int!) {
             profile
           }
           oshaberi {
+            type
             id
             owner
             author
@@ -244,6 +252,7 @@ query ListNotifications(
         profile
       }
       oshaberi {
+        type
         id
         owner
         author
@@ -260,6 +269,7 @@ query ListNotifications(
         }
         replyOshaberi {
           items {
+            type
             id
             owner
             author
@@ -318,6 +328,7 @@ query ListUserinfos(
 }
 query GetOshaberi($id: ID!) {
   getOshaberi(id: $id) {
+    type
     id
     owner
     author
@@ -334,6 +345,7 @@ query GetOshaberi($id: ID!) {
     }
     replyOshaberi {
       items {
+        type
         id
         owner
         author
@@ -350,6 +362,7 @@ query GetOshaberi($id: ID!) {
         }
         replyOshaberi {
           items {
+            type
             id
             owner
             author
@@ -384,6 +397,7 @@ query GetOshaberi($id: ID!) {
           profile
         }
         oshaberi {
+          type
           id
           owner
           author
@@ -417,6 +431,7 @@ query ListOshaberis(
 ) {
   listOshaberis(filter: $filter, limit: $limit, nextToken: $nextToken) {
     items {
+      type
       id
       owner
       author
@@ -433,6 +448,7 @@ query ListOshaberis(
       }
       replyOshaberi {
         items {
+          type
           id
           owner
           author
@@ -469,6 +485,7 @@ query ListOshaberis(
             profile
           }
           oshaberi {
+            type
             id
             owner
             author
@@ -501,6 +518,7 @@ query ListOshaberisBySpecificOwner(
     nextToken: $nextToken
   ) {
     items {
+      type
       id
       owner
       author
@@ -517,6 +535,7 @@ query ListOshaberisBySpecificOwner(
       }
       replyOshaberi {
         items {
+          type
           id
           owner
           author
@@ -553,6 +572,7 @@ query ListOshaberisBySpecificOwner(
             profile
           }
           oshaberi {
+            type
             id
             owner
             author
@@ -585,6 +605,7 @@ query ListOshaberiByParentOshaberi(
     nextToken: $nextToken
   ) {
     items {
+      type
       id
       owner
       author
@@ -601,6 +622,7 @@ query ListOshaberiByParentOshaberi(
       }
       replyOshaberi {
         items {
+          type
           id
           owner
           author
@@ -637,6 +659,7 @@ query ListOshaberiByParentOshaberi(
             profile
           }
           oshaberi {
+            type
             id
             owner
             author
@@ -650,6 +673,179 @@ query ListOshaberiByParentOshaberi(
       }
     }
     nextToken
+  }
+}
+query ListOshaberisByTimestamp(
+  $type: String
+  $timestamp: ModelIntKeyConditionInput
+  $sortDirection: ModelSortDirection
+  $filter: ModelOshaberiFilterInput
+  $limit: Int
+  $nextToken: String
+) {
+  listOshaberisByTimestamp(
+    type: $type
+    timestamp: $timestamp
+    sortDirection: $sortDirection
+    filter: $filter
+    limit: $limit
+    nextToken: $nextToken
+  ) {
+    items {
+      type
+      id
+      owner
+      author
+      timestamp
+      imageKeys
+      content
+      parentOshaberiId
+      userInfo {
+        userId
+        nickname
+        iconImageKey
+        coverImageKey
+        profile
+      }
+      replyOshaberi {
+        items {
+          type
+          id
+          owner
+          author
+          timestamp
+          imageKeys
+          content
+          parentOshaberiId
+          userInfo {
+            userId
+            nickname
+            iconImageKey
+            coverImageKey
+            profile
+          }
+          replyOshaberi {
+            nextToken
+          }
+          like {
+            nextToken
+          }
+        }
+        nextToken
+      }
+      like {
+        items {
+          userId
+          timestamp
+          oshaberiId
+          userInfo {
+            userId
+            nickname
+            iconImageKey
+            coverImageKey
+            profile
+          }
+          oshaberi {
+            type
+            id
+            owner
+            author
+            timestamp
+            imageKeys
+            content
+            parentOshaberiId
+          }
+        }
+        nextToken
+      }
+    }
+    nextToken
+  }
+}
+query SearchOshaberis(
+  $filter: SearchableOshaberiFilterInput
+  $sort: SearchableOshaberiSortInput
+  $limit: Int
+  $nextToken: String
+  $from: Int
+) {
+  searchOshaberis(
+    filter: $filter
+    sort: $sort
+    limit: $limit
+    nextToken: $nextToken
+    from: $from
+  ) {
+    items {
+      type
+      id
+      owner
+      author
+      timestamp
+      imageKeys
+      content
+      parentOshaberiId
+      userInfo {
+        userId
+        nickname
+        iconImageKey
+        coverImageKey
+        profile
+      }
+      replyOshaberi {
+        items {
+          type
+          id
+          owner
+          author
+          timestamp
+          imageKeys
+          content
+          parentOshaberiId
+          userInfo {
+            userId
+            nickname
+            iconImageKey
+            coverImageKey
+            profile
+          }
+          replyOshaberi {
+            nextToken
+          }
+          like {
+            nextToken
+          }
+        }
+        nextToken
+      }
+      like {
+        items {
+          userId
+          timestamp
+          oshaberiId
+          userInfo {
+            userId
+            nickname
+            iconImageKey
+            coverImageKey
+            profile
+          }
+          oshaberi {
+            type
+            id
+            owner
+            author
+            timestamp
+            imageKeys
+            content
+            parentOshaberiId
+          }
+        }
+        nextToken
+      }
+    }
+    nextToken
+    total
   }
 }
 query GetFollowingRelationship($followeeId: String!, $followerId: String!) {
@@ -800,6 +996,7 @@ query GetLike($userId: String!, $oshaberiId: ID!) {
       profile
     }
     oshaberi {
+      type
       id
       owner
       author
@@ -816,6 +1013,7 @@ query GetLike($userId: String!, $oshaberiId: ID!) {
       }
       replyOshaberi {
         items {
+          type
           id
           owner
           author
@@ -852,6 +1050,7 @@ query GetLike($userId: String!, $oshaberiId: ID!) {
             profile
           }
           oshaberi {
+            type
             id
             owner
             author
@@ -894,6 +1093,7 @@ query ListLikes(
         profile
       }
       oshaberi {
+        type
         id
         owner
         author
@@ -910,6 +1110,7 @@ query ListLikes(
         }
         replyOshaberi {
           items {
+            type
             id
             owner
             author
@@ -961,6 +1162,7 @@ query ListLikesByOshaberiId(
         profile
       }
       oshaberi {
+        type
         id
         owner
         author
@@ -977,6 +1179,7 @@ query ListLikesByOshaberiId(
         }
         replyOshaberi {
           items {
+            type
             id
             owner
             author
@@ -1028,6 +1231,7 @@ query ListLikesBySpecificUserId(
         profile
       }
       oshaberi {
+        type
         id
         owner
         author
@@ -1044,6 +1248,7 @@ query ListLikesBySpecificUserId(
         }
         replyOshaberi {
           items {
+            type
             id
             owner
             author

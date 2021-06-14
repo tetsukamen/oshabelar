@@ -1,6 +1,25 @@
-<app-header iconType="menu" title="検索"></app-header>
+<app-header iconType="search" (searchText)="search($event)"></app-header>
 
 <ion-content>
   <app-oshaberi-button></app-oshaberi-button>
-  検索機能は開発中です
+  <ion-segment [value]="segmentValue" (ionChange)="segmentValueChanged($event)">
+    <ion-segment-button value="search">
+      <ion-label>検索</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="latest">
+      <ion-label>最新</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="user">
+      <ion-label>ユーザー</ion-label>
+    </ion-segment-button>
+  </ion-segment>
+  <ng-container *ngIf="segmentValue=='search'">
+    <app-oshaberi *ngFor="let oshaberi of oshaberis" [oshaberi]="oshaberi"></app-oshaberi>
+    <ion-infinite-scroll #infinitScroll threshold="50px" (ionInfinite)="loadNextOshaberis($event)">
+      <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Loading more data...">
+      </ion-infinite-scroll-content>
+    </ion-infinite-scroll>
+  </ng-container>
+  <app-latest *ngIf="segmentValue=='latest'"></app-latest>
+  <app-user *ngIf="segmentValue=='user'"></app-user>
 </ion-content>

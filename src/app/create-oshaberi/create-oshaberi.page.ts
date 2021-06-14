@@ -6,6 +6,7 @@ import { CreateOshaberiService } from './create-oshaberi.service';
 import { FileReaderEx } from '../shared/classes/file-reader-ex';
 import { ActivatedRoute } from '@angular/router';
 import { MessageService } from '../shared/services/message.service';
+import { APIService, Userinfo } from '../API.service';
 
 @Component({
   selector: 'app-create-oshaberi',
@@ -14,6 +15,7 @@ import { MessageService } from '../shared/services/message.service';
 })
 export class CreateOshaberiPage implements OnInit {
   username: string;
+  userInfo: Userinfo;
   oshaberiContent = new FormControl('', [Validators.required, Validators.maxLength(140)]);
   images: Array<FormGroup> = [];
   maxContentLength: number = 140;
@@ -34,11 +36,13 @@ export class CreateOshaberiPage implements OnInit {
     private createOshaberiService: CreateOshaberiService,
     private messageService: MessageService,
     private route: ActivatedRoute,
+    private api: APIService,
   ) { }
 
   async ngOnInit() {
     this.username = await this.authService.getUser().then(e => e.getUsername());
     this.parentOshaberiId = this.route.snapshot.params['parentOshaberiId'];
+    this.userInfo = await this.api.GetUserinfo(this.username);
     this.oshaberiContent.valueChanges.subscribe(e => {
       this.contentLength = e.length;
       this.contentLengthColor = e.length >= 140 ? 'danger' : '';

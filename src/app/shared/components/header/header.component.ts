@@ -7,7 +7,7 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
   styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent implements OnInit {
-  @Input() iconType: 'menu' | 'back';
+  @Input() iconType: 'menu' | 'back' | 'search';
   @Input() title: string = null;
   @Input() buttonText: string = null;
   @Input() buttonDisabled: boolean = false;
@@ -26,6 +26,11 @@ export class HeaderComponent implements OnInit {
 
   sendButtonClickEvent() {
     this.buttonClicked.emit(true);
+  }
+
+  search(event) {
+    const inputText = event.target.value;
+    this.searchText.emit(inputText);
   }
 
 }

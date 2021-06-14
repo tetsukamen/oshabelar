@@ -5,9 +5,7 @@
   <ion-refresher id=refresher slot="fixed" (ionRefresh)="refreshOshaberis($event)">
     <ion-refresher-content></ion-refresher-content>
   </ion-refresher>
-  <ng-container *ngFor="let oshaberi of oshaberis">
-    <app-oshaberi [oshaberi]="oshaberi"></app-oshaberi>
-  </ng-container>
+  <app-oshaberi *ngFor="let oshaberi of oshaberis" [oshaberi]="oshaberi"></app-oshaberi>
   <ion-infinite-scroll #infinitScroll threshold="50px" (ionInfinite)="loadNextOshaberis($event)">
     <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Loading more data...">
     </ion-infinite-scroll-content>

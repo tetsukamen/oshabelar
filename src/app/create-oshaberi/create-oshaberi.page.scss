@@ -1,3 +1,9 @@
+.avatar {
+    overflow: hidden;
+    &S3 {
+        --width: 100%;
+    }
+}
 .contentLength {
     text-align: right;
 }

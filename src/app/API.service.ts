@@ -11,6 +11,7 @@ export interface SubscriptionResponse<T> {
 
 export type Oshaberi = {
   __typename: "Oshaberi";
+  type: string;
   id?: string | null;
   owner: string;
   author: string;
@@ -212,6 +213,7 @@ export type CreateUserinfoInput = {
 };
 
 export type CreateOshaberiInput = {
+  type: string;
   id?: string | null;
   owner: string;
   author: string;
@@ -222,6 +224,7 @@ export type CreateOshaberiInput = {
 };
 
 export type ModelOshaberiConditionInput = {
+  type?: ModelStringInput | null;
   author?: ModelStringInput | null;
   timestamp?: ModelIntInput | null;
   imageKeys?: ModelStringInput | null;
@@ -345,6 +348,7 @@ export type ModelUserinfoConnection = {
 };
 
 export type ModelOshaberiFilterInput = {
+  type?: ModelStringInput | null;
   id?: ModelIDInput | null;
   owner?: ModelStringInput | null;
   author?: ModelStringInput | null;
@@ -355,6 +359,92 @@ export type ModelOshaberiFilterInput = {
   and?: Array<ModelOshaberiFilterInput | null> | null;
   or?: Array<ModelOshaberiFilterInput | null> | null;
   not?: ModelOshaberiFilterInput | null;
+};
+
+export type SearchableOshaberiFilterInput = {
+  type?: SearchableStringFilterInput | null;
+  id?: SearchableIDFilterInput | null;
+  owner?: SearchableStringFilterInput | null;
+  author?: SearchableStringFilterInput | null;
+  timestamp?: SearchableIntFilterInput | null;
+  imageKeys?: SearchableStringFilterInput | null;
+  content?: SearchableStringFilterInput | null;
+  parentOshaberiId?: SearchableIDFilterInput | null;
+  and?: Array<SearchableOshaberiFilterInput | null> | null;
+  or?: Array<SearchableOshaberiFilterInput | null> | null;
+  not?: SearchableOshaberiFilterInput | null;
+};
+
+export type SearchableStringFilterInput = {
+  ne?: string | null;
+  gt?: string | null;
+  lt?: string | null;
+  gte?: string | null;
+  lte?: string | null;
+  eq?: string | null;
+  match?: string | null;
+  matchPhrase?: string | null;
+  matchPhrasePrefix?: string | null;
+  multiMatch?: string | null;
+  exists?: boolean | null;
+  wildcard?: string | null;
+  regexp?: string | null;
+  range?: Array<string | null> | null;
+};
+
+export type SearchableIDFilterInput = {
+  ne?: string | null;
+  gt?: string | null;
+  lt?: string | null;
+  gte?: string | null;
+  lte?: string | null;
+  eq?: string | null;
+  match?: string | null;
+  matchPhrase?: string | null;
+  matchPhrasePrefix?: string | null;
+  multiMatch?: string | null;
+  exists?: boolean | null;
+  wildcard?: string | null;
+  regexp?: string | null;
+  range?: Array<string | null> | null;
+};
+
+export type SearchableIntFilterInput = {
+  ne?: number | null;
+  gt?: number | null;
+  lt?: number | null;
+  gte?: number | null;
+  lte?: number | null;
+  eq?: number | null;
+  range?: Array<number | null> | null;
+};
+
+export type SearchableOshaberiSortInput = {
+  field?: SearchableOshaberiSortableFields | null;
+  direction?: SearchableSortDirection | null;
+};
+
+export enum SearchableOshaberiSortableFields {
+  type = "type",
+  id = "id",
+  owner = "owner",
+  author = "author",
+  timestamp = "timestamp",
+  imageKeys = "imageKeys",
+  content = "content",
+  parentOshaberiId = "parentOshaberiId"
+}
+
+export enum SearchableSortDirection {
+  asc = "asc",
+  desc = "desc"
+}
+
+export type SearchableOshaberiConnection = {
+  __typename: "SearchableOshaberiConnection";
+  items?: Array<Oshaberi | null> | null;
+  nextToken?: string | null;
+  total?: number | null;
 };
 
 export type ModelStringKeyConditionInput = {
@@ -403,6 +493,7 @@ export type ModelLikeFilterInput = {
 
 export type CreateOshaberiAndTimelineMutation = {
   __typename: "Oshaberi";
+  type: string;
   id?: string | null;
   owner: string;
   author: string;
@@ -422,6 +513,7 @@ export type CreateOshaberiAndTimelineMutation = {
     __typename: "ModelOshaberiConnection";
     items?: Array<{
       __typename: "Oshaberi";
+      type: string;
       id?: string | null;
       owner: string;
       author: string;
@@ -441,6 +533,7 @@ export type CreateOshaberiAndTimelineMutation = {
         __typename: "ModelOshaberiConnection";
         items?: Array<{
           __typename: "Oshaberi";
+          type: string;
           id?: string | null;
           owner: string;
           author: string;
@@ -481,6 +574,7 @@ export type CreateOshaberiAndTimelineMutation = {
       } | null;
       oshaberi?: {
         __typename: "Oshaberi";
+        type: string;
         id?: string | null;
         owner: string;
         author: string;
@@ -525,6 +619,7 @@ export type CreateLikeAndNotificationMutation = {
   } | null;
   oshaberi?: {
     __typename: "Oshaberi";
+    type: string;
     id?: string | null;
     owner: string;
     author: string;
@@ -544,6 +639,7 @@ export type CreateLikeAndNotificationMutation = {
       __typename: "ModelOshaberiConnection";
       items?: Array<{
         __typename: "Oshaberi";
+        type: string;
         id?: string | null;
         owner: string;
         author: string;
@@ -587,6 +683,7 @@ export type CreateLikeAndNotificationMutation = {
         } | null;
         oshaberi?: {
           __typename: "Oshaberi";
+          type: string;
           id?: string | null;
           owner: string;
           author: string;
@@ -674,6 +771,7 @@ export type UpdateNotificationMutation = {
   } | null;
   oshaberi?: {
     __typename: "Oshaberi";
+    type: string;
     id?: string | null;
     owner: string;
     author: string;
@@ -693,6 +791,7 @@ export type UpdateNotificationMutation = {
       __typename: "ModelOshaberiConnection";
       items?: Array<{
         __typename: "Oshaberi";
+        type: string;
         id?: string | null;
         owner: string;
         author: string;
@@ -736,6 +835,7 @@ export type UpdateNotificationMutation = {
         } | null;
         oshaberi?: {
           __typename: "Oshaberi";
+          type: string;
           id?: string | null;
           owner: string;
           author: string;
@@ -761,6 +861,7 @@ export type CreateUserInfoMutation = {
 
 export type CreateOshaberiMutation = {
   __typename: "Oshaberi";
+  type: string;
   id?: string | null;
   owner: string;
   author: string;
@@ -780,6 +881,7 @@ export type CreateOshaberiMutation = {
     __typename: "ModelOshaberiConnection";
     items?: Array<{
       __typename: "Oshaberi";
+      type: string;
       id?: string | null;
       owner: string;
       author: string;
@@ -799,6 +901,7 @@ export type CreateOshaberiMutation = {
         __typename: "ModelOshaberiConnection";
         items?: Array<{
           __typename: "Oshaberi";
+          type: string;
           id?: string | null;
           owner: string;
           author: string;
@@ -839,6 +942,7 @@ export type CreateOshaberiMutation = {
       } | null;
       oshaberi?: {
         __typename: "Oshaberi";
+        type: string;
         id?: string | null;
         owner: string;
         author: string;
@@ -875,6 +979,7 @@ export type CreateTimelineMutation = {
   oshaberiId: string;
   oshaberi?: {
     __typename: "Oshaberi";
+    type: string;
     id?: string | null;
     owner: string;
     author: string;
@@ -894,6 +999,7 @@ export type CreateTimelineMutation = {
       __typename: "ModelOshaberiConnection";
       items?: Array<{
         __typename: "Oshaberi";
+        type: string;
         id?: string | null;
         owner: string;
         author: string;
@@ -937,6 +1043,7 @@ export type CreateTimelineMutation = {
         } | null;
         oshaberi?: {
           __typename: "Oshaberi";
+          type: string;
           id?: string | null;
           owner: string;
           author: string;
@@ -969,6 +1076,7 @@ export type CreateNotificationMutation = {
   } | null;
   oshaberi?: {
     __typename: "Oshaberi";
+    type: string;
     id?: string | null;
     owner: string;
     author: string;
@@ -988,6 +1096,7 @@ export type CreateNotificationMutation = {
       __typename: "ModelOshaberiConnection";
       items?: Array<{
         __typename: "Oshaberi";
+        type: string;
         id?: string | null;
         owner: string;
         author: string;
@@ -1031,6 +1140,7 @@ export type CreateNotificationMutation = {
         } | null;
         oshaberi?: {
           __typename: "Oshaberi";
+          type: string;
           id?: string | null;
           owner: string;
           author: string;
@@ -1060,6 +1170,7 @@ export type CreateLikeMutation = {
   } | null;
   oshaberi?: {
     __typename: "Oshaberi";
+    type: string;
     id?: string | null;
     owner: string;
     author: string;
@@ -1079,6 +1190,7 @@ export type CreateLikeMutation = {
       __typename: "ModelOshaberiConnection";
       items?: Array<{
         __typename: "Oshaberi";
+        type: string;
         id?: string | null;
         owner: string;
         author: string;
@@ -1122,6 +1234,7 @@ export type CreateLikeMutation = {
         } | null;
         oshaberi?: {
           __typename: "Oshaberi";
+          type: string;
           id?: string | null;
           owner: string;
           author: string;
@@ -1151,6 +1264,7 @@ export type DeleteLikeMutation = {
   } | null;
   oshaberi?: {
     __typename: "Oshaberi";
+    type: string;
     id?: string | null;
     owner: string;
     author: string;
@@ -1170,6 +1284,7 @@ export type DeleteLikeMutation = {
       __typename: "ModelOshaberiConnection";
       items?: Array<{
         __typename: "Oshaberi";
+        type: string;
         id?: string | null;
         owner: string;
         author: string;
@@ -1213,6 +1328,7 @@ export type DeleteLikeMutation = {
         } | null;
         oshaberi?: {
           __typename: "Oshaberi";
+          type: string;
           id?: string | null;
           owner: string;
           author: string;
@@ -1234,6 +1350,7 @@ export type GetTimelineQuery = {
   oshaberiId: string;
   oshaberi?: {
     __typename: "Oshaberi";
+    type: string;
     id?: string | null;
     owner: string;
     author: string;
@@ -1253,6 +1370,7 @@ export type GetTimelineQuery = {
       __typename: "ModelOshaberiConnection";
       items?: Array<{
         __typename: "Oshaberi";
+        type: string;
         id?: string | null;
         owner: string;
         author: string;
@@ -1296,6 +1414,7 @@ export type GetTimelineQuery = {
         } | null;
         oshaberi?: {
           __typename: "Oshaberi";
+          type: string;
           id?: string | null;
           owner: string;
           author: string;
@@ -1319,6 +1438,7 @@ export type ListTimelinesQuery = {
     oshaberiId: string;
     oshaberi?: {
       __typename: "Oshaberi";
+      type: string;
       id?: string | null;
       owner: string;
       author: string;
@@ -1338,6 +1458,7 @@ export type ListTimelinesQuery = {
         __typename: "ModelOshaberiConnection";
         items?: Array<{
           __typename: "Oshaberi";
+          type: string;
           id?: string | null;
           owner: string;
           author: string;
@@ -1381,6 +1502,7 @@ export type GetNotificationQuery = {
   } | null;
   oshaberi?: {
     __typename: "Oshaberi";
+    type: string;
     id?: string | null;
     owner: string;
     author: string;
@@ -1400,6 +1522,7 @@ export type GetNotificationQuery = {
       __typename: "ModelOshaberiConnection";
       items?: Array<{
         __typename: "Oshaberi";
+        type: string;
         id?: string | null;
         owner: string;
         author: string;
@@ -1443,6 +1566,7 @@ export type GetNotificationQuery = {
         } | null;
         oshaberi?: {
           __typename: "Oshaberi";
+          type: string;
           id?: string | null;
           owner: string;
           author: string;
@@ -1477,6 +1601,7 @@ export type ListNotificationsQuery = {
     } | null;
     oshaberi?: {
       __typename: "Oshaberi";
+      type: string;
       id?: string | null;
       owner: string;
       author: string;
@@ -1496,6 +1621,7 @@ export type ListNotificationsQuery = {
         __typename: "ModelOshaberiConnection";
         items?: Array<{
           __typename: "Oshaberi";
+          type: string;
           id?: string | null;
           owner: string;
           author: string;
@@ -1545,6 +1671,7 @@ export type ListUserinfosQuery = {
 
 export type GetOshaberiQuery = {
   __typename: "Oshaberi";
+  type: string;
   id?: string | null;
   owner: string;
   author: string;
@@ -1564,6 +1691,7 @@ export type GetOshaberiQuery = {
     __typename: "ModelOshaberiConnection";
     items?: Array<{
       __typename: "Oshaberi";
+      type: string;
       id?: string | null;
       owner: string;
       author: string;
@@ -1583,6 +1711,7 @@ export type GetOshaberiQuery = {
         __typename: "ModelOshaberiConnection";
         items?: Array<{
           __typename: "Oshaberi";
+          type: string;
           id?: string | null;
           owner: string;
           author: string;
@@ -1623,6 +1752,7 @@ export type GetOshaberiQuery = {
       } | null;
       oshaberi?: {
         __typename: "Oshaberi";
+        type: string;
         id?: string | null;
         owner: string;
         author: string;
@@ -1656,6 +1786,7 @@ export type ListOshaberisQuery = {
   __typename: "ModelOshaberiConnection";
   items?: Array<{
     __typename: "Oshaberi";
+    type: string;
     id?: string | null;
     owner: string;
     author: string;
@@ -1675,6 +1806,7 @@ export type ListOshaberisQuery = {
       __typename: "ModelOshaberiConnection";
       items?: Array<{
         __typename: "Oshaberi";
+        type: string;
         id?: string | null;
         owner: string;
         author: string;
@@ -1718,6 +1850,7 @@ export type ListOshaberisQuery = {
         } | null;
         oshaberi?: {
           __typename: "Oshaberi";
+          type: string;
           id?: string | null;
           owner: string;
           author: string;
@@ -1737,6 +1870,7 @@ export type ListOshaberisBySpecificOwnerQuery = {
   __typename: "ModelOshaberiConnection";
   items?: Array<{
     __typename: "Oshaberi";
+    type: string;
     id?: string | null;
     owner: string;
     author: string;
@@ -1756,6 +1890,7 @@ export type ListOshaberisBySpecificOwnerQuery = {
       __typename: "ModelOshaberiConnection";
       items?: Array<{
         __typename: "Oshaberi";
+        type: string;
         id?: string | null;
         owner: string;
         author: string;
@@ -1799,6 +1934,7 @@ export type ListOshaberisBySpecificOwnerQuery = {
         } | null;
         oshaberi?: {
           __typename: "Oshaberi";
+          type: string;
           id?: string | null;
           owner: string;
           author: string;
@@ -1818,6 +1954,7 @@ export type ListOshaberiByParentOshaberiQuery = {
   __typename: "ModelOshaberiConnection";
   items?: Array<{
     __typename: "Oshaberi";
+    type: string;
     id?: string | null;
     owner: string;
     author: string;
@@ -1837,6 +1974,7 @@ export type ListOshaberiByParentOshaberiQuery = {
       __typename: "ModelOshaberiConnection";
       items?: Array<{
         __typename: "Oshaberi";
+        type: string;
         id?: string | null;
         owner: string;
         author: string;
@@ -1880,6 +2018,7 @@ export type ListOshaberiByParentOshaberiQuery = {
         } | null;
         oshaberi?: {
           __typename: "Oshaberi";
+          type: string;
           id?: string | null;
           owner: string;
           author: string;
@@ -1893,6 +2032,175 @@ export type ListOshaberiByParentOshaberiQuery = {
     } | null;
   } | null> | null;
   nextToken?: string | null;
+};
+
+export type ListOshaberisByTimestampQuery = {
+  __typename: "ModelOshaberiConnection";
+  items?: Array<{
+    __typename: "Oshaberi";
+    type: string;
+    id?: string | null;
+    owner: string;
+    author: string;
+    timestamp: number;
+    imageKeys?: Array<string | null> | null;
+    content: string;
+    parentOshaberiId?: string | null;
+    userInfo?: {
+      __typename: "Userinfo";
+      userId: string;
+      nickname?: string | null;
+      iconImageKey?: string | null;
+      coverImageKey?: string | null;
+      profile?: string | null;
+    } | null;
+    replyOshaberi?: {
+      __typename: "ModelOshaberiConnection";
+      items?: Array<{
+        __typename: "Oshaberi";
+        type: string;
+        id?: string | null;
+        owner: string;
+        author: string;
+        timestamp: number;
+        imageKeys?: Array<string | null> | null;
+        content: string;
+        parentOshaberiId?: string | null;
+        userInfo?: {
+          __typename: "Userinfo";
+          userId: string;
+          nickname?: string | null;
+          iconImageKey?: string | null;
+          coverImageKey?: string | null;
+          profile?: string | null;
+        } | null;
+        replyOshaberi?: {
+          __typename: "ModelOshaberiConnection";
+          nextToken?: string | null;
+        } | null;
+        like?: {
+          __typename: "ModelLikeConnection";
+          nextToken?: string | null;
+        } | null;
+      } | null> | null;
+      nextToken?: string | null;
+    } | null;
+    like?: {
+      __typename: "ModelLikeConnection";
+      items?: Array<{
+        __typename: "Like";
+        userId: string;
+        timestamp: number;
+        oshaberiId: string;
+        userInfo?: {
+          __typename: "Userinfo";
+          userId: string;
+          nickname?: string | null;
+          iconImageKey?: string | null;
+          coverImageKey?: string | null;
+          profile?: string | null;
+        } | null;
+        oshaberi?: {
+          __typename: "Oshaberi";
+          type: string;
+          id?: string | null;
+          owner: string;
+          author: string;
+          timestamp: number;
+          imageKeys?: Array<string | null> | null;
+          content: string;
+          parentOshaberiId?: string | null;
+        } | null;
+      } | null> | null;
+      nextToken?: string | null;
+    } | null;
+  } | null> | null;
+  nextToken?: string | null;
+};
+
+export type SearchOshaberisQuery = {
+  __typename: "SearchableOshaberiConnection";
+  items?: Array<{
+    __typename: "Oshaberi";
+    type: string;
+    id?: string | null;
+    owner: string;
+    author: string;
+    timestamp: number;
+    imageKeys?: Array<string | null> | null;
+    content: string;
+    parentOshaberiId?: string | null;
+    userInfo?: {
+      __typename: "Userinfo";
+      userId: string;
+      nickname?: string | null;
+      iconImageKey?: string | null;
+      coverImageKey?: string | null;
+      profile?: string | null;
+    } | null;
+    replyOshaberi?: {
+      __typename: "ModelOshaberiConnection";
+      items?: Array<{
+        __typename: "Oshaberi";
+        type: string;
+        id?: string | null;
+        owner: string;
+        author: string;
+        timestamp: number;
+        imageKeys?: Array<string | null> | null;
+        content: string;
+        parentOshaberiId?: string | null;
+        userInfo?: {
+          __typename: "Userinfo";
+          userId: string;
+          nickname?: string | null;
+          iconImageKey?: string | null;
+          coverImageKey?: string | null;
+          profile?: string | null;
+        } | null;
+        replyOshaberi?: {
+          __typename: "ModelOshaberiConnection";
+          nextToken?: string | null;
+        } | null;
+        like?: {
+          __typename: "ModelLikeConnection";
+          nextToken?: string | null;
+        } | null;
+      } | null> | null;
+      nextToken?: string | null;
+    } | null;
+    like?: {
+      __typename: "ModelLikeConnection";
+      items?: Array<{
+        __typename: "Like";
+        userId: string;
+        timestamp: number;
+        oshaberiId: string;
+        userInfo?: {
+          __typename: "Userinfo";
+          userId: string;
+          nickname?: string | null;
+          iconImageKey?: string | null;
+          coverImageKey?: string | null;
+          profile?: string | null;
+        } | null;
+        oshaberi?: {
+          __typename: "Oshaberi";
+          type: string;
+          id?: string | null;
+          owner: string;
+          author: string;
+          timestamp: number;
+          imageKeys?: Array<string | null> | null;
+          content: string;
+          parentOshaberiId?: string | null;
+        } | null;
+      } | null> | null;
+      nextToken?: string | null;
+    } | null;
+  } | null> | null;
+  nextToken?: string | null;
+  total?: number | null;
 };
 
 export type GetFollowingRelationshipQuery = {
@@ -2014,6 +2322,7 @@ export type GetLikeQuery = {
   } | null;
   oshaberi?: {
     __typename: "Oshaberi";
+    type: string;
     id?: string | null;
     owner: string;
     author: string;
@@ -2033,6 +2342,7 @@ export type GetLikeQuery = {
       __typename: "ModelOshaberiConnection";
       items?: Array<{
         __typename: "Oshaberi";
+        type: string;
         id?: string | null;
         owner: string;
         author: string;
@@ -2076,6 +2386,7 @@ export type GetLikeQuery = {
         } | null;
         oshaberi?: {
           __typename: "Oshaberi";
+          type: string;
           id?: string | null;
           owner: string;
           author: string;
@@ -2107,6 +2418,7 @@ export type ListLikesQuery = {
     } | null;
     oshaberi?: {
       __typename: "Oshaberi";
+      type: string;
       id?: string | null;
       owner: string;
       author: string;
@@ -2126,6 +2438,7 @@ export type ListLikesQuery = {
         __typename: "ModelOshaberiConnection";
         items?: Array<{
           __typename: "Oshaberi";
+          type: string;
           id?: string | null;
           owner: string;
           author: string;
@@ -2168,6 +2481,7 @@ export type ListLikesByOshaberiIdQuery = {
     } | null;
     oshaberi?: {
       __typename: "Oshaberi";
+      type: string;
       id?: string | null;
       owner: string;
       author: string;
@@ -2187,6 +2501,7 @@ export type ListLikesByOshaberiIdQuery = {
         __typename: "ModelOshaberiConnection";
         items?: Array<{
           __typename: "Oshaberi";
+          type: string;
           id?: string | null;
           owner: string;
           author: string;
@@ -2229,6 +2544,7 @@ export type ListLikesBySpecificUserIdQuery = {
     } | null;
     oshaberi?: {
       __typename: "Oshaberi";
+      type: string;
       id?: string | null;
       owner: string;
       author: string;
@@ -2248,6 +2564,7 @@ export type ListLikesBySpecificUserIdQuery = {
         __typename: "ModelOshaberiConnection";
         items?: Array<{
           __typename: "Oshaberi";
+          type: string;
           id?: string | null;
           owner: string;
           author: string;
@@ -2275,6 +2592,7 @@ export type ListLikesBySpecificUserIdQuery = {
 
 export type OnCreateOshaberiSubscription = {
   __typename: "Oshaberi";
+  type: string;
   id?: string | null;
   owner: string;
   author: string;
@@ -2294,6 +2612,7 @@ export type OnCreateOshaberiSubscription = {
     __typename: "ModelOshaberiConnection";
     items?: Array<{
       __typename: "Oshaberi";
+      type: string;
       id?: string | null;
       owner: string;
       author: string;
@@ -2313,6 +2632,7 @@ export type OnCreateOshaberiSubscription = {
         __typename: "ModelOshaberiConnection";
         items?: Array<{
           __typename: "Oshaberi";
+          type: string;
           id?: string | null;
           owner: string;
           author: string;
@@ -2353,6 +2673,7 @@ export type OnCreateOshaberiSubscription = {
       } | null;
       oshaberi?: {
         __typename: "Oshaberi";
+        type: string;
         id?: string | null;
         owner: string;
         author: string;
@@ -2389,6 +2710,7 @@ export type OnCreateTimelineSubscription = {
   oshaberiId: string;
   oshaberi?: {
     __typename: "Oshaberi";
+    type: string;
     id?: string | null;
     owner: string;
     author: string;
@@ -2408,6 +2730,7 @@ export type OnCreateTimelineSubscription = {
       __typename: "ModelOshaberiConnection";
       items?: Array<{
         __typename: "Oshaberi";
+        type: string;
         id?: string | null;
         owner: string;
         author: string;
@@ -2451,6 +2774,7 @@ export type OnCreateTimelineSubscription = {
         } | null;
         oshaberi?: {
           __typename: "Oshaberi";
+          type: string;
           id?: string | null;
           owner: string;
           author: string;
@@ -2483,6 +2807,7 @@ export type OnCreateNotificationSubscription = {
   } | null;
   oshaberi?: {
     __typename: "Oshaberi";
+    type: string;
     id?: string | null;
     owner: string;
     author: string;
@@ -2502,6 +2827,7 @@ export type OnCreateNotificationSubscription = {
       __typename: "ModelOshaberiConnection";
       items?: Array<{
         __typename: "Oshaberi";
+        type: string;
         id?: string | null;
         owner: string;
         author: string;
@@ -2545,6 +2871,7 @@ export type OnCreateNotificationSubscription = {
         } | null;
         oshaberi?: {
           __typename: "Oshaberi";
+          type: string;
           id?: string | null;
           owner: string;
           author: string;
@@ -2577,6 +2904,7 @@ export type OnUpdateNotificationSubscription = {
   } | null;
   oshaberi?: {
     __typename: "Oshaberi";
+    type: string;
     id?: string | null;
     owner: string;
     author: string;
@@ -2596,6 +2924,7 @@ export type OnUpdateNotificationSubscription = {
       __typename: "ModelOshaberiConnection";
       items?: Array<{
         __typename: "Oshaberi";
+        type: string;
         id?: string | null;
         owner: string;
         author: string;
@@ -2639,6 +2968,7 @@ export type OnUpdateNotificationSubscription = {
         } | null;
         oshaberi?: {
           __typename: "Oshaberi";
+          type: string;
           id?: string | null;
           owner: string;
           author: string;
@@ -2732,6 +3062,7 @@ export type OnCreateLikeSubscription = {
   } | null;
   oshaberi?: {
     __typename: "Oshaberi";
+    type: string;
     id?: string | null;
     owner: string;
     author: string;
@@ -2751,6 +3082,7 @@ export type OnCreateLikeSubscription = {
       __typename: "ModelOshaberiConnection";
       items?: Array<{
         __typename: "Oshaberi";
+        type: string;
         id?: string | null;
         owner: string;
         author: string;
@@ -2794,6 +3126,7 @@ export type OnCreateLikeSubscription = {
         } | null;
         oshaberi?: {
           __typename: "Oshaberi";
+          type: string;
           id?: string | null;
           owner: string;
           author: string;
@@ -2823,6 +3156,7 @@ export type OnDeleteLikeSubscription = {
   } | null;
   oshaberi?: {
     __typename: "Oshaberi";
+    type: string;
     id?: string | null;
     owner: string;
     author: string;
@@ -2842,6 +3176,7 @@ export type OnDeleteLikeSubscription = {
       __typename: "ModelOshaberiConnection";
       items?: Array<{
         __typename: "Oshaberi";
+        type: string;
         id?: string | null;
         owner: string;
         author: string;
@@ -2885,6 +3220,7 @@ export type OnDeleteLikeSubscription = {
         } | null;
         oshaberi?: {
           __typename: "Oshaberi";
+          type: string;
           id?: string | null;
           owner: string;
           author: string;
@@ -2911,6 +3247,7 @@ export class APIService {
     const statement = `mutation CreateOshaberiAndTimeline($content: String!, $imageKeys: [String], $parentOshaberiId: String) {
         createOshaberiAndTimeline(content: $content, imageKeys: $imageKeys, parentOshaberiId: $parentOshaberiId) {
           __typename
+          type
           id
           owner
           author
@@ -2930,6 +3267,7 @@ export class APIService {
             __typename
             items {
               __typename
+              type
               id
               owner
               author
@@ -2949,6 +3287,7 @@ export class APIService {
                 __typename
                 items {
                   __typename
+                  type
                   id
                   owner
                   author
@@ -2989,6 +3328,7 @@ export class APIService {
               }
               oshaberi {
                 __typename
+                type
                 id
                 owner
                 author
@@ -3054,6 +3394,7 @@ export class APIService {
           }
           oshaberi {
             __typename
+            type
             id
             owner
             author
@@ -3073,6 +3414,7 @@ export class APIService {
               __typename
               items {
                 __typename
+                type
                 id
                 owner
                 author
@@ -3116,6 +3458,7 @@ export class APIService {
                 }
                 oshaberi {
                   __typename
+                  type
                   id
                   owner
                   author
@@ -3271,6 +3614,7 @@ export class APIService {
           }
           oshaberi {
             __typename
+            type
             id
             owner
             author
@@ -3290,6 +3634,7 @@ export class APIService {
               __typename
               items {
                 __typename
+                type
                 id
                 owner
                 author
@@ -3333,6 +3678,7 @@ export class APIService {
                 }
                 oshaberi {
                   __typename
+                  type
                   id
                   owner
                   author
@@ -3390,6 +3736,7 @@ export class APIService {
     const statement = `mutation CreateOshaberi($input: CreateOshaberiInput!, $condition: ModelOshaberiConditionInput) {
         createOshaberi(input: $input, condition: $condition) {
           __typename
+          type
           id
           owner
           author
@@ -3409,6 +3756,7 @@ export class APIService {
             __typename
             items {
               __typename
+              type
               id
               owner
               author
@@ -3428,6 +3776,7 @@ export class APIService {
                 __typename
                 items {
                   __typename
+                  type
                   id
                   owner
                   author
@@ -3468,6 +3817,7 @@ export class APIService {
               }
               oshaberi {
                 __typename
+                type
                 id
                 owner
                 author
@@ -3520,6 +3870,7 @@ export class APIService {
           oshaberiId
           oshaberi {
             __typename
+            type
             id
             owner
             author
@@ -3539,6 +3890,7 @@ export class APIService {
               __typename
               items {
                 __typename
+                type
                 id
                 owner
                 author
@@ -3582,6 +3934,7 @@ export class APIService {
                 }
                 oshaberi {
                   __typename
+                  type
                   id
                   owner
                   author
@@ -3630,6 +3983,7 @@ export class APIService {
           }
           oshaberi {
             __typename
+            type
             id
             owner
             author
@@ -3649,6 +4003,7 @@ export class APIService {
               __typename
               items {
                 __typename
+                type
                 id
                 owner
                 author
@@ -3692,6 +4047,7 @@ export class APIService {
                 }
                 oshaberi {
                   __typename
+                  type
                   id
                   owner
                   author
@@ -3737,6 +4093,7 @@ export class APIService {
           }
           oshaberi {
             __typename
+            type
             id
             owner
             author
@@ -3756,6 +4113,7 @@ export class APIService {
               __typename
               items {
                 __typename
+                type
                 id
                 owner
                 author
@@ -3799,6 +4157,7 @@ export class APIService {
                 }
                 oshaberi {
                   __typename
+                  type
                   id
                   owner
                   author
@@ -3844,6 +4203,7 @@ export class APIService {
           }
           oshaberi {
             __typename
+            type
             id
             owner
             author
@@ -3863,6 +4223,7 @@ export class APIService {
               __typename
               items {
                 __typename
+                type
                 id
                 owner
                 author
@@ -3906,6 +4267,7 @@ export class APIService {
                 }
                 oshaberi {
                   __typename
+                  type
                   id
                   owner
                   author
@@ -3943,6 +4305,7 @@ export class APIService {
           oshaberiId
           oshaberi {
             __typename
+            type
             id
             owner
             author
@@ -3962,6 +4325,7 @@ export class APIService {
               __typename
               items {
                 __typename
+                type
                 id
                 owner
                 author
@@ -4005,6 +4369,7 @@ export class APIService {
                 }
                 oshaberi {
                   __typename
+                  type
                   id
                   owner
                   author
@@ -4046,6 +4411,7 @@ export class APIService {
             oshaberiId
             oshaberi {
               __typename
+              type
               id
               owner
               author
@@ -4065,6 +4431,7 @@ export class APIService {
                 __typename
                 items {
                   __typename
+                  type
                   id
                   owner
                   author
@@ -4137,6 +4504,7 @@ export class APIService {
           }
           oshaberi {
             __typename
+            type
             id
             owner
             author
@@ -4156,6 +4524,7 @@ export class APIService {
               __typename
               items {
                 __typename
+                type
                 id
                 owner
                 author
@@ -4199,6 +4568,7 @@ export class APIService {
                 }
                 oshaberi {
                   __typename
+                  type
                   id
                   owner
                   author
@@ -4251,6 +4621,7 @@ export class APIService {
             }
             oshaberi {
               __typename
+              type
               id
               owner
               author
@@ -4270,6 +4641,7 @@ export class APIService {
                 __typename
                 items {
                   __typename
+                  type
                   id
                   owner
                   author
@@ -4384,6 +4756,7 @@ export class APIService {
     const statement = `query GetOshaberi($id: ID!) {
         getOshaberi(id: $id) {
           __typename
+          type
           id
           owner
           author
@@ -4403,6 +4776,7 @@ export class APIService {
             __typename
             items {
               __typename
+              type
               id
               owner
               author
@@ -4422,6 +4796,7 @@ export class APIService {
                 __typename
                 items {
                   __typename
+                  type
                   id
                   owner
                   author
@@ -4462,6 +4837,7 @@ export class APIService {
               }
               oshaberi {
                 __typename
+                type
                 id
                 owner
                 author
@@ -4509,6 +4885,7 @@ export class APIService {
           __typename
           items {
             __typename
+            type
             id
             owner
             author
@@ -4528,6 +4905,7 @@ export class APIService {
               __typename
               items {
                 __typename
+                type
                 id
                 owner
                 author
@@ -4571,6 +4949,7 @@ export class APIService {
                 }
                 oshaberi {
                   __typename
+                  type
                   id
                   owner
                   author
@@ -4614,6 +4993,7 @@ export class APIService {
           __typename
           items {
             __typename
+            type
             id
             owner
             author
@@ -4633,6 +5013,7 @@ export class APIService {
               __typename
               items {
                 __typename
+                type
                 id
                 owner
                 author
@@ -4676,6 +5057,7 @@ export class APIService {
                 }
                 oshaberi {
                   __typename
+                  type
                   id
                   owner
                   author
@@ -4730,6 +5112,7 @@ export class APIService {
           __typename
           items {
             __typename
+            type
             id
             owner
             author
@@ -4749,6 +5132,7 @@ export class APIService {
               __typename
               items {
                 __typename
+                type
                 id
                 owner
                 author
@@ -4792,6 +5176,7 @@ export class APIService {
                 }
                 oshaberi {
                   __typename
+                  type
                   id
                   owner
                   author
@@ -4832,6 +5217,239 @@ export class APIService {
     return <ListOshaberiByParentOshaberiQuery>(
       response.data.listOshaberiByParentOshaberi
     );
+  }
+  async ListOshaberisByTimestamp(
+    type?: string,
+    timestamp?: ModelIntKeyConditionInput,
+    sortDirection?: ModelSortDirection,
+    filter?: ModelOshaberiFilterInput,
+    limit?: number,
+    nextToken?: string
+  ): Promise<ListOshaberisByTimestampQuery> {
+    const statement = `query ListOshaberisByTimestamp($type: String, $timestamp: ModelIntKeyConditionInput, $sortDirection: ModelSortDirection, $filter: ModelOshaberiFilterInput, $limit: Int, $nextToken: String) {
+        listOshaberisByTimestamp(type: $type, timestamp: $timestamp, sortDirection: $sortDirection, filter: $filter, limit: $limit, nextToken: $nextToken) {
+          __typename
+          items {
+            __typename
+            type
+            id
+            owner
+            author
+            timestamp
+            imageKeys
+            content
+            parentOshaberiId
+            userInfo {
+              __typename
+              userId
+              nickname
+              iconImageKey
+              coverImageKey
+              profile
+            }
+            replyOshaberi {
+              __typename
+              items {
+                __typename
+                type
+                id
+                owner
+                author
+                timestamp
+                imageKeys
+                content
+                parentOshaberiId
+                userInfo {
+                  __typename
+                  userId
+                  nickname
+                  iconImageKey
+                  coverImageKey
+                  profile
+                }
+                replyOshaberi {
+                  __typename
+                  nextToken
+                }
+                like {
+                  __typename
+                  nextToken
+                }
+              }
+              nextToken
+            }
+            like {
+              __typename
+              items {
+                __typename
+                userId
+                timestamp
+                oshaberiId
+                userInfo {
+                  __typename
+                  userId
+                  nickname
+                  iconImageKey
+                  coverImageKey
+                  profile
+                }
+                oshaberi {
+                  __typename
+                  type
+                  id
+                  owner
+                  author
+                  timestamp
+                  imageKeys
+                  content
+                  parentOshaberiId
+                }
+              }
+              nextToken
+            }
+          }
+          nextToken
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {};
+    if (type) {
+      gqlAPIServiceArguments.type = type;
+    }
+    if (timestamp) {
+      gqlAPIServiceArguments.timestamp = timestamp;
+    }
+    if (sortDirection) {
+      gqlAPIServiceArguments.sortDirection = sortDirection;
+    }
+    if (filter) {
+      gqlAPIServiceArguments.filter = filter;
+    }
+    if (limit) {
+      gqlAPIServiceArguments.limit = limit;
+    }
+    if (nextToken) {
+      gqlAPIServiceArguments.nextToken = nextToken;
+    }
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <ListOshaberisByTimestampQuery>(
+      response.data.listOshaberisByTimestamp
+    );
+  }
+  async SearchOshaberis(
+    filter?: SearchableOshaberiFilterInput,
+    sort?: SearchableOshaberiSortInput,
+    limit?: number,
+    nextToken?: string,
+    from?: number
+  ): Promise<SearchOshaberisQuery> {
+    const statement = `query SearchOshaberis($filter: SearchableOshaberiFilterInput, $sort: SearchableOshaberiSortInput, $limit: Int, $nextToken: String, $from: Int) {
+        searchOshaberis(filter: $filter, sort: $sort, limit: $limit, nextToken: $nextToken, from: $from) {
+          __typename
+          items {
+            __typename
+            type
+            id
+            owner
+            author
+            timestamp
+            imageKeys
+            content
+            parentOshaberiId
+            userInfo {
+              __typename
+              userId
+              nickname
+              iconImageKey
+              coverImageKey
+              profile
+            }
+            replyOshaberi {
+              __typename
+              items {
+                __typename
+                type
+                id
+                owner
+                author
+                timestamp
+                imageKeys
+                content
+                parentOshaberiId
+                userInfo {
+                  __typename
+                  userId
+                  nickname
+                  iconImageKey
+                  coverImageKey
+                  profile
+                }
+                replyOshaberi {
+                  __typename
+                  nextToken
+                }
+                like {
+                  __typename
+                  nextToken
+                }
+              }
+              nextToken
+            }
+            like {
+              __typename
+              items {
+                __typename
+                userId
+                timestamp
+                oshaberiId
+                userInfo {
+                  __typename
+                  userId
+                  nickname
+                  iconImageKey
+                  coverImageKey
+                  profile
+                }
+                oshaberi {
+                  __typename
+                  type
+                  id
+                  owner
+                  author
+                  timestamp
+                  imageKeys
+                  content
+                  parentOshaberiId
+                }
+              }
+              nextToken
+            }
+          }
+          nextToken
+          total
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {};
+    if (filter) {
+      gqlAPIServiceArguments.filter = filter;
+    }
+    if (sort) {
+      gqlAPIServiceArguments.sort = sort;
+    }
+    if (limit) {
+      gqlAPIServiceArguments.limit = limit;
+    }
+    if (nextToken) {
+      gqlAPIServiceArguments.nextToken = nextToken;
+    }
+    if (from) {
+      gqlAPIServiceArguments.from = from;
+    }
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <SearchOshaberisQuery>response.data.searchOshaberis;
   }
   async GetFollowingRelationship(
     followeeId: string,
@@ -5075,6 +5693,7 @@ export class APIService {
           }
           oshaberi {
             __typename
+            type
             id
             owner
             author
@@ -5094,6 +5713,7 @@ export class APIService {
               __typename
               items {
                 __typename
+                type
                 id
                 owner
                 author
@@ -5137,6 +5757,7 @@ export class APIService {
                 }
                 oshaberi {
                   __typename
+                  type
                   id
                   owner
                   author
@@ -5186,6 +5807,7 @@ export class APIService {
             }
             oshaberi {
               __typename
+              type
               id
               owner
               author
@@ -5205,6 +5827,7 @@ export class APIService {
                 __typename
                 items {
                   __typename
+                  type
                   id
                   owner
                   author
@@ -5280,6 +5903,7 @@ export class APIService {
             }
             oshaberi {
               __typename
+              type
               id
               owner
               author
@@ -5299,6 +5923,7 @@ export class APIService {
                 __typename
                 items {
                   __typename
+                  type
                   id
                   owner
                   author
@@ -5374,6 +5999,7 @@ export class APIService {
             }
             oshaberi {
               __typename
+              type
               id
               owner
               author
@@ -5393,6 +6019,7 @@ export class APIService {
                 __typename
                 items {
                   __typename
+                  type
                   id
                   owner
                   author
@@ -5451,6 +6078,7 @@ export class APIService {
       `subscription OnCreateOshaberi {
         onCreateOshaberi {
           __typename
+          type
           id
           owner
           author
@@ -5470,6 +6098,7 @@ export class APIService {
             __typename
             items {
               __typename
+              type
               id
               owner
               author
@@ -5489,6 +6118,7 @@ export class APIService {
                 __typename
                 items {
                   __typename
+                  type
                   id
                   owner
                   author
@@ -5529,6 +6159,7 @@ export class APIService {
               }
               oshaberi {
                 __typename
+                type
                 id
                 owner
                 author
@@ -5572,6 +6203,7 @@ export class APIService {
           oshaberiId
           oshaberi {
             __typename
+            type
             id
             owner
             author
@@ -5591,6 +6223,7 @@ export class APIService {
               __typename
               items {
                 __typename
+                type
                 id
                 owner
                 author
@@ -5634,6 +6267,7 @@ export class APIService {
                 }
                 oshaberi {
                   __typename
+                  type
                   id
                   owner
                   author
@@ -5678,6 +6312,7 @@ export class APIService {
           }
           oshaberi {
             __typename
+            type
             id
             owner
             author
@@ -5697,6 +6332,7 @@ export class APIService {
               __typename
               items {
                 __typename
+                type
                 id
                 owner
                 author
@@ -5740,6 +6376,7 @@ export class APIService {
                 }
                 oshaberi {
                   __typename
+                  type
                   id
                   owner
                   author
@@ -5784,6 +6421,7 @@ export class APIService {
           }
           oshaberi {
             __typename
+            type
             id
             owner
             author
@@ -5803,6 +6441,7 @@ export class APIService {
               __typename
               items {
                 __typename
+                type
                 id
                 owner
                 author
@@ -5846,6 +6485,7 @@ export class APIService {
                 }
                 oshaberi {
                   __typename
+                  type
                   id
                   owner
                   author
@@ -5988,6 +6628,7 @@ export class APIService {
           }
           oshaberi {
             __typename
+            type
             id
             owner
             author
@@ -6007,6 +6648,7 @@ export class APIService {
               __typename
               items {
                 __typename
+                type
                 id
                 owner
                 author
@@ -6050,6 +6692,7 @@ export class APIService {
                 }
                 oshaberi {
                   __typename
+                  type
                   id
                   owner
                   author
@@ -6087,6 +6730,7 @@ export class APIService {
           }
           oshaberi {
             __typename
+            type
             id
             owner
             author
@@ -6106,6 +6750,7 @@ export class APIService {
               __typename
               items {
                 __typename
+                type
                 id
                 owner
                 author
@@ -6149,6 +6794,7 @@ export class APIService {
                 }
                 oshaberi {
                   __typename
+                  type
                   id
                   owner
                   author

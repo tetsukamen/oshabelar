@@ -12,9 +12,7 @@ export class NotificationItemComponent implements OnInit {
 
   constructor() { }
 
-  ngOnInit() {
-    console.log(this.notification)
-  }
+  ngOnInit() { }
 
   public getUserName(): string {
     return (this.notification.fromUser && this.notification.fromUser.nickname) ? this.notification.fromUser.nickname : this.notification.fromUserId;

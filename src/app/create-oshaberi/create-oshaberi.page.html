@@ -6,8 +6,10 @@
   <ion-grid>
     <ion-row>
       <ion-col size=2>
-        <ion-avatar>
-          <img src="https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y">
+        <ion-avatar class="avatar">
+          <amplify-s3-image *ngIf="userInfo && userInfo.iconImageKey;else iconImageUnset" class="avatarS3"
+            [attr.img-key]="userInfo.iconImageKey" level="public">
+          </amplify-s3-image>
         </ion-avatar>
       </ion-col>
       <ion-col size="10">
@@ -39,3 +41,7 @@
   </ion-grid>
 
 </ion-content>
+
+<ng-template #iconImageUnset>
+  <img src="assets/iconImageUnset.jpg">
+</ng-template>

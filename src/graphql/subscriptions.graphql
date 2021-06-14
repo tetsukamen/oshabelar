@@ -1,6 +1,7 @@
 # this is an auto generated file. This will be overwritten
 subscription OnCreateOshaberi {
   onCreateOshaberi {
+    type
     id
     owner
     author
@@ -17,6 +18,7 @@ subscription OnCreateOshaberi {
     }
     replyOshaberi {
       items {
+        type
         id
         owner
         author
@@ -33,6 +35,7 @@ subscription OnCreateOshaberi {
         }
         replyOshaberi {
           items {
+            type
             id
             owner
             author
@@ -67,6 +70,7 @@ subscription OnCreateOshaberi {
           profile
         }
         oshaberi {
+          type
           id
           owner
           author
@@ -99,6 +103,7 @@ subscription OnCreateTimeline($userId: String!) {
     timestamp
     oshaberiId
     oshaberi {
+      type
       id
       owner
       author
@@ -115,6 +120,7 @@ subscription OnCreateTimeline($userId: String!) {
       }
       replyOshaberi {
         items {
+          type
           id
           owner
           author
@@ -151,6 +157,7 @@ subscription OnCreateTimeline($userId: String!) {
             profile
           }
           oshaberi {
+            type
             id
             owner
             author
@@ -181,6 +188,7 @@ subscription OnCreateNotification($userId: String!) {
       profile
     }
     oshaberi {
+      type
       id
       owner
       author
@@ -197,6 +205,7 @@ subscription OnCreateNotification($userId: String!) {
       }
       replyOshaberi {
         items {
+          type
           id
           owner
           author
@@ -233,6 +242,7 @@ subscription OnCreateNotification($userId: String!) {
             profile
           }
           oshaberi {
+            type
             id
             owner
             author
@@ -263,6 +273,7 @@ subscription OnUpdateNotification($userId: String!) {
       profile
     }
     oshaberi {
+      type
       id
       owner
       author
@@ -279,6 +290,7 @@ subscription OnUpdateNotification($userId: String!) {
       }
       replyOshaberi {
         items {
+          type
           id
           owner
           author
@@ -315,6 +327,7 @@ subscription OnUpdateNotification($userId: String!) {
             profile
           }
           oshaberi {
+            type
             id
             owner
             author
@@ -402,6 +415,7 @@ subscription OnCreateLike {
       profile
     }
     oshaberi {
+      type
       id
       owner
       author
@@ -418,6 +432,7 @@ subscription OnCreateLike {
       }
       replyOshaberi {
         items {
+          type
           id
           owner
           author
@@ -454,6 +469,7 @@ subscription OnCreateLike {
             profile
           }
           oshaberi {
+            type
             id
             owner
             author
@@ -481,6 +497,7 @@ subscription OnDeleteLike {
       profile
     }
     oshaberi {
+      type
       id
       owner
       author
@@ -497,6 +514,7 @@ subscription OnDeleteLike {
       }
       replyOshaberi {
         items {
+          type
           id
           owner
           author
@@ -533,6 +551,7 @@ subscription OnDeleteLike {
             profile
           }
           oshaberi {
+            type
             id
             owner
             author

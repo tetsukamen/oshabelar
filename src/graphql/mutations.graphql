@@ -9,6 +9,7 @@ mutation CreateOshaberiAndTimeline(
     imageKeys: $imageKeys
     parentOshaberiId: $parentOshaberiId
   ) {
+    type
     id
     owner
     author
@@ -25,6 +26,7 @@ mutation CreateOshaberiAndTimeline(
     }
     replyOshaberi {
       items {
+        type
         id
         owner
         author
@@ -41,6 +43,7 @@ mutation CreateOshaberiAndTimeline(
         }
         replyOshaberi {
           items {
+            type
             id
             owner
             author
@@ -75,6 +78,7 @@ mutation CreateOshaberiAndTimeline(
           profile
         }
         oshaberi {
+          type
           id
           owner
           author
@@ -114,6 +118,7 @@ mutation CreateLikeAndNotification($oshaberiId: String!, $action: String!) {
       profile
     }
     oshaberi {
+      type
       id
       owner
       author
@@ -130,6 +135,7 @@ mutation CreateLikeAndNotification($oshaberiId: String!, $action: String!) {
       }
       replyOshaberi {
         items {
+          type
           id
           owner
           author
@@ -166,6 +172,7 @@ mutation CreateLikeAndNotification($oshaberiId: String!, $action: String!) {
             profile
           }
           oshaberi {
+            type
             id
             owner
             author
@@ -259,6 +266,7 @@ mutation UpdateNotification(
       profile
     }
     oshaberi {
+      type
       id
       owner
       author
@@ -275,6 +283,7 @@ mutation UpdateNotification(
       }
       replyOshaberi {
         items {
+          type
           id
           owner
           author
@@ -311,6 +320,7 @@ mutation UpdateNotification(
             profile
           }
           oshaberi {
+            type
             id
             owner
             author
@@ -342,6 +352,7 @@ mutation CreateOshaberi(
   $condition: ModelOshaberiConditionInput
 ) {
   createOshaberi(input: $input, condition: $condition) {
+    type
     id
     owner
     author
@@ -358,6 +369,7 @@ mutation CreateOshaberi(
     }
     replyOshaberi {
       items {
+        type
         id
         owner
         author
@@ -374,6 +386,7 @@ mutation CreateOshaberi(
         }
         replyOshaberi {
           items {
+            type
             id
             owner
             author
@@ -408,6 +421,7 @@ mutation CreateOshaberi(
           profile
         }
         oshaberi {
+          type
           id
           owner
           author
@@ -443,6 +457,7 @@ mutation CreateTimeline(
     timestamp
     oshaberiId
     oshaberi {
+      type
       id
       owner
       author
@@ -459,6 +474,7 @@ mutation CreateTimeline(
       }
       replyOshaberi {
         items {
+          type
           id
           owner
           author
@@ -495,6 +511,7 @@ mutation CreateTimeline(
             profile
           }
           oshaberi {
+            type
             id
             owner
             author
@@ -528,6 +545,7 @@ mutation CreateNotification(
       profile
     }
     oshaberi {
+      type
       id
       owner
       author
@@ -544,6 +562,7 @@ mutation CreateNotification(
       }
       replyOshaberi {
         items {
+          type
           id
           owner
           author
@@ -580,6 +599,7 @@ mutation CreateNotification(
             profile
           }
           oshaberi {
+            type
             id
             owner
             author
@@ -610,6 +630,7 @@ mutation CreateLike(
       profile
     }
     oshaberi {
+      type
       id
       owner
       author
@@ -626,6 +647,7 @@ mutation CreateLike(
       }
       replyOshaberi {
         items {
+          type
           id
           owner
           author
@@ -662,6 +684,7 @@ mutation CreateLike(
             profile
           }
           oshaberi {
+            type
             id
             owner
             author
@@ -692,6 +715,7 @@ mutation DeleteLike(
       profile
     }
     oshaberi {
+      type
       id
       owner
       author
@@ -708,6 +732,7 @@ mutation DeleteLike(
       }
       replyOshaberi {
         items {
+          type
           id
           owner
           author
@@ -744,6 +769,7 @@ mutation DeleteLike(
             profile
           }
           oshaberi {
+            type
             id
             owner
             author
