@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { APIService, Userinfo } from 'src/app/API.service';
+import { AuthService } from 'src/app/shared/services/auth.service';
 
 @Component({
   selector: 'app-user',
@@ -11,9 +12,14 @@ export class UserComponent implements OnInit {
 
   constructor(
     private api: APIService,
+    private authService: AuthService,
   ) { }
 
   async ngOnInit() {
-    this.users = await this.api.ListUserinfos().then(e => e.items);
+    const username = (await this.authService.getUser()).getUsername();
+    this.users = await this.api.ListUserinfos().then(e => {
+      const users = e.items.filter(userInfo => userInfo.userId !== username);
+      return users;
+    });
   }
 }

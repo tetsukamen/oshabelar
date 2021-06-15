@@ -65,6 +65,10 @@ export class HomePage implements OnInit {
     });
   }
 
+  public goToCreateOshaberi() {
+    this.router.navigate(['/create-oshaberi']);
+  }
+
   private async promptCreateProfile() {
     const userInfo = await this.api.GetUserinfo(this.username);
     if (!userInfo) {

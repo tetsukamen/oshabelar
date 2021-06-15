@@ -1,7 +1,6 @@
-<app-header iconType="menu" title="おうち"></app-header>
+<app-header iconType="menu" title="おうち" buttonText="おしゃべりを作成" (buttonClicked)="goToCreateOshaberi()"></app-header>
 
-<ion-content [fullscreen]="true">
-  <app-oshaberi-button></app-oshaberi-button>
+<ion-content>
   <ion-refresher id=refresher slot="fixed" (ionRefresh)="refreshOshaberis($event)">
     <ion-refresher-content></ion-refresher-content>
   </ion-refresher>
