@@ -6,7 +6,10 @@
   </ion-header>
   <ion-content>
     <ion-list>
-      <ion-item [routerLink]="['/profile',username]" (click)="closeMenu()">ご挨拶</ion-item>
+      <ion-item [routerLink]="['/profile',username]" (click)="closeMenu()">わたくしのご挨拶</ion-item>
+      <ion-item [routerLink]="['/search',{segment:'latest'}]" (click)="closeMenu()">全てのおしゃべり</ion-item>
+      <ion-item [routerLink]="['/search',{segment:'user'}]" (click)="closeMenu()">ユーザー一覧</ion-item>
+      <ion-item [routerLink]="['/search',{segment:'search'}]" (click)="closeMenu()">おしゃべりを検索</ion-item>
       <ion-item (click)="signOut()">ごきげんよろしゅう（ログアウト）</ion-item>
     </ion-list>
   </ion-content>

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { APIService, Oshaberi, SearchableOshaberiFilterInput, SearchableOshaberiSortableFields, SearchableOshaberiSortInput, SearchableSortDirection } from '../API.service';
 
 @Component({
@@ -15,14 +16,17 @@ export class SearchPage implements OnInit {
 
   constructor(
     private api: APIService,
+    private route: ActivatedRoute,
   ) { }
 
   ngOnInit() {
+    this.segmentValue = this.route.snapshot.params["segment"];
   }
 
   async search(searchText) {
     this.searchText = searchText;
     [this.oshaberis, this.nextToken] = await this.getSearchedOshaberisAndNextToken(this.searchText, this.nextToken);
+    this.segmentValue = 'search';
   }
 
   async loadNextOshaberis(event) {
