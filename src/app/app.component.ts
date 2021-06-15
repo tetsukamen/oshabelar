@@ -18,4 +18,5 @@ export class AppComponent implements OnInit {
       { type: "password" },
     ];
   }
+
 }

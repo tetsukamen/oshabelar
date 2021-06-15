@@ -1,13 +1,13 @@
 <ion-menu side="start" menuId="first" contentId="main">
   <ion-header>
     <ion-toolbar color="primary">
-      <ion-title>メニュー</ion-title>
+      <ion-title>お品書き</ion-title>
     </ion-toolbar>
   </ion-header>
   <ion-content>
     <ion-list>
-      <ion-item [routerLink]="['/profile',username]" (click)="closeMenu()">プロフィール</ion-item>
-      <ion-item (click)="signOut()">サインアウト</ion-item>
+      <ion-item [routerLink]="['/profile',username]" (click)="closeMenu()">ご挨拶</ion-item>
+      <ion-item (click)="signOut()">ごきげんよろしゅう（ログアウト）</ion-item>
     </ion-list>
   </ion-content>
 </ion-menu>

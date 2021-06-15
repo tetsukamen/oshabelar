@@ -7,6 +7,7 @@ import { FileReaderEx } from '../shared/classes/file-reader-ex';
 import { ActivatedRoute } from '@angular/router';
 import { MessageService } from '../shared/services/message.service';
 import { APIService, Userinfo } from '../API.service';
+import { OshaberiService } from '../shared/services/oshaberi.service';
 
 @Component({
   selector: 'app-create-oshaberi',
@@ -37,6 +38,7 @@ export class CreateOshaberiPage implements OnInit {
     private messageService: MessageService,
     private route: ActivatedRoute,
     private api: APIService,
+    private oshaberiService: OshaberiService,
   ) { }
 
   async ngOnInit() {
@@ -53,7 +55,7 @@ export class CreateOshaberiPage implements OnInit {
   async createOshaberi() {
     this.uploadProgressRate += 0.01;
     const imageKeys = await this.createOshaberiService.uploadImages(this.images, this.imageAuthLevel).catch(_ => {
-      this.messageService.indicateWarning('画像のアップロードに失敗しました');
+      this.messageService.indicateWarning('画像のアップロードに失敗しましたわ、ごめんあそばせ');
       return [''];
     });
     this.uploadProgressRate = 0.5;
@@ -61,13 +63,14 @@ export class CreateOshaberiPage implements OnInit {
     if (imageKeys) {
       createOshaberi = await this.createOshaberiService.uploadOshaberi(this.oshaberiContent.value, imageKeys, this.parentOshaberiId).catch(e => {
         console.log(e)
-        this.messageService.indicateWarning('おしゃべりの投稿に失敗しました');
+        this.messageService.indicateWarning('おしゃべりの投稿に失敗しましたわ、ごめんあそばせ');
       });
     }
     if (createOshaberi) {
       this.uploadProgressRate = 1;
-      this.messageService.indicateSuccess('投稿しました');
+      this.messageService.indicateSuccess('投稿いたしましたわ');
       setTimeout(() => {
+        this.oshaberiService.refreshOshaberiSubject.next(true);
         this.location.back();
       }, 300);
     }
@@ -81,7 +84,7 @@ export class CreateOshaberiPage implements OnInit {
     const selectedImagesAmount = event.target.files.length;
     // check total number of image
     if (selectedImagesAmount + this.images.length > 5) {
-      this.messageService.indicateWarning('添付可能な画像は最大5つです');
+      this.messageService.indicateWarning('添付可能な画像は最大5つですですわ、ごめんあそばせ');
     } else if (selectedImagesAmount > 0) {
       for (let file of event.target.files) {
         // get extention
@@ -94,7 +97,7 @@ export class CreateOshaberiPage implements OnInit {
         const fileObj = file;
         // display preview
         const imageSrc = await new FileReaderEx().readAsDataURL(file).catch(_ => {
-          this.messageService.indicateWarning('画像の読み込みに失敗しました')
+          this.messageService.indicateWarning('画像の読み込みに失敗しましたわ、ごめんあそばせ')
         });
         // set image info
         this.images.push(this.fb.group({

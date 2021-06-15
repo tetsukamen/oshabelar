@@ -4,16 +4,18 @@
   <app-oshaberi-button></app-oshaberi-button>
   <ion-segment [value]="segmentValue" (ionChange)="segmentValueChanged($event)">
     <ion-segment-button value="search">
-      <ion-label>検索</ion-label>
+      <ion-label>お調べ</ion-label>
     </ion-segment-button>
     <ion-segment-button value="latest">
-      <ion-label>最新</ion-label>
+      <ion-label>あたらし</ion-label>
     </ion-segment-button>
     <ion-segment-button value="user">
-      <ion-label>ユーザー</ion-label>
+      <ion-label>みなさま</ion-label>
     </ion-segment-button>
   </ion-segment>
   <ng-container *ngIf="segmentValue=='search'">
+    <div class="searchIndication" *ngIf="!searchText">ことばをご入力ください</div>
+    <div class="searchIndication" *ngIf="!!searchText && oshaberis.length==0">お調べ結果：なし</div>
     <app-oshaberi *ngFor="let oshaberi of oshaberis" [oshaberi]="oshaberi"></app-oshaberi>
     <ion-infinite-scroll #infinitScroll threshold="50px" (ionInfinite)="loadNextOshaberis($event)">
       <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Loading more data...">

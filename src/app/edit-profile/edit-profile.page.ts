@@ -52,18 +52,18 @@ export class EditProfilePage implements OnInit {
   async updateProfile() {
     this.uploadProgressRate = 0.1;
     const uploadImages = await this.uploadImages().catch(_ => {
-      this.messageService.indicateWarning('画像のアップロードに失敗しました');
+      this.messageService.indicateWarning('画像のアップロードに失敗しましたわ、ごめんあそばせ');
     });
     this.uploadProgressRate = 0.5;
     let uploadProfile;
     if (uploadImages) {
       uploadProfile = await this.uploadProfile().catch(_ => {
-        this.messageService.indicateWarning('プロフィールの更新に失敗しました');
+        this.messageService.indicateWarning('プロフィールの更新に失敗しましたわ、ごめんあそばせ');
       });
     }
     if (uploadProfile) {
       this.uploadProgressRate = 1;
-      this.messageService.indicateSuccess('プロフィールを更新しました');
+      this.messageService.indicateSuccess('プロフィールを更新いたしましたわ');
       setTimeout(() => {
         this.location.back();
       }, 300);
@@ -104,7 +104,7 @@ export class EditProfilePage implements OnInit {
       const key = `${this.currentUsername}${timestamp}${fileName}.${extention}`;
       // display preview
       const imageSrc = await new FileReaderEx().readAsDataURL(file).catch(_ => {
-        this.messageService.indicateWarning('画像の読み込みに失敗しました')
+        this.messageService.indicateWarning('画像の読み込みに失敗しましたわ、ごめんあそばせ')
       });
       if (type == 'cover') {
         this.newCoverImageSrc = imageSrc;

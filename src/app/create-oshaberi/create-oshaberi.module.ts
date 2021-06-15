@@ -15,6 +15,7 @@ import { SharedModule } from '../shared/shared.module';
     CreateOshaberiPageRoutingModule,
     SharedModule,
   ],
-  declarations: [CreateOshaberiPage]
+  declarations: [
+    CreateOshaberiPage]
 })
 export class CreateOshaberiPageModule { }

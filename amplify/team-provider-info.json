@@ -18,7 +18,7 @@
       "function": {
         "createOshaberiAndTimeline": {
           "deploymentBucketName": "amplify-oshabelar-dev-165257-deployment",
-          "s3Key": "amplify-builds/createOshaberiAndTimeline-6d3361643856432b4943-build.zip"
+          "s3Key": "amplify-builds/createOshaberiAndTimeline-57366d496c3570723942-build.zip"
         },
         "createLikeAndNotification": {
           "deploymentBucketName": "amplify-oshabelar-dev-165257-deployment",

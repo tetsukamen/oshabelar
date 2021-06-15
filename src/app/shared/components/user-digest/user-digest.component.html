@@ -15,7 +15,7 @@
     </div>
     <ion-button class="userDigestHeaderFollowButton" color="primary" [fill]="isFollowing ? 'solid':'outline'"
       size="small" (click)="toggleFollowingRelationship()">
-      {{!isFollowing ? "フォロー" : "フォロー中"}}</ion-button>
+      {{!isFollowing ? "お慕いする" : "お慕い中"}}</ion-button>
   </ion-card-header>
   <ion-card-content class="userDigestContent" (click)="goToProfilePage()">
     {{userInfo.profile ? userInfo.profile:''}}

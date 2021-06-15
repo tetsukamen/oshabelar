@@ -16,7 +16,7 @@
           [attr.img-key]="userInfo.iconImageKey" level="public">
         </amplify-s3-image>
       </ion-avatar>
-      <ion-button *ngIf="isMyProfile;else followButton" (click)="goToEditProfilePage()">プロフィールを編集</ion-button>
+      <ion-button *ngIf="isMyProfile;else followButton" (click)="goToEditProfilePage()">ご挨拶を編集</ion-button>
     </div>
     <!-- nickname, username and profile text -->
     <h3 class="profileNickname">{{userInfo ? userInfo.nickname : "未設定"}}</h3>
@@ -27,10 +27,10 @@
     <!-- follow number panel -->
     <div class="profileFollowRelationship">
       <div [routerLink]="['/following-userlist',username,{segment:'followees'}]">
-        {{followeesRelationships ? followeesRelationships.length : ''}}&nbsp;フォロー中
+        {{followeesRelationships ? followeesRelationships.length : ''}}&nbsp;をお慕い中
       </div>
       <div [routerLink]="['/following-userlist',username,{segment:'followers'}]">
-        {{followersRelationships ? followersRelationships.length : ''}}&nbsp;フォロワー
+        {{followersRelationships ? followersRelationships.length : ''}}&nbsp;に慕われ中
       </div>
     </div>
     <!-- segment -->
@@ -66,8 +66,8 @@
 
 <ng-template #followButton>
   <ion-button [color]="isFollowing ? 'danger' : 'primary'" fill="outline" (click)="toggleFollowingRelationship()">
-    {{!isFollowing ? "フォロー"
-    : "フォロー解除"}}</ion-button>
+    {{!isFollowing ? "お慕いする"
+    : "お慕い解除"}}</ion-button>
 </ng-template>
 
 <ng-template #iconImageUnset>

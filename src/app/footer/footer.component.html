@@ -2,15 +2,15 @@
   <ion-tab-bar slot="bottom">
     <ion-tab-button tab="home">
       <ion-icon name="home"></ion-icon>
-      <ion-label>ホーム</ion-label>
+      <ion-label>おうち</ion-label>
     </ion-tab-button>
     <ion-tab-button tab="search">
       <ion-icon name="search"></ion-icon>
-      <ion-label>検索</ion-label>
+      <ion-label>お調べ</ion-label>
     </ion-tab-button>
     <ion-tab-button tab="notification" (click)="readNotifications()">
       <ion-icon name="notifications"></ion-icon>
-      <ion-label>通知</ion-label>
+      <ion-label>おしらせ</ion-label>
       <ion-badge *ngIf="notificationService.haveNotReadCount>0">{{notificationService.haveNotReadCount}}</ion-badge>
     </ion-tab-button>
   </ion-tab-bar>
