@@ -27,4 +27,8 @@ export class MenuListComponent implements OnInit {
     this.menu.close();
   }
 
+  public async signOut() {
+    return await this.authService.signOut();
+  }
+
 }

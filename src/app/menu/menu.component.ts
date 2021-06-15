@@ -14,8 +14,4 @@ export class MenuComponent implements OnInit {
 
   async ngOnInit() { }
 
-  public async signOut() {
-    return await this.authService.signOut();
-  }
-
 }

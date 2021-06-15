@@ -29,7 +29,7 @@ export const messages = {
         "Sign in": "サインイン",
         "Sign in to your account": "サインイン",
         "User does not exist": "ユーザーが存在しません",
-        "Username *": "ユーザー名",
+        "Username *": "ユーザー名（英数字のみ）",
         "Username cannot be empty": "ユーザー名は必須入力です",
         "Username/client id combination not found.": "ユーザー名が見つかりません"
     }
