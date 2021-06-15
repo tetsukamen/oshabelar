@@ -24,6 +24,155 @@ mutation CreateOshaberiAndTimeline(
       coverImageKey
       profile
     }
+    parentOshaberi {
+      type
+      id
+      owner
+      author
+      timestamp
+      imageKeys
+      content
+      parentOshaberiId
+      userInfo {
+        userId
+        nickname
+        iconImageKey
+        coverImageKey
+        profile
+      }
+      parentOshaberi {
+        type
+        id
+        owner
+        author
+        timestamp
+        imageKeys
+        content
+        parentOshaberiId
+        userInfo {
+          userId
+          nickname
+          iconImageKey
+          coverImageKey
+          profile
+        }
+        parentOshaberi {
+          type
+          id
+          owner
+          author
+          timestamp
+          imageKeys
+          content
+          parentOshaberiId
+          userInfo {
+            userId
+            nickname
+            iconImageKey
+            coverImageKey
+            profile
+          }
+          parentOshaberi {
+            type
+            id
+            owner
+            author
+            timestamp
+            imageKeys
+            content
+            parentOshaberiId
+          }
+          replyOshaberi {
+            nextToken
+          }
+          like {
+            nextToken
+          }
+        }
+        replyOshaberi {
+          items {
+            type
+            id
+            owner
+            author
+            timestamp
+            imageKeys
+            content
+            parentOshaberiId
+          }
+          nextToken
+        }
+        like {
+          items {
+            userId
+            timestamp
+            oshaberiId
+          }
+          nextToken
+        }
+      }
+      replyOshaberi {
+        items {
+          type
+          id
+          owner
+          author
+          timestamp
+          imageKeys
+          content
+          parentOshaberiId
+          userInfo {
+            userId
+            nickname
+            iconImageKey
+            coverImageKey
+            profile
+          }
+          parentOshaberi {
+            type
+            id
+            owner
+            author
+            timestamp
+            imageKeys
+            content
+            parentOshaberiId
+          }
+          replyOshaberi {
+            nextToken
+          }
+          like {
+            nextToken
+          }
+        }
+        nextToken
+      }
+      like {
+        items {
+          userId
+          timestamp
+          oshaberiId
+          userInfo {
+            userId
+            nickname
+            iconImageKey
+            coverImageKey
+            profile
+          }
+          oshaberi {
+            type
+            id
+            owner
+            author
+            timestamp
+            imageKeys
+            content
+            parentOshaberiId
+          }
+        }
+        nextToken
+      }
+    }
     replyOshaberi {
       items {
         type
@@ -40,6 +189,39 @@ mutation CreateOshaberiAndTimeline(
           iconImageKey
           coverImageKey
           profile
+        }
+        parentOshaberi {
+          type
+          id
+          owner
+          author
+          timestamp
+          imageKeys
+          content
+          parentOshaberiId
+          userInfo {
+            userId
+            nickname
+            iconImageKey
+            coverImageKey
+            profile
+          }
+          parentOshaberi {
+            type
+            id
+            owner
+            author
+            timestamp
+            imageKeys
+            content
+            parentOshaberiId
+          }
+          replyOshaberi {
+            nextToken
+          }
+          like {
+            nextToken
+          }
         }
         replyOshaberi {
           items {
@@ -93,6 +275,16 @@ mutation CreateOshaberiAndTimeline(
             coverImageKey
             profile
           }
+          parentOshaberi {
+            type
+            id
+            owner
+            author
+            timestamp
+            imageKeys
+            content
+            parentOshaberiId
+          }
           replyOshaberi {
             nextToken
           }
@@ -133,6 +325,77 @@ mutation CreateLikeAndNotification($oshaberiId: String!, $action: String!) {
         coverImageKey
         profile
       }
+      parentOshaberi {
+        type
+        id
+        owner
+        author
+        timestamp
+        imageKeys
+        content
+        parentOshaberiId
+        userInfo {
+          userId
+          nickname
+          iconImageKey
+          coverImageKey
+          profile
+        }
+        parentOshaberi {
+          type
+          id
+          owner
+          author
+          timestamp
+          imageKeys
+          content
+          parentOshaberiId
+          userInfo {
+            userId
+            nickname
+            iconImageKey
+            coverImageKey
+            profile
+          }
+          parentOshaberi {
+            type
+            id
+            owner
+            author
+            timestamp
+            imageKeys
+            content
+            parentOshaberiId
+          }
+          replyOshaberi {
+            nextToken
+          }
+          like {
+            nextToken
+          }
+        }
+        replyOshaberi {
+          items {
+            type
+            id
+            owner
+            author
+            timestamp
+            imageKeys
+            content
+            parentOshaberiId
+          }
+          nextToken
+        }
+        like {
+          items {
+            userId
+            timestamp
+            oshaberiId
+          }
+          nextToken
+        }
+      }
       replyOshaberi {
         items {
           type
@@ -149,6 +412,16 @@ mutation CreateLikeAndNotification($oshaberiId: String!, $action: String!) {
             iconImageKey
             coverImageKey
             profile
+          }
+          parentOshaberi {
+            type
+            id
+            owner
+            author
+            timestamp
+            imageKeys
+            content
+            parentOshaberiId
           }
           replyOshaberi {
             nextToken
@@ -281,6 +554,77 @@ mutation UpdateNotification(
         coverImageKey
         profile
       }
+      parentOshaberi {
+        type
+        id
+        owner
+        author
+        timestamp
+        imageKeys
+        content
+        parentOshaberiId
+        userInfo {
+          userId
+          nickname
+          iconImageKey
+          coverImageKey
+          profile
+        }
+        parentOshaberi {
+          type
+          id
+          owner
+          author
+          timestamp
+          imageKeys
+          content
+          parentOshaberiId
+          userInfo {
+            userId
+            nickname
+            iconImageKey
+            coverImageKey
+            profile
+          }
+          parentOshaberi {
+            type
+            id
+            owner
+            author
+            timestamp
+            imageKeys
+            content
+            parentOshaberiId
+          }
+          replyOshaberi {
+            nextToken
+          }
+          like {
+            nextToken
+          }
+        }
+        replyOshaberi {
+          items {
+            type
+            id
+            owner
+            author
+            timestamp
+            imageKeys
+            content
+            parentOshaberiId
+          }
+          nextToken
+        }
+        like {
+          items {
+            userId
+            timestamp
+            oshaberiId
+          }
+          nextToken
+        }
+      }
       replyOshaberi {
         items {
           type
@@ -297,6 +641,16 @@ mutation UpdateNotification(
             iconImageKey
             coverImageKey
             profile
+          }
+          parentOshaberi {
+            type
+            id
+            owner
+            author
+            timestamp
+            imageKeys
+            content
+            parentOshaberiId
           }
           replyOshaberi {
             nextToken
@@ -367,6 +721,155 @@ mutation CreateOshaberi(
       coverImageKey
       profile
     }
+    parentOshaberi {
+      type
+      id
+      owner
+      author
+      timestamp
+      imageKeys
+      content
+      parentOshaberiId
+      userInfo {
+        userId
+        nickname
+        iconImageKey
+        coverImageKey
+        profile
+      }
+      parentOshaberi {
+        type
+        id
+        owner
+        author
+        timestamp
+        imageKeys
+        content
+        parentOshaberiId
+        userInfo {
+          userId
+          nickname
+          iconImageKey
+          coverImageKey
+          profile
+        }
+        parentOshaberi {
+          type
+          id
+          owner
+          author
+          timestamp
+          imageKeys
+          content
+          parentOshaberiId
+          userInfo {
+            userId
+            nickname
+            iconImageKey
+            coverImageKey
+            profile
+          }
+          parentOshaberi {
+            type
+            id
+            owner
+            author
+            timestamp
+            imageKeys
+            content
+            parentOshaberiId
+          }
+          replyOshaberi {
+            nextToken
+          }
+          like {
+            nextToken
+          }
+        }
+        replyOshaberi {
+          items {
+            type
+            id
+            owner
+            author
+            timestamp
+            imageKeys
+            content
+            parentOshaberiId
+          }
+          nextToken
+        }
+        like {
+          items {
+            userId
+            timestamp
+            oshaberiId
+          }
+          nextToken
+        }
+      }
+      replyOshaberi {
+        items {
+          type
+          id
+          owner
+          author
+          timestamp
+          imageKeys
+          content
+          parentOshaberiId
+          userInfo {
+            userId
+            nickname
+            iconImageKey
+            coverImageKey
+            profile
+          }
+          parentOshaberi {
+            type
+            id
+            owner
+            author
+            timestamp
+            imageKeys
+            content
+            parentOshaberiId
+          }
+          replyOshaberi {
+            nextToken
+          }
+          like {
+            nextToken
+          }
+        }
+        nextToken
+      }
+      like {
+        items {
+          userId
+          timestamp
+          oshaberiId
+          userInfo {
+            userId
+            nickname
+            iconImageKey
+            coverImageKey
+            profile
+          }
+          oshaberi {
+            type
+            id
+            owner
+            author
+            timestamp
+            imageKeys
+            content
+            parentOshaberiId
+          }
+        }
+        nextToken
+      }
+    }
     replyOshaberi {
       items {
         type
@@ -383,6 +886,39 @@ mutation CreateOshaberi(
           iconImageKey
           coverImageKey
           profile
+        }
+        parentOshaberi {
+          type
+          id
+          owner
+          author
+          timestamp
+          imageKeys
+          content
+          parentOshaberiId
+          userInfo {
+            userId
+            nickname
+            iconImageKey
+            coverImageKey
+            profile
+          }
+          parentOshaberi {
+            type
+            id
+            owner
+            author
+            timestamp
+            imageKeys
+            content
+            parentOshaberiId
+          }
+          replyOshaberi {
+            nextToken
+          }
+          like {
+            nextToken
+          }
         }
         replyOshaberi {
           items {
@@ -436,6 +972,16 @@ mutation CreateOshaberi(
             coverImageKey
             profile
           }
+          parentOshaberi {
+            type
+            id
+            owner
+            author
+            timestamp
+            imageKeys
+            content
+            parentOshaberiId
+          }
           replyOshaberi {
             nextToken
           }
@@ -472,6 +1018,77 @@ mutation CreateTimeline(
         coverImageKey
         profile
       }
+      parentOshaberi {
+        type
+        id
+        owner
+        author
+        timestamp
+        imageKeys
+        content
+        parentOshaberiId
+        userInfo {
+          userId
+          nickname
+          iconImageKey
+          coverImageKey
+          profile
+        }
+        parentOshaberi {
+          type
+          id
+          owner
+          author
+          timestamp
+          imageKeys
+          content
+          parentOshaberiId
+          userInfo {
+            userId
+            nickname
+            iconImageKey
+            coverImageKey
+            profile
+          }
+          parentOshaberi {
+            type
+            id
+            owner
+            author
+            timestamp
+            imageKeys
+            content
+            parentOshaberiId
+          }
+          replyOshaberi {
+            nextToken
+          }
+          like {
+            nextToken
+          }
+        }
+        replyOshaberi {
+          items {
+            type
+            id
+            owner
+            author
+            timestamp
+            imageKeys
+            content
+            parentOshaberiId
+          }
+          nextToken
+        }
+        like {
+          items {
+            userId
+            timestamp
+            oshaberiId
+          }
+          nextToken
+        }
+      }
       replyOshaberi {
         items {
           type
@@ -488,6 +1105,16 @@ mutation CreateTimeline(
             iconImageKey
             coverImageKey
             profile
+          }
+          parentOshaberi {
+            type
+            id
+            owner
+            author
+            timestamp
+            imageKeys
+            content
+            parentOshaberiId
           }
           replyOshaberi {
             nextToken
@@ -560,6 +1187,77 @@ mutation CreateNotification(
         coverImageKey
         profile
       }
+      parentOshaberi {
+        type
+        id
+        owner
+        author
+        timestamp
+        imageKeys
+        content
+        parentOshaberiId
+        userInfo {
+          userId
+          nickname
+          iconImageKey
+          coverImageKey
+          profile
+        }
+        parentOshaberi {
+          type
+          id
+          owner
+          author
+          timestamp
+          imageKeys
+          content
+          parentOshaberiId
+          userInfo {
+            userId
+            nickname
+            iconImageKey
+            coverImageKey
+            profile
+          }
+          parentOshaberi {
+            type
+            id
+            owner
+            author
+            timestamp
+            imageKeys
+            content
+            parentOshaberiId
+          }
+          replyOshaberi {
+            nextToken
+          }
+          like {
+            nextToken
+          }
+        }
+        replyOshaberi {
+          items {
+            type
+            id
+            owner
+            author
+            timestamp
+            imageKeys
+            content
+            parentOshaberiId
+          }
+          nextToken
+        }
+        like {
+          items {
+            userId
+            timestamp
+            oshaberiId
+          }
+          nextToken
+        }
+      }
       replyOshaberi {
         items {
           type
@@ -576,6 +1274,16 @@ mutation CreateNotification(
             iconImageKey
             coverImageKey
             profile
+          }
+          parentOshaberi {
+            type
+            id
+            owner
+            author
+            timestamp
+            imageKeys
+            content
+            parentOshaberiId
           }
           replyOshaberi {
             nextToken
@@ -645,6 +1353,77 @@ mutation CreateLike(
         coverImageKey
         profile
       }
+      parentOshaberi {
+        type
+        id
+        owner
+        author
+        timestamp
+        imageKeys
+        content
+        parentOshaberiId
+        userInfo {
+          userId
+          nickname
+          iconImageKey
+          coverImageKey
+          profile
+        }
+        parentOshaberi {
+          type
+          id
+          owner
+          author
+          timestamp
+          imageKeys
+          content
+          parentOshaberiId
+          userInfo {
+            userId
+            nickname
+            iconImageKey
+            coverImageKey
+            profile
+          }
+          parentOshaberi {
+            type
+            id
+            owner
+            author
+            timestamp
+            imageKeys
+            content
+            parentOshaberiId
+          }
+          replyOshaberi {
+            nextToken
+          }
+          like {
+            nextToken
+          }
+        }
+        replyOshaberi {
+          items {
+            type
+            id
+            owner
+            author
+            timestamp
+            imageKeys
+            content
+            parentOshaberiId
+          }
+          nextToken
+        }
+        like {
+          items {
+            userId
+            timestamp
+            oshaberiId
+          }
+          nextToken
+        }
+      }
       replyOshaberi {
         items {
           type
@@ -661,6 +1440,16 @@ mutation CreateLike(
             iconImageKey
             coverImageKey
             profile
+          }
+          parentOshaberi {
+            type
+            id
+            owner
+            author
+            timestamp
+            imageKeys
+            content
+            parentOshaberiId
           }
           replyOshaberi {
             nextToken
@@ -730,6 +1519,77 @@ mutation DeleteLike(
         coverImageKey
         profile
       }
+      parentOshaberi {
+        type
+        id
+        owner
+        author
+        timestamp
+        imageKeys
+        content
+        parentOshaberiId
+        userInfo {
+          userId
+          nickname
+          iconImageKey
+          coverImageKey
+          profile
+        }
+        parentOshaberi {
+          type
+          id
+          owner
+          author
+          timestamp
+          imageKeys
+          content
+          parentOshaberiId
+          userInfo {
+            userId
+            nickname
+            iconImageKey
+            coverImageKey
+            profile
+          }
+          parentOshaberi {
+            type
+            id
+            owner
+            author
+            timestamp
+            imageKeys
+            content
+            parentOshaberiId
+          }
+          replyOshaberi {
+            nextToken
+          }
+          like {
+            nextToken
+          }
+        }
+        replyOshaberi {
+          items {
+            type
+            id
+            owner
+            author
+            timestamp
+            imageKeys
+            content
+            parentOshaberiId
+          }
+          nextToken
+        }
+        like {
+          items {
+            userId
+            timestamp
+            oshaberiId
+          }
+          nextToken
+        }
+      }
       replyOshaberi {
         items {
           type
@@ -746,6 +1606,16 @@ mutation DeleteLike(
             iconImageKey
             coverImageKey
             profile
+          }
+          parentOshaberi {
+            type
+            id
+            owner
+            author
+            timestamp
+            imageKeys
+            content
+            parentOshaberiId
           }
           replyOshaberi {
             nextToken

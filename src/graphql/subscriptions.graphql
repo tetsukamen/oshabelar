@@ -16,6 +16,155 @@ subscription OnCreateOshaberi {
       coverImageKey
       profile
     }
+    parentOshaberi {
+      type
+      id
+      owner
+      author
+      timestamp
+      imageKeys
+      content
+      parentOshaberiId
+      userInfo {
+        userId
+        nickname
+        iconImageKey
+        coverImageKey
+        profile
+      }
+      parentOshaberi {
+        type
+        id
+        owner
+        author
+        timestamp
+        imageKeys
+        content
+        parentOshaberiId
+        userInfo {
+          userId
+          nickname
+          iconImageKey
+          coverImageKey
+          profile
+        }
+        parentOshaberi {
+          type
+          id
+          owner
+          author
+          timestamp
+          imageKeys
+          content
+          parentOshaberiId
+          userInfo {
+            userId
+            nickname
+            iconImageKey
+            coverImageKey
+            profile
+          }
+          parentOshaberi {
+            type
+            id
+            owner
+            author
+            timestamp
+            imageKeys
+            content
+            parentOshaberiId
+          }
+          replyOshaberi {
+            nextToken
+          }
+          like {
+            nextToken
+          }
+        }
+        replyOshaberi {
+          items {
+            type
+            id
+            owner
+            author
+            timestamp
+            imageKeys
+            content
+            parentOshaberiId
+          }
+          nextToken
+        }
+        like {
+          items {
+            userId
+            timestamp
+            oshaberiId
+          }
+          nextToken
+        }
+      }
+      replyOshaberi {
+        items {
+          type
+          id
+          owner
+          author
+          timestamp
+          imageKeys
+          content
+          parentOshaberiId
+          userInfo {
+            userId
+            nickname
+            iconImageKey
+            coverImageKey
+            profile
+          }
+          parentOshaberi {
+            type
+            id
+            owner
+            author
+            timestamp
+            imageKeys
+            content
+            parentOshaberiId
+          }
+          replyOshaberi {
+            nextToken
+          }
+          like {
+            nextToken
+          }
+        }
+        nextToken
+      }
+      like {
+        items {
+          userId
+          timestamp
+          oshaberiId
+          userInfo {
+            userId
+            nickname
+            iconImageKey
+            coverImageKey
+            profile
+          }
+          oshaberi {
+            type
+            id
+            owner
+            author
+            timestamp
+            imageKeys
+            content
+            parentOshaberiId
+          }
+        }
+        nextToken
+      }
+    }
     replyOshaberi {
       items {
         type
@@ -32,6 +181,39 @@ subscription OnCreateOshaberi {
           iconImageKey
           coverImageKey
           profile
+        }
+        parentOshaberi {
+          type
+          id
+          owner
+          author
+          timestamp
+          imageKeys
+          content
+          parentOshaberiId
+          userInfo {
+            userId
+            nickname
+            iconImageKey
+            coverImageKey
+            profile
+          }
+          parentOshaberi {
+            type
+            id
+            owner
+            author
+            timestamp
+            imageKeys
+            content
+            parentOshaberiId
+          }
+          replyOshaberi {
+            nextToken
+          }
+          like {
+            nextToken
+          }
         }
         replyOshaberi {
           items {
@@ -85,6 +267,16 @@ subscription OnCreateOshaberi {
             coverImageKey
             profile
           }
+          parentOshaberi {
+            type
+            id
+            owner
+            author
+            timestamp
+            imageKeys
+            content
+            parentOshaberiId
+          }
           replyOshaberi {
             nextToken
           }
@@ -118,6 +310,77 @@ subscription OnCreateTimeline($userId: String!) {
         coverImageKey
         profile
       }
+      parentOshaberi {
+        type
+        id
+        owner
+        author
+        timestamp
+        imageKeys
+        content
+        parentOshaberiId
+        userInfo {
+          userId
+          nickname
+          iconImageKey
+          coverImageKey
+          profile
+        }
+        parentOshaberi {
+          type
+          id
+          owner
+          author
+          timestamp
+          imageKeys
+          content
+          parentOshaberiId
+          userInfo {
+            userId
+            nickname
+            iconImageKey
+            coverImageKey
+            profile
+          }
+          parentOshaberi {
+            type
+            id
+            owner
+            author
+            timestamp
+            imageKeys
+            content
+            parentOshaberiId
+          }
+          replyOshaberi {
+            nextToken
+          }
+          like {
+            nextToken
+          }
+        }
+        replyOshaberi {
+          items {
+            type
+            id
+            owner
+            author
+            timestamp
+            imageKeys
+            content
+            parentOshaberiId
+          }
+          nextToken
+        }
+        like {
+          items {
+            userId
+            timestamp
+            oshaberiId
+          }
+          nextToken
+        }
+      }
       replyOshaberi {
         items {
           type
@@ -134,6 +397,16 @@ subscription OnCreateTimeline($userId: String!) {
             iconImageKey
             coverImageKey
             profile
+          }
+          parentOshaberi {
+            type
+            id
+            owner
+            author
+            timestamp
+            imageKeys
+            content
+            parentOshaberiId
           }
           replyOshaberi {
             nextToken
@@ -203,6 +476,77 @@ subscription OnCreateNotification($userId: String!) {
         coverImageKey
         profile
       }
+      parentOshaberi {
+        type
+        id
+        owner
+        author
+        timestamp
+        imageKeys
+        content
+        parentOshaberiId
+        userInfo {
+          userId
+          nickname
+          iconImageKey
+          coverImageKey
+          profile
+        }
+        parentOshaberi {
+          type
+          id
+          owner
+          author
+          timestamp
+          imageKeys
+          content
+          parentOshaberiId
+          userInfo {
+            userId
+            nickname
+            iconImageKey
+            coverImageKey
+            profile
+          }
+          parentOshaberi {
+            type
+            id
+            owner
+            author
+            timestamp
+            imageKeys
+            content
+            parentOshaberiId
+          }
+          replyOshaberi {
+            nextToken
+          }
+          like {
+            nextToken
+          }
+        }
+        replyOshaberi {
+          items {
+            type
+            id
+            owner
+            author
+            timestamp
+            imageKeys
+            content
+            parentOshaberiId
+          }
+          nextToken
+        }
+        like {
+          items {
+            userId
+            timestamp
+            oshaberiId
+          }
+          nextToken
+        }
+      }
       replyOshaberi {
         items {
           type
@@ -219,6 +563,16 @@ subscription OnCreateNotification($userId: String!) {
             iconImageKey
             coverImageKey
             profile
+          }
+          parentOshaberi {
+            type
+            id
+            owner
+            author
+            timestamp
+            imageKeys
+            content
+            parentOshaberiId
           }
           replyOshaberi {
             nextToken
@@ -288,6 +642,77 @@ subscription OnUpdateNotification($userId: String!) {
         coverImageKey
         profile
       }
+      parentOshaberi {
+        type
+        id
+        owner
+        author
+        timestamp
+        imageKeys
+        content
+        parentOshaberiId
+        userInfo {
+          userId
+          nickname
+          iconImageKey
+          coverImageKey
+          profile
+        }
+        parentOshaberi {
+          type
+          id
+          owner
+          author
+          timestamp
+          imageKeys
+          content
+          parentOshaberiId
+          userInfo {
+            userId
+            nickname
+            iconImageKey
+            coverImageKey
+            profile
+          }
+          parentOshaberi {
+            type
+            id
+            owner
+            author
+            timestamp
+            imageKeys
+            content
+            parentOshaberiId
+          }
+          replyOshaberi {
+            nextToken
+          }
+          like {
+            nextToken
+          }
+        }
+        replyOshaberi {
+          items {
+            type
+            id
+            owner
+            author
+            timestamp
+            imageKeys
+            content
+            parentOshaberiId
+          }
+          nextToken
+        }
+        like {
+          items {
+            userId
+            timestamp
+            oshaberiId
+          }
+          nextToken
+        }
+      }
       replyOshaberi {
         items {
           type
@@ -304,6 +729,16 @@ subscription OnUpdateNotification($userId: String!) {
             iconImageKey
             coverImageKey
             profile
+          }
+          parentOshaberi {
+            type
+            id
+            owner
+            author
+            timestamp
+            imageKeys
+            content
+            parentOshaberiId
           }
           replyOshaberi {
             nextToken
@@ -430,6 +865,77 @@ subscription OnCreateLike {
         coverImageKey
         profile
       }
+      parentOshaberi {
+        type
+        id
+        owner
+        author
+        timestamp
+        imageKeys
+        content
+        parentOshaberiId
+        userInfo {
+          userId
+          nickname
+          iconImageKey
+          coverImageKey
+          profile
+        }
+        parentOshaberi {
+          type
+          id
+          owner
+          author
+          timestamp
+          imageKeys
+          content
+          parentOshaberiId
+          userInfo {
+            userId
+            nickname
+            iconImageKey
+            coverImageKey
+            profile
+          }
+          parentOshaberi {
+            type
+            id
+            owner
+            author
+            timestamp
+            imageKeys
+            content
+            parentOshaberiId
+          }
+          replyOshaberi {
+            nextToken
+          }
+          like {
+            nextToken
+          }
+        }
+        replyOshaberi {
+          items {
+            type
+            id
+            owner
+            author
+            timestamp
+            imageKeys
+            content
+            parentOshaberiId
+          }
+          nextToken
+        }
+        like {
+          items {
+            userId
+            timestamp
+            oshaberiId
+          }
+          nextToken
+        }
+      }
       replyOshaberi {
         items {
           type
@@ -446,6 +952,16 @@ subscription OnCreateLike {
             iconImageKey
             coverImageKey
             profile
+          }
+          parentOshaberi {
+            type
+            id
+            owner
+            author
+            timestamp
+            imageKeys
+            content
+            parentOshaberiId
           }
           replyOshaberi {
             nextToken
@@ -512,6 +1028,77 @@ subscription OnDeleteLike {
         coverImageKey
         profile
       }
+      parentOshaberi {
+        type
+        id
+        owner
+        author
+        timestamp
+        imageKeys
+        content
+        parentOshaberiId
+        userInfo {
+          userId
+          nickname
+          iconImageKey
+          coverImageKey
+          profile
+        }
+        parentOshaberi {
+          type
+          id
+          owner
+          author
+          timestamp
+          imageKeys
+          content
+          parentOshaberiId
+          userInfo {
+            userId
+            nickname
+            iconImageKey
+            coverImageKey
+            profile
+          }
+          parentOshaberi {
+            type
+            id
+            owner
+            author
+            timestamp
+            imageKeys
+            content
+            parentOshaberiId
+          }
+          replyOshaberi {
+            nextToken
+          }
+          like {
+            nextToken
+          }
+        }
+        replyOshaberi {
+          items {
+            type
+            id
+            owner
+            author
+            timestamp
+            imageKeys
+            content
+            parentOshaberiId
+          }
+          nextToken
+        }
+        like {
+          items {
+            userId
+            timestamp
+            oshaberiId
+          }
+          nextToken
+        }
+      }
       replyOshaberi {
         items {
           type
@@ -528,6 +1115,16 @@ subscription OnDeleteLike {
             iconImageKey
             coverImageKey
             profile
+          }
+          parentOshaberi {
+            type
+            id
+            owner
+            author
+            timestamp
+            imageKeys
+            content
+            parentOshaberiId
           }
           replyOshaberi {
             nextToken

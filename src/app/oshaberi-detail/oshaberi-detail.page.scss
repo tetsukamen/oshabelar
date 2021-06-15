@@ -1,5 +1,13 @@
+.line {
+    display: block;
+    margin: -30px 0 0 50%;
+    height: 50px;
+    border-left: dashed 2px gray;
+}
+
 .oshaberiContentWrapper {
-    margin: 0 0.5rem;
+    padding: 15px 0.5rem 0;
+    border-top: solid 1px gray;
 }
 .replyHeader {
     display: flex;

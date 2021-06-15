@@ -42,6 +42,7 @@ type Oshaberi
   imageKeys:[String]
   content:String!
   parentOshaberiId:ID
+  parentOshaberi:Oshaberi @connection(fields:["parentOshaberiId"])
   replyOshaberi:[Oshaberi] @connection(keyName:"byParentOshaberi", fields:["id"])
   like:[Like] @connection(keyName:"byOshaberiId", fields:["id"])
 }

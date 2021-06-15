@@ -3,6 +3,10 @@
 <ion-content>
   <app-oshaberi-button></app-oshaberi-button>
   <ng-container *ngIf="oshaberi">
+    <ng-container *ngIf="oshaberi.parentOshaberi">
+      <app-oshaberi [oshaberi]="oshaberi.parentOshaberi"></app-oshaberi>
+      <span class="line"></span>
+    </ng-container>
     <div class="oshaberiContentWrapper">
       <app-oshaberi-header [oshaberi]="oshaberi"></app-oshaberi-header>
       <app-oshaberi-body [oshaberi]="oshaberi"></app-oshaberi-body>
