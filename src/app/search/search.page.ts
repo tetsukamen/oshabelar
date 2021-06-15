@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { APIService, Oshaberi, SearchableOshaberiFilterInput, SearchableOshaberiSortableFields, SearchableOshaberiSortInput, SearchableSortDirection } from '../API.service';
+import { ResponsibleService } from '../shared/services/responsible.service';
 
 @Component({
   selector: 'app-search',
@@ -17,10 +18,14 @@ export class SearchPage implements OnInit {
   constructor(
     private api: APIService,
     private route: ActivatedRoute,
+    public responsibleService: ResponsibleService,
   ) { }
 
   ngOnInit() {
-    this.segmentValue = this.route.snapshot.params["segment"];
+    const param = this.route.snapshot.params["segment"];
+    if (param) {
+      this.segmentValue = param;
+    }
   }
 
   async search(searchText) {

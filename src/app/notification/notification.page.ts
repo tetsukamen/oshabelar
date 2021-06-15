@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { APIService, ModelSortDirection } from '../API.service';
 import { AuthService } from '../shared/services/auth.service';
 import { NotificationService } from '../shared/services/notification.service';
+import { ResponsibleService } from '../shared/services/responsible.service';
 
 @Component({
   selector: 'app-notification',
@@ -18,6 +19,7 @@ export class NotificationPage implements OnInit {
     private api: APIService,
     private authService: AuthService,
     private notificationService: NotificationService,
+    public responsibleService: ResponsibleService,
   ) { }
 
   async ngOnInit() {

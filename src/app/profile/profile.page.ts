@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { APIService, FollowingRelationship, Like, ModelSortDirection, Oshaberi, Userinfo } from '../API.service';
 import { AuthService } from '../shared/services/auth.service';
+import { ResponsibleService } from '../shared/services/responsible.service';
 
 @Component({
   selector: 'app-profile',
@@ -28,6 +29,7 @@ export class ProfilePage implements OnInit {
     private router: Router,
     private api: APIService,
     private authService: AuthService,
+    public responsibleService: ResponsibleService,
   ) { }
 
   async ngOnInit() {

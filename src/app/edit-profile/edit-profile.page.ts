@@ -6,6 +6,7 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { Storage } from 'aws-amplify';
 import { Location } from '@angular/common';
 import { MessageService } from '../shared/services/message.service';
+import { ResponsibleService } from '../shared/services/responsible.service';
 
 @Component({
   selector: 'app-edit-profile',
@@ -36,6 +37,7 @@ export class EditProfilePage implements OnInit {
     private messageService: MessageService,
     private fb: FormBuilder,
     private location: Location,
+    public responsibleService: ResponsibleService,
   ) { }
 
   async ngOnInit() {

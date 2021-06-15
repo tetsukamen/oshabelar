@@ -9,6 +9,7 @@ import { ElapsedTimePipe } from './pipes/elapsed-time.pipe';
 import { ActionPanelComponent } from './components/action-panel/action-panel.component';
 import { OshaberiHeaderComponent } from './components/oshaberi-header/oshaberi-header.component';
 import { OshaberiBodyComponent } from './components/oshaberi-body/oshaberi-body.component';
+import { MenuListComponent } from './components/menu-list/menu-list.component';
 
 
 
@@ -21,6 +22,7 @@ import { OshaberiBodyComponent } from './components/oshaberi-body/oshaberi-body.
     OshaberiButtonComponent,
     UserDigestComponent,
     ActionPanelComponent,
+    MenuListComponent,
     UsernamePipe,
     ElapsedTimePipe,
   ],
@@ -33,6 +35,7 @@ import { OshaberiBodyComponent } from './components/oshaberi-body/oshaberi-body.
     OshaberiHeaderComponent,
     OshaberiBodyComponent,
     OshaberiButtonComponent,
+    MenuListComponent,
     UserDigestComponent,
     ActionPanelComponent,
   ]

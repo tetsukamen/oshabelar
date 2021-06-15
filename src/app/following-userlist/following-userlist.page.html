@@ -2,19 +2,28 @@
 
 <ion-content>
   <app-oshaberi-button></app-oshaberi-button>
-  <ion-segment [value]="segmentValue" (ionChange)="segmentChanged($event)">
-    <ion-segment-button value="followees">
-      <ion-label>フォロー中</ion-label>
-    </ion-segment-button>
-    <ion-segment-button value="followers">
-      <ion-label>フォロワー</ion-label>
-    </ion-segment-button>
-  </ion-segment>
-  <ng-container *ngIf="segmentValue=='followees';else followersTemplate">
-    <ng-container *ngIf="followees.length">
-      <app-user-digest *ngFor="let userInfo of followees" [userInfo]="userInfo"></app-user-digest>
-    </ng-container>
-  </ng-container>
+  <ion-grid>
+    <ion-row>
+      <ion-col *ngIf="responsibleService.showSideMenu" [size]="responsibleService.sideMenuSize">
+        <app-menu-list></app-menu-list>
+      </ion-col>
+      <ion-col [size]="responsibleService.contentSize">
+        <ion-segment [value]="segmentValue" (ionChange)="segmentChanged($event)">
+          <ion-segment-button value="followees">
+            <ion-label>フォロー中</ion-label>
+          </ion-segment-button>
+          <ion-segment-button value="followers">
+            <ion-label>フォロワー</ion-label>
+          </ion-segment-button>
+        </ion-segment>
+        <ng-container *ngIf="segmentValue=='followees';else followersTemplate">
+          <ng-container *ngIf="followees.length">
+            <app-user-digest *ngFor="let userInfo of followees" [userInfo]="userInfo"></app-user-digest>
+          </ng-container>
+        </ng-container>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>
 
 <ng-template #followersTemplate>

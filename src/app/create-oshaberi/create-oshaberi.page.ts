@@ -8,6 +8,7 @@ import { ActivatedRoute } from '@angular/router';
 import { MessageService } from '../shared/services/message.service';
 import { APIService, Userinfo } from '../API.service';
 import { OshaberiService } from '../shared/services/oshaberi.service';
+import { ResponsibleService } from '../shared/services/responsible.service';
 
 @Component({
   selector: 'app-create-oshaberi',
@@ -39,6 +40,7 @@ export class CreateOshaberiPage implements OnInit {
     private route: ActivatedRoute,
     private api: APIService,
     private oshaberiService: OshaberiService,
+    public responsibleService: ResponsibleService,
   ) { }
 
   async ngOnInit() {

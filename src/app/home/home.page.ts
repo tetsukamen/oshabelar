@@ -5,6 +5,7 @@ import { APIService, ModelSortDirection, Oshaberi } from '../API.service';
 import { AuthService } from '../shared/services/auth.service';
 import { MessageService } from '../shared/services/message.service';
 import { OshaberiService } from '../shared/services/oshaberi.service';
+import { ResponsibleService } from '../shared/services/responsible.service';
 
 @Component({
   selector: 'app-home',
@@ -24,6 +25,7 @@ export class HomePage implements OnInit {
     private messageService: MessageService,
     private router: Router,
     private oshaberiService: OshaberiService,
+    public responsibleService: ResponsibleService,
   ) { }
 
   async ngOnInit() {

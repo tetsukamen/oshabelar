@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormFieldTypes } from '@aws-amplify/ui-components';
+import { ResponsibleService } from './shared/services/responsible.service';
 
 @Component({
   selector: 'app-root',
@@ -9,7 +10,9 @@ import { FormFieldTypes } from '@aws-amplify/ui-components';
 export class AppComponent implements OnInit {
   signUpFormFields: FormFieldTypes;
 
-  constructor() { }
+  constructor(
+    private responsibleService: ResponsibleService,
+  ) { }
 
   ngOnInit() {
     this.signUpFormFields = [
@@ -17,6 +20,7 @@ export class AppComponent implements OnInit {
       { type: "email" },
       { type: "password" },
     ];
+    this.responsibleService.setSize();
   }
 
 }

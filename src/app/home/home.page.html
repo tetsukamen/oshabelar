@@ -1,12 +1,21 @@
 <app-header iconType="menu" title="おうち" buttonText="おしゃべりを作成" (buttonClicked)="goToCreateOshaberi()"></app-header>
 
 <ion-content>
-  <ion-refresher id=refresher slot="fixed" (ionRefresh)="refreshOshaberis($event)">
-    <ion-refresher-content></ion-refresher-content>
-  </ion-refresher>
-  <app-oshaberi *ngFor="let oshaberi of oshaberis" [oshaberi]="oshaberi"></app-oshaberi>
-  <ion-infinite-scroll #infinitScroll threshold="50px" (ionInfinite)="loadNextOshaberis($event)">
-    <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Loading more data...">
-    </ion-infinite-scroll-content>
-  </ion-infinite-scroll>
+  <ion-grid>
+    <ion-row>
+      <ion-col *ngIf="responsibleService.showSideMenu" [size]="responsibleService.sideMenuSize">
+        <app-menu-list></app-menu-list>
+      </ion-col>
+      <ion-col [size]="responsibleService.contentSize">
+        <ion-refresher id=refresher slot="fixed" (ionRefresh)="refreshOshaberis($event)">
+          <ion-refresher-content></ion-refresher-content>
+        </ion-refresher>
+        <app-oshaberi *ngFor="let oshaberi of oshaberis" [oshaberi]="oshaberi"></app-oshaberi>
+        <ion-infinite-scroll #infinitScroll threshold="50px" (ionInfinite)="loadNextOshaberis($event)">
+          <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Loading more data...">
+          </ion-infinite-scroll-content>
+        </ion-infinite-scroll>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>

@@ -1,0 +1,26 @@
+<app-header iconType="menu" title="このアプリについて"></app-header>
+
+<ion-content>
+  <ion-grid>
+    <ion-row>
+      <ion-col *ngIf="responsibleService.showSideMenu" [size]="responsibleService.sideMenuSize">
+        <app-menu-list></app-menu-list>
+      </ion-col>
+      <ion-col [size]="responsibleService.contentSize">
+        <div class="about">
+          <h1>OSHABELAR</h1>
+          <h2>お嬢様言葉でおしゃべりする</h2>
+          <p>
+            こんにちは、開発者の和田です。本アプリの発表日の二日前になりおおよそ機能実装が完了したので、本アプリのコンセプトや実装方法などについてつらつらと語りたいと思います。自己満足で書いているだけなので冗長な部分も多いかと思いますが、よかったらお付き合いください。
+          </p>
+          <h2>コンセプト:お上品なSNS</h2>
+          <p>
+            我々下條研究室は教員・学生とも全員男性なので、Slackのメッセージも無愛想になりがちです。無愛想なメッセージは時にすれ違いを起こすこともあります。少しでも温かみのあるチャット欄を作るにはどうすればいいか、と考えた末にこのコンセプトに至りました。本アプリでは、投稿した文章が自動的にお嬢様言葉に変換されます。男ばかりのチャット欄がお上品なお嬢様言葉で溢れていたら面白いに違いないと思いながら開発していました。
+          </p>
+          <!-- <h2>使用技術</h2>
+          <p>フロントエンドには</p> -->
+        </div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

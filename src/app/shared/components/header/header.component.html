@@ -1,6 +1,6 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-buttons *ngIf="iconType=='menu'">
+    <ion-buttons *ngIf="iconType=='menu' && !responsibleService.showSideMenu">
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
     <ion-buttons slot="start" *ngIf="iconType=='back'">
@@ -9,8 +9,8 @@
       </ion-button>
     </ion-buttons>
     <ion-title *ngIf="title">{{ title }}</ion-title>
-    <ion-searchbar *ngIf="iconType=='search'" showCancelButton="always" placeholder="ことば" animated
-      (ionChange)="search($event)"></ion-searchbar>
+    <ion-searchbar *ngIf="isSearch" showCancelButton="always" placeholder="ことば" animated (ionChange)="search($event)">
+    </ion-searchbar>
     <ion-buttons slot="end">
       <ion-button *ngIf="buttonText" [disabled]="buttonDisabled" slot="end" (click)="sendButtonClickEvent()">{{
         buttonText

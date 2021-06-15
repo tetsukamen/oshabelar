@@ -2,12 +2,21 @@
 
 <ion-content>
   <app-oshaberi-button></app-oshaberi-button>
-  <ion-list>
-    <app-notification-item *ngFor="let notification of notifications" [notification]="notification">
-    </app-notification-item>
-  </ion-list>
-  <ion-infinite-scroll #infinitScroll threshold="50px" (ionInfinite)="loadNextNotification($event)">
-    <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Loading more data...">
-    </ion-infinite-scroll-content>
-  </ion-infinite-scroll>
+  <ion-grid>
+    <ion-row>
+      <ion-col *ngIf="responsibleService.showSideMenu" [size]="responsibleService.sideMenuSize">
+        <app-menu-list></app-menu-list>
+      </ion-col>
+      <ion-col [size]="responsibleService.contentSize">
+        <ion-list>
+          <app-notification-item *ngFor="let notification of notifications" [notification]="notification">
+          </app-notification-item>
+        </ion-list>
+        <ion-infinite-scroll #infinitScroll threshold="50px" (ionInfinite)="loadNextNotification($event)">
+          <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Loading more data...">
+          </ion-infinite-scroll-content>
+        </ion-infinite-scroll>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>

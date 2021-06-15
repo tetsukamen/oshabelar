@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { APIService, Oshaberi, Userinfo } from '../API.service';
+import { ResponsibleService } from '../shared/services/responsible.service';
 
 @Component({
   selector: 'app-like-user-list',
@@ -14,6 +15,7 @@ export class LikeUserListPage implements OnInit {
   constructor(
     public route: ActivatedRoute,
     private api: APIService,
+    public responsibleService: ResponsibleService,
   ) { }
 
   async ngOnInit() {

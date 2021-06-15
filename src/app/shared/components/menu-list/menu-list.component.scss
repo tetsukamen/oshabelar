@@ -1,0 +1,9 @@
+.menuList {
+    position: fixed;
+    &Item {
+        cursor: pointer;
+        &:hover {
+            color: #3880ff;
+        }
+    }
+}

@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { computeStackId } from '@ionic/angular/directives/navigation/stack-utils';
 import { userInfo } from 'os';
 import { APIService, ModelSortDirection, Userinfo } from '../API.service';
+import { ResponsibleService } from '../shared/services/responsible.service';
 
 @Component({
   selector: 'app-following-userlist',
@@ -20,6 +21,7 @@ export class FollowingUserlistPage implements OnInit {
   constructor(
     private api: APIService,
     private route: ActivatedRoute,
+    public responsibleService: ResponsibleService,
   ) { }
 
   /**

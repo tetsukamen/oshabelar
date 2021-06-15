@@ -1,5 +1,6 @@
 import { Location } from '@angular/common';
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { ResponsibleService } from '../../services/responsible.service';
 
 @Component({
   selector: 'app-header',
@@ -7,7 +8,8 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
   styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent implements OnInit {
-  @Input() iconType: 'menu' | 'back' | 'search';
+  @Input() iconType: 'menu' | 'back';
+  @Input() isSearch: boolean = false;
   @Input() title: string = null;
   @Input() buttonText: string = null;
   @Input() buttonDisabled: boolean = false;
@@ -16,6 +18,7 @@ export class HeaderComponent implements OnInit {
 
   constructor(
     private location: Location,
+    public responsibleService: ResponsibleService,
   ) { }
 
   ngOnInit() { }

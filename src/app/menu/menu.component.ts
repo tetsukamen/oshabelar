@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { MenuController } from '@ionic/angular';
 import { AuthService } from '../shared/services/auth.service';
 
 @Component({
@@ -8,20 +7,12 @@ import { AuthService } from '../shared/services/auth.service';
   styleUrls: ['./menu.component.scss'],
 })
 export class MenuComponent implements OnInit {
-  public username: string;
 
   constructor(
     private authService: AuthService,
-    private menu: MenuController,
   ) { }
 
-  async ngOnInit() {
-    this.username = await this.authService.getUser().then(e => e.getUsername());
-  }
-
-  public closeMenu(): void {
-    this.menu.close();
-  }
+  async ngOnInit() { }
 
   public async signOut() {
     return await this.authService.signOut();
